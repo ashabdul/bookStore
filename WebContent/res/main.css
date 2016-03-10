@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+.topbar {
+	background: #006391;
+	padding: 12px;
+}
+
+ul {
+	  position: fixed;
+	  top: 0;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+    position: fixed;
+    width: 100%;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #006391;
+    color: white;
+}
+
+.active {
+	background-color: #006391;
+	color:white;
+}
