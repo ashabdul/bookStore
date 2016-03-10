@@ -1,12 +1,12 @@
-#Ignore everything
-*
+#Top level
+DB/
+build/
+.settings/
+.classpath
+.directory
+.project
 
-#whitelist important files
-!.gitignore
-
-#Whitelist anything in src
-!src/
-
-#WebContent selectively whitelist
-!WebContent/*.html
-!WebContent/res/
+#lower level directories
+WebContent/META-INF/
+WebContent/WEB-INF/
+WebContent/export/
