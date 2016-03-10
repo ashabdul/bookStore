@@ -1,0 +1,12 @@
+#Ignore everything
+*
+
+#whitelist important files
+!.gitignore
+
+#Whitelist anything in src
+!src/
+
+#WebContent selectively whitelist
+!WebContent/*.html
+!WebContent/res/
