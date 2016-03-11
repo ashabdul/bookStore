@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+	<jsp:directive.page contentType="text/html; charset=ISO-8859-1" 
+		pageEncoding="ISO-8859-1" session="false"/>
+	<jsp:output doctype-root-element="html"
+		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+		omit-xml-declaration="true" />
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Login</title>
+<link rel="StyleSheet" href="res/login.css" type="text/css" title="cse4413" media="screen, print" />
+</head>
+<body>
+	<div class="login">
+  <div class="heading">
+  
+    <h2>Sign in</h2>
+    <form action="Start" method="POST">
+	
+      <div class="input-group input-group-lg">
+      Username: <input type="text" class="form-control" placeholder="Username or email"/>
+     </div>
+     
+     <br/>
+
+     <div class="input-group input-group-lg">
+        Password: <input type="password" class="form-control" placeholder="Password"/>
+     </div>
+		
+		<br/>
+        <button type="submit" class="float">Login</button>
+       </form>
+ 	</div>
+ </div>
+	
+</body>
+</html>
+</jsp:root>
