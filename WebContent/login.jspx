@@ -15,14 +15,14 @@
 	title="cse4413" media="screen, print" />
 </head>
 <body>
-	<ul>
-		<li><a href="home.html">Home</a></li>
-		<li><a href="login.jspx" class="active">Log in</a></li>
-		<li style="float: right"><a href="cart.jspx">Cart</a></li>
-		<li style="float: right"><a href="checkout.jspx">Checkout</a></li>
-	</ul>
-	<br />
-	<br />
+	<ul class="navbar">
+    <li class="navbarButton"><a href="home.html" class="navbarLink">Home</a></li>
+    <li class="navbarButton"><a href="login.jspx" class="active navbarLink">Log in</a></li>
+    <li  class="navbarButton" style="float: right"><a href="cart.jspx" class="navbarLink">Cart</a></li>
+    <li  class="navbarButton" style="float: right"><a href="checkout.jspx" class="navbarLink">Checkout</a></li>
+  </ul>
+  <br/>
+  <br/>
 	<div class="login">
 		<div class="heading">
 
