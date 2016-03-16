@@ -15,12 +15,9 @@
 <body>
 	<ul class="navbar">
 		<li class="navbarButton"><a href="home.html" class="navbarLink">Home</a></li>
-		<li class="navbarButton"><a href="login.jspx" class="navbarLink">Log
-				in</a></li>
-		<li class="navbarButton" style="float: right"><a href="cart.jspx"
-			class="navbarLink">Cart</a></li>
-		<li class="navbarButton" style="float: right"><a
-			href="active checkout.jspx" class="navbarLink">Checkout</a></li>
+		<li class="navbarButton"><a href="login.jspx" class="navbarLink">Login</a></li>
+		<li class="navbarButton" style="float: right"><a href="cart.jspx" class="navbarLink">Cart</a></li>
+		<li class="navbarButton" style="float: right"><a href="active checkout.jspx" class="navbarLink">Checkout</a></li>
 	</ul>
 	<br />
 	<br />

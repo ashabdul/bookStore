@@ -38,6 +38,7 @@ public class Login extends HttpServlet {
 		System.out.println("Hit the servlet");
 		System.out.println(request.getParameter("username"));
 		System.out.println(request.getParameter("password"));
+		//Insert into database now
 	}
 
 }
