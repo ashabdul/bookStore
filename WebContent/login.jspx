@@ -27,18 +27,18 @@
 		<div class="heading">
 
 			<h2>Sign in</h2>
-			<form action="Start" method="POST">
+			<form action="Login" method="POST">
 
 				<div class="input-group input-group-lg">
 					Username: <input type="text" class="form-control"
-						placeholder="Username or email" />
+						placeholder="Username or email" name="username"/>
 				</div>
 
 				<br />
 
 				<div class="input-group input-group-lg">
 					Password: <input type="password" class="form-control"
-						placeholder="Password" />
+						placeholder="Password" name="password"/>
 				</div>
 
 				<br />
