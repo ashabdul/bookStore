@@ -96,6 +96,10 @@ body {
 	color: #207cca;
 }
 
+#searchbar {
+	padding-top: 10px;
+}
+
 .dropbtn {
     background-color: black;
     color: white;
