@@ -36,12 +36,7 @@ body {
 	transform: translateY(-3px);
 }
 
-.topbar {
-	background: #006391;
-	padding: 12px;
-}
-
-.navbar {
+ul {
 	position: fixed;
 	top: 0;
 	list-style-type: none;
@@ -53,11 +48,11 @@ body {
 	width: 100%;
 }
 
-.navbarButton {
+li {
 	float: left;
 }
 
-.navbarLink {
+li a {
 	display: inline-block;
 	color: white;
 	text-align: center;
@@ -65,7 +60,7 @@ body {
 	text-decoration: none;
 }
 
-.navbarLink:hover {
+li a:hover {
 	background-color: #006391;
 	color: white;
 }
