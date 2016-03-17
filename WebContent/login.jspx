@@ -42,7 +42,8 @@
 				</div>
 
 				<br />
-				<button type="submit" class="float">Login</button>
+				<button type="submit" class="float" name="Login" value="true"><span class="fa fa-sign-in fa-fw"/> Login</button><br/>
+				<button type="submit" class="float" name="Register" value="true"><span class="fa fa-sign-in fa-fw"/>Register</button>
 			</form>
 		</div>
 	</div>
