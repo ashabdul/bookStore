@@ -9,8 +9,8 @@ package model;
  */
 public class BookBean {
 	
-	String bid = "", name = "", category = "";
-	double price  = 0;
+	private String bid = "", name = "", category = "";
+	private double price  = 0;
 	
 	public BookBean ()
 	{
