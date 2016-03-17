@@ -13,12 +13,23 @@
 	charset="utf-8" />
 </head>
 <body>
-	<ul class="navbar">
-		<li class="navbarButton"><a href="home.html" class="navbarLink">Home</a></li>
-		<li class="navbarButton"><a href="login.jspx" class="navbarLink">Login</a></li>
-		<li class="navbarButton" style="float: right"><a href="cart.jspx" class="navbarLink">Cart</a></li>
-		<li class="navbarButton" style="float: right"><a href="active checkout.jspx" class="navbarLink">Checkout</a></li>
-	</ul>
+	<ul>
+    <li><a href="home.html">Home</a></li>
+    <li><a href="login.jspx">Log in</a></li>
+    <li>
+      <div class="dropdown">
+        <button class="dropbtn">Category</button>
+        <div class="dropdown-content">
+          <a href="#">Science</a> <a href="#">Fiction</a> <a href="#">Engineering</a>
+        </div>
+      </div>
+    </li>
+    <li id="searchbar" style="float: right"><input type="text"
+      id="search" placeholder="Search" /> <input
+      type="button" id="searchbutton" value="Search" /></li>
+    <li style="float: right"><a href="cart.jspx">Cart</a></li>
+    <li style="float: right" class="active"><a href="checkout.jspx">Checkout</a></li>
+  </ul>
 	<br />
 	<br />
 	<br />
