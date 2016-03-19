@@ -38,6 +38,7 @@
 		<div class="heading">
 
 			<h2>Sign in</h2>
+			
 			<form action="Login" method="POST">
 
 				<div class="input-group input-group-lg">

@@ -28,13 +28,18 @@ public class Start extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//When first visiting the website always redirect to home.
-		response.sendRedirect("home.html");
+		response.sendRedirect("home.jspx");
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("hello");
+		if(request.getParameter("searchSubmit") != null)
+		{
+			System.out.println(request.getParameter("searchValue"));
+		}
 	}
 
 }

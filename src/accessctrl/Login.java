@@ -28,7 +28,7 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Should never enter via get
 		//If it entered via get assume it's not a login request, redirect to home.
-		response.sendRedirect("home.html");
+		response.sendRedirect("home.jspx");
 	}
 
 	/**
