@@ -21,6 +21,13 @@ PRIMARY KEY(bid)
 INSERT INTO Book (bid, title, price, category) VALUES ('b001', 'Little Prince', 20, 'Fiction');
 INSERT INTO Book (bid, title, price, category) VALUES ('b002','Physics', 201, 'Science');
 INSERT INTO Book (bid, title, price, category) VALUES ('b003','Mechanics' ,100,'Engineering');
+INSERT INTO Book (bid, title, price, category) VALUES ('1500982415', 'Engineering Possibilities: Soft Skills for Young Engineers', 20, 'Engineering');
+INSERT INTO Book (bid, title, price, category) VALUES ('0176509909', 'Canadian Professional Engineering and Geoscience', 140, 'Engineering');
+INSERT INTO Book (bid, title, price, category) VALUES ('0073398209', 'Shigley''s Mechanical Engineering Design', 302, 'Engineering');
+INSERT INTO Book (bid, title, price, category) VALUES ('0133575225', 'Introduction to Professional Engineering in Canada', 89, 'Engineering');
+INSERT INTO Book (bid, title, price, category) VALUES ('0133575233', 'Practical Law of Architecture, Engineering, and Geoscience', 84, 'Engineering');
+INSERT INTO Book (bid, title, price, category) VALUES ('9384588962', 'Engineering Drawing with Auto Cad', 55, 'Engineering');
+INSERT INTO Book (bid, title, price, category) VALUES ('0201835959', 'The Mythical Man-Month: Essays on Software Engineering', 32, 'Engineering');
 #
 
 

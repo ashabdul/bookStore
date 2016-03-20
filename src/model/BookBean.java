@@ -9,7 +9,7 @@ package model;
  */
 public class BookBean {
 	
-	private String bid = "", name = "", category = "";
+	private String bid = "", title = "", category = "";
 	private double price  = 0;
 	
 	public BookBean ()
@@ -17,10 +17,10 @@ public class BookBean {
 		
 	}
 	
-	public BookBean (String bid, String name, String category, double price)
+	public BookBean (String bid, String title, String category, double price)
 	{
 		this.bid = bid;
-		this.name = name;
+		this.title = title;
 		this.category = category;
 		this.price = price;
 	}
@@ -40,17 +40,17 @@ public class BookBean {
 	}
 
 	/**
-	 * @return the name
+	 * @return the title
 	 */
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param title the title to set
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	/**
