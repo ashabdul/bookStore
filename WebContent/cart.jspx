@@ -14,7 +14,7 @@
 </head>
 <body>
 	<ul>
-    <li><a href="home.html">Home</a></li>
+    <li><a href="home.jspx">Home</a></li>
     <li><a href="login.jspx">Log in</a></li>
     <li>
       <div class="dropdown">
