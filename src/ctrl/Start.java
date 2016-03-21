@@ -41,7 +41,7 @@ public class Start extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("hello");
+		
 		if(request.getParameter("searchSubmit") != null)
 		{
 			System.out.println("Start: ");
@@ -82,6 +82,11 @@ public class Start extends HttpServlet {
 
 			request.setAttribute("list", books.values());
 			request.getRequestDispatcher("searchResult.jspx").forward(request, response);
+		}
+		
+		if(request.getParameter("addToCart") != null)
+		{
+			System.out.println("Button value = " + request.getParameter("addToCart"));
 		}
 	}
 
