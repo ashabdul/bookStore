@@ -1,6 +1,9 @@
 package ctrl;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,10 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.BookBean;
+import model.BookDAO;
+
 /**
  * Servlet implementation class Start
  */
-@WebServlet("")
+@WebServlet(urlPatterns = {"/Start", ""})
 public class Start extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -38,7 +44,44 @@ public class Start extends HttpServlet {
 		System.out.println("hello");
 		if(request.getParameter("searchSubmit") != null)
 		{
-			System.out.println(request.getParameter("searchValue"));
+			System.out.println("Start: ");
+			String searchParam = "";
+			BookDAO search = null;
+			Map<String, BookBean> books = new HashMap<String, BookBean>();
+
+			if(request.getParameter("searchSubmit") != null)
+			{
+				System.out.println(request.getParameter("searchValue"));
+				searchParam = request.getParameter("searchValue");
+			}
+
+			try
+			{
+				search = new BookDAO();
+			}
+
+			catch(ClassNotFoundException e)
+			{
+				e.printStackTrace();
+			}
+
+			try
+			{
+				books = search.retrieve(searchParam);
+			}
+
+			catch(SQLException e)
+			{
+				e.printStackTrace();
+			}
+
+			for(BookBean b: books.values())
+			{
+				System.out.println(b.getBid() + " " +  b.getTitle() + " " + b.getCategory() + " " + b.getPrice());
+			}
+
+			request.setAttribute("list", books.values());
+			request.getRequestDispatcher("searchResult.jspx").forward(request, response);
 		}
 	}
 

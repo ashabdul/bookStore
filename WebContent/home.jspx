@@ -13,7 +13,7 @@
 	charset="utf-8" />
 </head>
 <body>
-<form action="Search" method="POST">
+<form action="Start" method="POST">
 <ul>
     <li><a href="home.jspx" class="active">Home</a></li>
     <li><a href="login.jspx">Log in</a></li>
