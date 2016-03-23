@@ -13,48 +13,51 @@
 	charset="utf-8" />
 <link rel="StyleSheet" href="res/login.css" type="text/css"
 	title="cse4413" media="screen, print" />
+<script type="text/javascript" src="res/loginValidate.js">;</script>
 </head>
 <body>
 	<ul>
-    <li><a href="home.jspx">Home</a></li>
-    <li><a href="login.jspx" class="active">Log in</a></li>
-    <li>
-      <div class="dropdown">
-        <button class="dropbtn">Category</button>
-        <div class="dropdown-content">
-          <a href="#">Science</a> <a href="#">Fiction</a> <a href="#">Engineering</a>
-        </div>
-      </div>
-    </li>
-    <li id="searchbar" style="float: right"><input type="text"
-      id="search" placeholder="Search" /> <input
-      type="button" id="searchbutton" value="Search" /></li>
-    <li style="float: right"><a href="cart.jspx">Cart</a></li>
-    <li style="float: right"><a href="checkout.jspx">Checkout</a></li>
-  </ul>
-  <br/>
-  <br/>
+		<li><a href="home.jspx">Home</a></li>
+		<li><a href="login.jspx" class="active">Log in</a></li>
+		<li>
+			<div class="dropdown">
+				<button class="dropbtn">Category</button>
+				<div class="dropdown-content">
+					<a href="#">Science</a> <a href="#">Fiction</a> <a href="#">Engineering</a>
+				</div>
+			</div>
+		</li>
+		<li id="searchbar" style="float: right"><input type="text"
+			id="search" placeholder="Search" /> <input type="button"
+			id="searchbutton" value="Search" /></li>
+		<li style="float: right"><a href="cart.jspx">Cart</a></li>
+		<li style="float: right"><a href="checkout.jspx">Checkout</a></li>
+	</ul>
+	<br />
+	<br />
 	<div class="login">
 		<div class="heading">
 
 			<h2>Sign in</h2>
-			
-			<form action="Login" method="POST">
+
+			<form action="Login" method="POST" onsubmit="return validate();">
 				<label name="error">${error_msg}</label>
+				<span id="error"></span>
 				<div class="input-group input-group-lg">
 					Username: <input type="text" class="form-control"
-						placeholder="Username or email" name="username"/>
+						placeholder="Username or email" name="username" id="username" />
 				</div>
 
 				<br />
 
 				<div class="input-group input-group-lg">
 					Password: <input type="password" class="form-control"
-						placeholder="Password" name="password"/>
+						placeholder="Password" name="password" id="password" />
 				</div>
 
 				<br />
-				<button type="submit" class="float" name="Login" value="true">Login</button><br/>
+				<button type="submit" class="float" name="Login" value="true">Login</button>
+				<br />
 				<button type="submit" class="float" name="Register" value="true">Register</button>
 			</form>
 		</div>
