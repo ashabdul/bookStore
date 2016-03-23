@@ -1,15 +1,19 @@
 package bean;
 
+import model.Cart;
+
 public class UserBean {
 
 	String userName;
 	String password;
 	String type;
+	Cart cart;
 	
 	public UserBean(String userName, String password, String type) {
 		this.userName = userName;
 		this.password = password;
 		this.type = type;
+		this.cart = new Cart();
 	}
 	/**
 	 * @return the userName
