@@ -15,7 +15,7 @@
 	charset="utf-8" />
 </head>
 <body>
-	<form action="Start" method="POST">
+<form action="Start" method="POST">
 	<ul>
     <li><a href="home.jspx">Home</a></li>
     <li><a href="login.jspx">Log in</a></li>
@@ -43,8 +43,7 @@
 				<td>${stulist.title} </td>
 				<td>$${stulist.price}0 </td>
 				<td>${stulist.category} </td>
-				<button name="addToCart" value="${stulist.bid}" type="submit">Add
-					To Cart</button>
+				<button name="addToCart" value="${stulist.bid}" type="submit">Add To Cart</button>
 				<br />
 			</tr>
 		</c:forEach>

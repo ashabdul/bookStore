@@ -13,6 +13,7 @@
 	charset="utf-8" />
 </head>
 <body>
+<form action="Start" method="POST">
 	<ul>
     <li><a href="home.jspx">Home</a></li>
     <li><a href="login.jspx">Log in</a></li>
@@ -25,8 +26,8 @@
       </div>
     </li>
     <li id="searchbar" style="float: right"><input type="text"
-      id="search" placeholder="Search" /> <input
-      type="button" id="searchbutton" value="Search" /></li>
+      id="search" placeholder="Search" name="searchValue"/> <input
+      type="submit" id="searchbutton" value="Search" name="searchSubmit" /></li>
     <li style="float: right"><a href="cart.jspx">Cart</a></li>
     <li style="float: right" class="active"><a href="checkout.jspx">Checkout</a></li>
   </ul>
@@ -36,6 +37,7 @@
 	<div class="body">
 		<span>Website body</span>
 	</div>
+	</form>
 </body>
 	</html>
 </jsp:root>

@@ -20,6 +20,7 @@ import model.BookDAO;
 @WebServlet(urlPatterns = {"/Start", ""})
 public class Start extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private BookDAO search = null;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -27,6 +28,15 @@ public class Start extends HttpServlet {
 	public Start() {
 		super();
 		// TODO Auto-generated constructor stub
+		try
+		{
+			search = new BookDAO();
+		}
+
+		catch(ClassNotFoundException e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -46,23 +56,12 @@ public class Start extends HttpServlet {
 		{
 			System.out.println("Start: ");
 			String searchParam = "";
-			BookDAO search = null;
 			Map<String, BookBean> books = new HashMap<String, BookBean>();
 
 			if(request.getParameter("searchSubmit") != null)
 			{
 				System.out.println(request.getParameter("searchValue"));
 				searchParam = request.getParameter("searchValue");
-			}
-
-			try
-			{
-				search = new BookDAO();
-			}
-
-			catch(ClassNotFoundException e)
-			{
-				e.printStackTrace();
 			}
 
 			try
