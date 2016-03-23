@@ -40,7 +40,7 @@
 			<h2>Sign in</h2>
 			
 			<form action="Login" method="POST">
-
+				<label name="error">${error_msg}</label>
 				<div class="input-group input-group-lg">
 					Username: <input type="text" class="form-control"
 						placeholder="Username or email" name="username"/>
