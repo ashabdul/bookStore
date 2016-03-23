@@ -4,12 +4,12 @@ public class UserBean {
 
 	String userName;
 	String password;
-	boolean isAdmin;
+	String type;
 	
-	public UserBean(String userName, String password, boolean isAdmin) {
+	public UserBean(String userName, String password, String type) {
 		this.userName = userName;
 		this.password = password;
-		this.isAdmin = isAdmin;
+		this.type = type;
 	}
 	/**
 	 * @return the userName
@@ -38,19 +38,19 @@ public class UserBean {
 	/**
 	 * @return the isAdmin
 	 */
-	public boolean getisAdmin() {
-		return isAdmin;
+	public String getType() {
+		return type;
 	}
 	/**
 	 * @param isAdmin the isAdmin to set
 	 */
-	public void setisAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	public String toString(){
-		String s = "User Name= " + this.getUserName() + ", " + "Password= " + this.getPassword() + ", " + "isAdmin= " 
-				+ this.getisAdmin();
+		String s = "User Name= " + this.getUserName() + ", " + "Password= " + this.getPassword() + ", " + "Type= " 
+				+ this.getType();
 		return s;
 	}
 	

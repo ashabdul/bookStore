@@ -142,13 +142,18 @@ INSERT INTO VisitEvent (day, bid, eventtype) VALUES ('12252015', 'b001', 'PURCHA
 * user name and password table
 */
 
-CREATE TABLE Accounts(
-userName VARCHAR(255) NOT NULL,
-password VARCHAR(20) NOT NULL,
-isadmin VARCHAR(5) CONSTRAINT type_ck CHECK (isadmin IN ('True', 'False','ture','false')) NOT NULL,
-PRIMARY KEY(userName));
+CREATE TABLE accounts (
+  userName         VARCHAR(255) NOT NULL ,
+  password         VARCHAR(20) NOT NULL,
+  account_type VARCHAR(7) CONSTRAINT type_ck CHECK (account_type IN ('user', 'admin','partner')) NOT NULL,
+  PRIMARY KEY(userName));
 
 
+CREATE TABLE user_roles (
+  userName         VARCHAR(255) NOT NULL,
+  role         VARCHAR(20) NOT NULL,
+  PRIMARY KEY (userName, role)
+);
 
 
 
