@@ -21,13 +21,6 @@ PRIMARY KEY(bid)
 INSERT INTO Book (bid, title, price, category) VALUES ('b001', 'Little Prince', 20, 'Fiction');
 INSERT INTO Book (bid, title, price, category) VALUES ('b002','Physics', 201, 'Science');
 INSERT INTO Book (bid, title, price, category) VALUES ('b003','Mechanics' ,100,'Engineering');
-INSERT INTO Book (bid, title, price, category) VALUES ('1500982415', 'Engineering Possibilities: Soft Skills for Young Engineers', 20, 'Engineering');
-INSERT INTO Book (bid, title, price, category) VALUES ('0176509909', 'Canadian Professional Engineering and Geoscience', 140, 'Engineering');
-INSERT INTO Book (bid, title, price, category) VALUES ('0073398209', 'Shigley''s Mechanical Engineering Design', 302, 'Engineering');
-INSERT INTO Book (bid, title, price, category) VALUES ('0133575225', 'Introduction to Professional Engineering in Canada', 89, 'Engineering');
-INSERT INTO Book (bid, title, price, category) VALUES ('0133575233', 'Practical Law of Architecture, Engineering, and Geoscience', 84, 'Engineering');
-INSERT INTO Book (bid, title, price, category) VALUES ('9384588962', 'Engineering Drawing with Auto Cad', 55, 'Engineering');
-INSERT INTO Book (bid, title, price, category) VALUES ('0201835959', 'The Mythical Man-Month: Essays on Software Engineering', 32, 'Engineering');
 #
 
 
@@ -49,11 +42,11 @@ PRIMARY KEY(id)
 #
 # Inserting data for table 'address'
 #
-INSERT INTO Address (id, street, province, country, zip, phone) VALUES (1, '123 Yonge St', 'ON',
+INSERT INTO Address (street, province, country, zip, phone) VALUES ('123 Yonge St', 'ON',
 'Canada', 'K1E 6T5' ,'647-123-4567');
-INSERT INTO Address (id, street, province, country, zip, phone) VALUES (2, '445 Avenue rd', 'ON',
+INSERT INTO Address (street, province, country, zip, phone) VALUES ('445 Avenue rd', 'ON',
 'Canada', 'M1C 6K5' ,'416-123-8569');
-INSERT INTO Address (id, street, province, country, zip, phone) VALUES (3, '789 Keele St.', 'ON',
+INSERT INTO Address (street, province, country, zip, phone) VALUES ('789 Keele St.', 'ON',
 'Canada', 'K3C 9T5' ,'416-123-9568');
 #
 #
@@ -81,9 +74,9 @@ CREATE INDEX PO_IDX ON PO(address);
 #
 # Inserting data for table 'PO'
 #
-INSERT INTO PO (id, lname, fname, status, address) VALUES (1, 'John', 'White', 'PROCESSED', '1');
-INSERT INTO PO (id, lname, fname, status, address) VALUES (2, 'Peter', 'Black', 'DENIED', '2');
-INSERT INTO PO (id, lname, fname, status, address) VALUES (3, 'Andy', 'Green', 'ORDERED', '3');
+INSERT INTO PO (lname, fname, status, address) VALUES ('John', 'White', 'PROCESSED', 1);
+INSERT INTO PO (lname, fname, status, address) VALUES ('Peter', 'Black', 'DENIED', 2);
+INSERT INTO PO (lname, fname, status, address) VALUES ('Andy', 'Green', 'ORDERED', 3);
 #
 #
 
@@ -109,9 +102,9 @@ CREATE INDEX POitem_IDX_bid ON POItem(bid);
 #
 # Inserting data for table 'POitem'
 #
-INSERT INTO POItem (id, bid, price) VALUES (1, 'b001', '20');
-INSERT INTO POItem (id, bid, price) VALUES (2, 'b002', '201');
-INSERT INTO POItem (id, bid, price) VALUES (3, 'b003', '100');
+INSERT INTO POItem (id, bid, price) VALUES (1, 'b001', 20);
+INSERT INTO POItem (id, bid, price) VALUES (2, 'b002', 201);
+INSERT INTO POItem (id, bid, price) VALUES (3, 'b003', 100);
 #
 #
 
@@ -145,8 +138,9 @@ INSERT INTO VisitEvent (day, bid, eventtype) VALUES ('12252015', 'b001', 'PURCHA
 CREATE TABLE Accounts(
 userName VARCHAR(255) NOT NULL,
 password VARCHAR(20) NOT NULL,
-accountType VARCHAR(5) CONSTRAINT type_ck CHECK (accountType IN ('user', 'admin')) NOT NULL,
+isadmin VARCHAR(5) CONSTRAINT type_ck CHECK (isadmin IN ('True', 'False','ture','false')) NOT NULL,
 PRIMARY KEY(userName));
+
 
 
 
