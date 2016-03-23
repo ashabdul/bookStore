@@ -34,7 +34,7 @@ public class UserDAO {
 		PreparedStatement p = con.prepareStatement(query);
 		ResultSet r = p.executeQuery();
 		System.out.println(r);
-		UserBean user = new UserBean(r.getString("username"),r.getString("password"),Boolean.parseBoolean(r.getString("isAdmin")));
+		UserBean user = new UserBean(r.getString("username"),r.getString("password"),r.getString("type"));
 		System.out.println(user.toString());
 		r.close();
 		p.close();
@@ -47,12 +47,12 @@ public class UserDAO {
 	 */
 	public UserBean updatePassword(String username, String password) throws SQLException{
 		String query = "update accounts set password ='" + password + "' where username like '%"
-				+ username + "%'"; 
+				+ username + "%'";
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		ResultSet r = p.executeQuery();
 		System.out.println(r);
-		UserBean user = new UserBean(r.getString("username"),r.getString("password"),Boolean.parseBoolean(r.getString("isAdmin")));
+		UserBean user = new UserBean(r.getString("username"),r.getString("password"),r.getString("account_type"));
 		System.out.println("UPDATED USER" + user.toString());
 		r.close();
 		p.close();
@@ -61,16 +61,16 @@ public class UserDAO {
 	}
 	
 	/*
-	 * update user's isAdmin status
+	 * update user's account_type status
 	 */
-	public UserBean updateIsAdmin(String username, String isAdmin) throws SQLException{
-		String query = "update accounts set isadmin ='" + isAdmin + "' where username like '%"
+	public UserBean updateAccount_type(String username, String type) throws SQLException{
+		String query = "update accounts set account_type ='" + type + "' where username like '%"
 				+ username + "%'"; 
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		ResultSet r = p.executeQuery();
 		System.out.println(r);
-		UserBean user = new UserBean(r.getString("username"),r.getString("password"),Boolean.parseBoolean(r.getString("isAdmin")));
+		UserBean user = new UserBean(r.getString("username"),r.getString("password"),r.getString("account_type"));
 		System.out.println("UPDATED USER" + user.toString());
 		r.close();
 		p.close();
@@ -82,13 +82,18 @@ public class UserDAO {
 	 * add a new account
 	 */
 	public void addUser(UserBean user) throws SQLException{
-		String query = "insert into accounts(username, password, isadmin) values ('" + user.getUserName() + "', '" + 
-					user.getPassword() + "', '" + Boolean.toString(user.getisAdmin()) + "')"; 
+		String query1 = "insert into accounts(username, password, account_type) values ('" + user.getUserName() + "', '" + 
+					user.getPassword() + "', '" + user.getType() + "')"; 
+		String query2 = "INSERT INTO user_roles(userName, role) VALUES ('" + user.getUserName() + "', '" + user.getType() + "')";
 		Connection con = this.ds.getConnection();
-		PreparedStatement p = con.prepareStatement(query);
-		ResultSet r = p.executeQuery();
-		r.close();
-		p.close();
+		PreparedStatement p1 = con.prepareStatement(query1);
+		PreparedStatement p2 = con.prepareStatement(query2);
+		ResultSet r1 = p1.executeQuery();
+		ResultSet r2 = p2.executeQuery();
+		r1.close();
+		r2.close();
+		p1.close();
+		p2.close();
 		con.close();
 	}
 	
