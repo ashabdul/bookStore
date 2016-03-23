@@ -38,9 +38,17 @@ public class Login extends HttpServlet {
 		System.out.println(Boolean.parseBoolean(request.getParameter("Login")));
 		System.out.println(Boolean.parseBoolean(request.getParameter("Register")));
 		if(Boolean.parseBoolean(request.getParameter("Login"))) {
+			if(request.getParameter("username").equals("") || request.getParameter("password").equals("")){
+				request.setAttribute("error_msg", "please enter both fields");
+				request.getRequestDispatcher("/login.jspx").forward(request, response);
+			}
 			System.out.println("You are logged in as " + request.getParameter("username"));
 			System.out.println("with password " + request.getParameter("password"));
 		}else if(Boolean.parseBoolean(request.getParameter("Register"))) {
+			if(request.getParameter("username").equals("") || request.getParameter("password").equals("")){
+				request.setAttribute("error_msg", "please enter both fields");
+				request.getRequestDispatcher("/login.jspx").forward(request, response);
+			}
 			System.out.println("You have registered as " + request.getParameter("username"));
 			System.out.println("with password " + request.getParameter("password"));
 		}
