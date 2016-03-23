@@ -39,12 +39,14 @@
 	<br/>		
 		<c:forEach items="${list}" var="stulist">
 			<tr>
-				<td>${stulist.bid} </td>
+				<td><img src="images/${stulist.bid}.jpg" alt="Book" height="200" width="150"></img> </td>
 				<td>${stulist.title} </td>
+				<br/>
 				<td>$${stulist.price}0 </td>
-				<td>${stulist.category} </td>
+				<br/>
 				<button name="addToCart" value="${stulist.bid}" type="submit">Add To Cart</button>
-				<br />
+				<br/>
+				<br/>
 			</tr>
 		</c:forEach>
 	</form>
