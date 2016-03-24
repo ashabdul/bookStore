@@ -40,19 +40,19 @@
 
 			<h2>Sign in</h2>
 
-			<form action="Login" method="POST" onsubmit="return validate();">
+			<form action="j_security_check" method="POST" onsubmit="return validate();">
 				<label name="error">${error_msg}</label>
 				<span id="error"></span>
 				<div class="input-group input-group-lg">
 					Username: <input type="text" class="form-control"
-						placeholder="Username or email" name="username" id="username" />
+						placeholder="Username or email" name="j_username" id="username" />
 				</div>
 
 				<br />
 
 				<div class="input-group input-group-lg">
 					Password: <input type="password" class="form-control"
-						placeholder="Password" name="password" id="password" />
+						placeholder="Password" name="j_password" id="password" />
 				</div>
 
 				<br />
