@@ -1,3 +1,8 @@
+/**
+	 * @author Michel Abd Alsamad
+	 * 	
+	 */
+
 package bean;
 
 import model.Cart;

@@ -1,3 +1,8 @@
+/**
+	 * @author Michel Abd Alsamad
+	 * 	
+	 */
+
 package bean;
 
 public class EventBean {

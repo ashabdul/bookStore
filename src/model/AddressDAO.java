@@ -1,3 +1,8 @@
+/**
+	 * @author Michel Abd Alsamad
+	 * 	
+	 */
+
 package model;
 
 import java.sql.Connection;

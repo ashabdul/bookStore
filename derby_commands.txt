@@ -157,5 +157,17 @@ CREATE TABLE user_roles (
 
 
 
+/* 
+* reviews table
+*/
+
+CREATE TABLE reviews(
+id INT CONSTRAINT reviewid_ck CHECK (id > 0) NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 0, INCREMENT BY 1),
+bid VARCHAR(20) NOT NULL,
+review VARCHAR(20000),
+stars INT CONSTRAINT stars_ck CHECK (stars > 0 AND stars < 6),
+PRIMARY KEY(id),
+FOREIGN KEY (bid) REFERENCES book (bid)
+);
 
 

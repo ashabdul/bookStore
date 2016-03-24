@@ -1,3 +1,9 @@
+/**
+	 * @author Michel Abd Alsamad
+	 * 	
+	 */
+
+
 package model;
 
 import java.sql.Connection;
@@ -9,7 +15,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import bean.POBean;
 import bean.POItemBean;
 
 public class POItemDAO {
