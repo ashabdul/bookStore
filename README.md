@@ -16,7 +16,7 @@ Restart your server and test SSL with: https://localhost:8443/
 I have pushed some minor changes to login.jspx to be compatible.  Everything else must modify non-shared files.  
 
 1. Modify web.xml,  insert the following text at the end just before the </web-app> tag.  This adds a new group of users called "partner", specifies that /home.jspx (change this, it was set as a test) requires this group in order to access, and specifies that /login.jspx has the form for logging in.
-`<security-constraint>
+```<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>Partners</web-resource-name>
 			<url-pattern>/home.jspx</url-pattern>
@@ -39,10 +39,10 @@ I have pushed some minor changes to login.jspx to be compatible.  Everything els
 			<form-login-page>/login.jspx</form-login-page>
 			<form-error-page>/login-failed.html</form-error-page>
 		</form-login-config>
-	</login-config>`
+	</login-config>```
 
 2. Go to tomcat-users.xml and add the following before the </tomcat-users> tag.  This specifies a user with role "partner" so it is a valid authenticator to access /home.jspx.
-`<role rolename="partner"/>
-<user username="william" password="hello" roles="partner"/>`
+```<role rolename="partner"/>
+<user username="william" password="hello" roles="partner"/>```
 
 The problem here is that the passwords are still plain text however I have not yet been able to get hashing to work.  So, I provide this so anyone who needs auth working to continue their own work can do so.  
