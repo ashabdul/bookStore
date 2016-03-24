@@ -32,6 +32,23 @@ I have pushed some minor changes to login.jspx to be compatible.  Everything els
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 		</user-data-constraint>
 	</security-constraint>
+	
+	<security-constraint>
+    		<web-resource-collection>
+      			<web-resource-name>Admins</web-resource-name>
+      			<url-pattern>/cart.jspx</url-pattern>
+      			<http-method>GET</http-method>
+      			<http-method>POST</http-method>
+    		</web-resource-collection>
+
+	 	<auth-constraint>
+	 	<role-name>admin</role-name>
+	 	</auth-constraint>
+	 
+	 	<user-data-constraint>
+      			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+      		 </user-data-constraint>
+  	</security-constraint>
 
 	<login-config>
 		<auth-method>FORM</auth-method>
@@ -43,6 +60,8 @@ I have pushed some minor changes to login.jspx to be compatible.  Everything els
 
 2. Go to tomcat-users.xml and add the following before the </tomcat-users> tag.  This specifies a user with role "partner" so it is a valid authenticator to access /home.jspx.
 ```<role rolename="partner"/>
-<user username="william" password="hello" roles="partner"/>```
+<role rolename="admin"
+<user username="admin" password="admin" roles="admin"
+<user username="william" password="hello" roles="partner,admin"/>```
 
 The problem here is that the passwords are still plain text however I have not yet been able to get hashing to work.  So, I provide this so anyone who needs auth working to continue their own work can do so.  
