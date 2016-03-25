@@ -1,0 +1,128 @@
+@CHARSET "ISO-8859-1";
+
+@CHARSET "ISO-8859-1";
+
+@import
+	url(https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css)
+	;
+
+$
+shadow-color: #23203b ;
+ $input-color: lighten (#AB9E95, 10%); $input-border-color: #5E5165 ;
+ $button-background-color: #27AE60 ;
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	background:
+		url(http://terrancegavan.com/wp-content/uploads/2015/04/bgimg3.jpg)
+		no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+input, button {
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+@
+mixin normalize-input {
+	display: block;
+	width: auto;
+	height: auto;
+	border: none;
+	outline: none;
+	box-shadow: none;
+	background: none;
+	border-radius: 0px;
+}
+
+.items {
+	padding: 15px;
+	width: 900px;
+	min-height: 100px;
+	margin: 2% auto 0 auto;
+	background-color: rgb(247, 247, 247);
+}
+
+
+.pay {
+	padding: 15px;
+	width: 900px;
+	min-height: 100px;
+	margin: 2% auto 0 auto;
+	background-color: rgb(247, 247, 247);
+}
+
+.heading {
+	margin-top: 1%;
+}
+
+h2 {
+	font-size: 3em;
+	font-weight: 300;
+	color: black;
+	display: inline-block;
+	padding-bottom: 5px;
+	text-shadow: 1px 1px 3px$shadow-color;
+	font-weight: bold;
+	text-align: center;
+}
+
+form {
+	font-weight: bold; 
+	.
+	input-group { 
+		border-bottom : 1px solid rgba( 255, 255, 255, 0.1);
+		border-top: 1px solid rgba(255, 255, 255, 0.1);
+	
+		&:last-of-type
+		{
+			border-top: none;
+		}
+	
+		span {
+				background: transparent;
+				min-width: 53px;
+				border: none; i { font-size : 1.5em;
+				color: rgba(255, 255, 255, 0.2);
+			}
+
+	}
+}
+input.form-control { 
+	@include normalize-input;
+	padding: 10px;
+	font-size: 1.2em;
+	width: 70%;
+	background: transparent;
+	color: $input-color;
+	&:focus
+	{
+	border: none;
+	}
+
+}
+
+button
+{
+	background-color: #4CAF50; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+label
+{
+	font-color: red;
+}
