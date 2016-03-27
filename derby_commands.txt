@@ -6,10 +6,10 @@
 * author: name of authors
 * category: as specified
 */
-DROP TABLE if exists Book;
+DROP TABLE BOOK;
 CREATE TABLE Book (
 bid VARCHAR(20) NOT NULL,
-title VARCHAR(60) NOT NULL,
+title VARCHAR(100) NOT NULL,
 price INT NOT NULL,
 category VARCHAR(12) CONSTRAINT category_ck CHECK (category IN ('Science','Fiction','Engineering')) NOT NULL,
 PRIMARY KEY(bid)
@@ -18,9 +18,6 @@ PRIMARY KEY(bid)
 #
 # Adding data for table 'Book'
 #
-INSERT INTO Book (bid, title, price, category) VALUES ('b001', 'Little Prince', 20, 'Fiction');
-INSERT INTO Book (bid, title, price, category) VALUES ('b002','Physics', 201, 'Science');
-INSERT INTO Book (bid, title, price, category) VALUES ('b003','Mechanics' ,100,'Engineering');
 INSERT INTO Book (bid, title, price, category) VALUES ('1500982415', 'Engineering Possibilities: Soft Skills for Young Engineers', 20, 'Engineering');
  INSERT INTO Book (bid, title, price, category) VALUES ('0176509909', 'Canadian Professional Engineering and Geoscience', 140, 'Engineering');
  INSERT INTO Book (bid, title, price, category) VALUES ('0073398209', 'Shigley''s Mechanical Engineering Design', 302, 'Engineering');
@@ -28,7 +25,43 @@ INSERT INTO Book (bid, title, price, category) VALUES ('1500982415', 'Engineerin
  INSERT INTO Book (bid, title, price, category) VALUES ('0133575233', 'Practical Law of Architecture, Engineering, and Geoscience', 84, 'Engineering');
  INSERT INTO Book (bid, title, price, category) VALUES ('9384588962', 'Engineering Drawing with Auto Cad', 55, 'Engineering');
  INSERT INTO Book (bid, title, price, category) VALUES ('0201835959', 'The Mythical Man-Month: Essays on Software Engineering', 32, 'Engineering');
+ 
+ <-------------NEW INSERTS-------------------------------->
+ INSERT INTO Book (bid, title, price, category) VALUES ('0345479173', 'Trump: The Art of the Deal', 1, 'Fiction');
+ INSERT INTO Book (bid, title, price, category) VALUES ('0199578699', 'Engineering: A Very Short Introduction', 8, 'Engineering');
+ INSERT INTO Book (bid, title, price, category) VALUES ('0756689015', 'Science: The Definitive Visual Guide', 18, 'Science');
+ INSERT INTO Book (bid, title, price, category) VALUES ('0195447549', 'Engineering Economic Analysis', 148, 'Engineering');
+ INSERT INTO Book (bid, title, price, category) VALUES ('0470474246', 'Cryptography Engineering: Design Principles and Practical Applications', 39, 'Engineering');
+ INSERT INTO Book (bid, title, price, category) VALUES ('1851686622', 'Engineering: A Beginner''s Guide', 19, 'Engineering');
+ INSERT INTO Book (bid, title, price, category) VALUES ('0062024329', 'The Alchemist: A Graphic Novel', 21, 'Fiction');
+ INSERT INTO Book (bid, title, price, category) VALUES ('0261102214', 'The Hobbit', 12, 'Fiction');
+ INSERT INTO Book (bid, title, price, category) VALUES ('0261102354', 'The Fellowship of the Ring', 12, 'Fiction');
+ INSERT INTO Book (bid, title, price, category) VALUES ('0261102362', 'The Two Towers', 12, 'Fiction');
+ INSERT INTO Book (bid, title, price, category) VALUES ('0261102370', 'The Return of the King', 12, 'Fiction');
+ INSERT INTO Book (bid, title, price, category) VALUES ('0316769487', 'The Catcher in the Rye', 8, 'Fiction');
+ INSERT INTO Book (bid, title, price, category) VALUES ('0446310786', 'To Kill a Mockingbird', 8, 'Fiction');
+ INSERT INTO Book (bid, title, price, category) VALUES ('0553103547', 'A Game of Thrones: A Song of Ice and Fire', 30, 'Fiction');
+ INSERT INTO Book (bid, title, price, category) VALUES ('0553106635', 'A Storm of Swords: A Song of Ice and Fire', 28, 'Fiction');
+ INSERT INTO Book (bid, title, price, category) VALUES ('0553108034', 'A Clash of Kings: A Song of Ice and Fire', 28, 'Fiction');
+ INSERT INTO Book (bid, title, price, category) VALUES ('0553418025', 'The Martian: A Novel', 10, 'Fiction');
+ INSERT INTO Book (bid, title, price, category) VALUES ('0553805444', 'The World of Ice & Fire', 37, 'Fiction');
+ INSERT INTO Book (bid, title, price, category) VALUES ('1338099132', 'Harry Potter and the Cursed Child', 24, 'Fiction');
+ INSERT INTO Book (bid, title, price, category) VALUES ('0022880097', 'Science: A Closer Look 5', 118, 'Science');
+  INSERT INTO Book (bid, title, price, category) VALUES ('0393081087', 'The Food Lab', 39, 'Science');
+  INSERT INTO Book (bid, title, price, category) VALUES ('0756698413', 'Universe', 33, 'Science');
+  INSERT INTO Book (bid, title, price, category) VALUES ('1250007135', 'Undeniable: Evolution and the Science of Creation', 19, 'Science');
+  INSERT INTO Book (bid, title, price, category) VALUES ('1465414371', 'Earth (Second Edition)', 33, 'Science');
+  INSERT INTO Book (bid, title, price, category) VALUES ('1465419683', 'Ocean', 46, 'Science');
+  INSERT INTO Book (bid, title, price, category) VALUES ('1465424644', 'The Planets', 19, 'Science');
+  INSERT INTO Book (bid, title, price, category) VALUES ('1465428267', '101 Great Science Experiments', 11, 'Science');
+  INSERT INTO Book (bid, title, price, category) VALUES ('1554077486', 'The Universe and Beyond', 19, 'Science');
+  INSERT INTO Book (bid, title, price, category) VALUES ('1770854339', 'Hubble''s Universe: Greatest Discoveries and Latest Images', 20, 'Science');
+  INSERT INTO Book (bid, title, price, category) VALUES ('1591263336', 'Rapid Preparation for the Fundamentals of Engineering Exam', 122, 'Engineering');
+ 
+ 
+
 #
+
 
 
 /* Address

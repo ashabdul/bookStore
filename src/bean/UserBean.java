@@ -20,6 +20,21 @@ public class UserBean {
 		this.type = type;
 		this.cart = new Cart();
 	}
+	public UserBean() {
+		// TODO Auto-generated constructor stub
+	}
+	/**
+	 * @return the cart
+	 */
+	public Cart getCart() {
+		return cart;
+	}
+	/**
+	 * @param cart the cart to set
+	 */
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 	/**
 	 * @return the userName
 	 */

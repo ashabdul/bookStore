@@ -38,9 +38,8 @@ public class UserDAO {
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		ResultSet r = p.executeQuery();
-		System.out.println(r);
 		UserBean user = new UserBean(r.getString("username"),r.getString("password"),r.getString("type"));
-		System.out.println(user.toString());
+		System.out.println("found" + user.toString());
 		r.close();
 		p.close();
 		con.close();
