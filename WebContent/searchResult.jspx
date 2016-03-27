@@ -16,6 +16,17 @@
 </head>
 <body>
 <form action="Start" method="POST">
+
+<div id="banner">
+	<a href="home.jspx">
+		<img src="images/Banner.jpg" alt="Banner" width="250" height="100"></img>
+	</a>
+	<span id="banner2">
+		<img id="banner2" src="images/Banner2.jpg" alt="Banner" width="400" height="100"></img>
+	</span>
+	
+</div>
+
 	<ul>
     <li><a href="home.jspx">Home</a></li>
     <li><a href="login.jspx">Log in</a></li>
@@ -38,6 +49,7 @@
 	<br/>
 	<br/>		
 		<c:forEach items="${list}" var="stulist">
+		<TABLE>
 			<tr>
 				<td><img src="images/${stulist.bid}.jpg" alt="Book" height="200" width="150"></img> </td>
 				<td>${stulist.title} </td>
@@ -48,6 +60,7 @@
 				<br/>
 				<br/>
 			</tr>
+		</TABLE>
 		</c:forEach>
 	</form>
 </body>

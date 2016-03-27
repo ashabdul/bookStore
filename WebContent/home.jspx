@@ -14,6 +14,17 @@
 </head>
 <body>
 <form action="Start" method="POST">
+
+<div id="banner">
+	<a href="home.jspx">
+		<img src="images/Banner.jpg" alt="Banner" width="250" height="100"></img>
+	</a>
+	<span id="banner2">
+		<img id="banner2" src="images/Banner2.jpg" alt="Banner" width="400" height="100"></img>
+	</span>
+	
+</div>
+
 <ul>
     <li><a href="home.jspx" class="active">Home</a></li>
     <li><a href="login.jspx">Log in</a></li>
@@ -33,8 +44,59 @@
   </ul>
 	<br />
 	<br />
+	<br />
+	<br />
 	<div class="body">
-		<span>Website body</span>
+		<div class="suggestions">
+		Engineering Suggestions:
+		<TABLE>
+			<tr>
+				<td><button name="imagesubmit" value="0073398209"><img src="images/0073398209.jpg" class="thumbnail" height="250" width="190" /></button></td>
+				<td><button name="imagesubmit" value="0133575225"><img src="images/0133575225.jpg" class="thumbnail" height="250" width="190" /></button></td>
+				<td><button name="imagesubmit" value="0133575233"><img src="images/0133575233.jpg" class="thumbnail" height="250" width="190" /></button></td> 
+				<td><button name="imagesubmit" value="0176509909"><img src="images/0176509909.jpg" class="thumbnail" height="250" width="190" /></button></td>
+				<td><button name="imagesubmit" value="0199578699"><img src="images/0199578699.jpg" class="thumbnail" height="250" width="190" /></button></td>
+				<td><button name="imagesubmit" value="0201835959"><img src="images/0201835959.jpg" class="thumbnail" height="250" width="190" /></button></td>
+				<td><button name="imagesubmit" value="1118787315"><img src="images/1118787315.jpg" class="thumbnail" height="250" width="190" /></button></td>
+			</tr>
+		</TABLE>
+		</div>
+		
+	<br />
+	<br />
+		
+		<div class="suggestions">
+		Fiction Suggestions:
+		<TABLE>
+			<tr>
+				<td><button name="imagesubmit" value="0062024329"><img src="images/0062024329.jpg" class="thumbnail" height="250" width="190" /></button></td>
+				<td><button name="imagesubmit" value="0316769487"><img src="images/0316769487.jpg" class="thumbnail" height="250" width="190" /></button></td> 
+				<td><button name="imagesubmit" value="0446310786"><img src="images/0446310786.jpg" class="thumbnail" height="250" width="190" /></button></td>
+				<td><button name="imagesubmit" value="0553103547"><img src="images/0553103547.jpg" class="thumbnail" height="250" width="190" /></button></td>
+				<td><button name="imagesubmit" value="0553106635"><img src="images/0553106635.jpg" class="thumbnail" height="250" width="190" /></button></td>
+				<td><button name="imagesubmit" value="0553108034"><img src="images/0553108034.jpg" class="thumbnail" height="250" width="190" /></button></td>
+				<td><button name="imagesubmit" value="0553418025"><img src="images/0553418025.jpg" class="thumbnail" height="250" width="190" /></button></td>
+			</tr>
+		</TABLE>
+		</div>
+		
+		<br />
+	<br />
+		
+		<div class="suggestions">
+		Science Suggestions:
+		<TABLE>
+			<tr>
+				<td><button name="imagesubmit" value="1770854339"><img src="images/1770854339.jpg" class="thumbnail" height="250" width="190" /></button></td>
+				<td><button name="imagesubmit" value="1465428267"><img src="images/1465428267.jpg" class="thumbnail" height="250" width="190" /></button></td>
+				<td><button name="imagesubmit" value="1465424644"><img src="images/1465424644.jpg" class="thumbnail" height="250" width="190" /></button></td> 
+				<td><button name="imagesubmit" value="1465419683"><img src="images/1465419683.jpg" class="thumbnail" height="250" width="190" /></button></td>
+				<td><button name="imagesubmit" value="1250007135"><img src="images/1250007135.jpg" class="thumbnail" height="250" width="190" /></button></td>
+				<td><button name="imagesubmit" value="1465414371"><img src="images/1465414371.jpg" class="thumbnail" height="250" width="190" /></button></td>
+				<td><button name="imagesubmit" value="0756689015"><img src="images/0756689015.jpg" class="thumbnail" height="250" width="190" /></button></td>
+			</tr>
+		</TABLE>
+		</div>
 	</div>
 	</form>
 </body>

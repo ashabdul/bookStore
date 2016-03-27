@@ -14,6 +14,17 @@
 </head>
 <body>
 <form action="Start" method="POST">
+
+<div id="banner">
+	<a href="home.jspx">
+		<img src="images/Banner.jpg" alt="Banner" width="250" height="100"></img>
+	</a>
+	<span id="banner2">
+		<img id="banner2" src="images/Banner2.jpg" alt="Banner" width="400" height="100"></img>
+	</span>
+	
+</div>
+
 	<ul>
     <li><a href="home.jspx">Home</a></li>
     <li><a href="login.jspx">Log in</a></li>
