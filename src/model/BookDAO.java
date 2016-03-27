@@ -40,7 +40,7 @@ private DataSource ds;
 	
 	public Map<String, BookBean> retrieve(String name) throws
 	SQLException{
-		String query = "select * from book where UPPER(title) like UPPER('%"+ name + "%')";
+		String query = "select * from book where UPPER(title) like UPPER('%"+ name + "%') OR UPPER(bid) like UPPER('%"+ name + "%') OR UPPER(category) like UPPER('%"+ name + "%')";
 		//String query = "select * from book where UPPER(title) like UPPER('%trump%')";
 		
 		Map<String, BookBean> rv = new HashMap<String, BookBean>();

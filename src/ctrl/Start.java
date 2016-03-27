@@ -87,6 +87,11 @@ public class Start extends HttpServlet {
 		{
 			System.out.println("Button value = " + request.getParameter("addToCart"));
 		}
+		
+		if(request.getParameter("imagesubmit") != null)
+		{
+			System.out.println("Image value = " + request.getParameter("imagesubmit"));
+		}
 	}
 
 }
