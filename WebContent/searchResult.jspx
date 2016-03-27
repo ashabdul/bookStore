@@ -49,7 +49,6 @@
 	<br/>
 	<br/>		
 		<c:forEach items="${list}" var="stulist">
-		<TABLE>
 			<tr>
 				<td><img src="images/${stulist.bid}.jpg" alt="Book" height="200" width="150"></img> </td>
 				<td>${stulist.title} </td>
@@ -60,7 +59,6 @@
 				<br/>
 				<br/>
 			</tr>
-		</TABLE>
 		</c:forEach>
 	</form>
 </body>
