@@ -3,6 +3,7 @@ package ctrl;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -11,8 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.ReviewBean;
+import bean.UserBean;
 import model.BookBean;
 import model.BookDAO;
+import model.ReviewDAO;
+
 
 /**
  * Servlet implementation class Start
@@ -21,6 +26,8 @@ import model.BookDAO;
 public class Start extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BookDAO search = null;
+	private UserBean user;
+	private ReviewDAO review;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -38,7 +45,17 @@ public class Start extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
+	
+	/* added by Michel*/
+	public void init()throws ServletException{
+    	 user = new UserBean();
+    	try {
+			review = new ReviewDAO();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -83,9 +100,19 @@ public class Start extends HttpServlet {
 			request.getRequestDispatcher("searchResult.jspx").forward(request, response);
 		}
 		
+		/* edited by Michel*/
 		if(request.getParameter("addToCart") != null)
 		{
-			System.out.println("Button value = " + request.getParameter("addToCart"));
+			try {
+				String bookISBN = request.getParameter("addToCart").substring(5);
+				BookBean book = new BookBean();
+				book = search.retriveByBID(bookISBN);
+				user.getCart().add(book.getBid(),book.getTitle(),book.getCategory(), book.getPrice());
+				System.out.println("Button value = " + request.getParameter("addToCart"));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		if(request.getParameter("imagesubmit") != null)

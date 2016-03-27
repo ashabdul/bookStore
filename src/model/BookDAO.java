@@ -16,6 +16,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import bean.UserBean;
+
 /**
  * @author Basit
  *
@@ -63,4 +65,17 @@ private DataSource ds;
 		return rv;
 	}
 
+	/*added by Michel*/
+	public BookBean retriveByBID(String bid) throws SQLException{
+		String query = "SELECT * FROM books WHERE bid like '%"
+				+ bid + "%'";
+		Connection con = this.ds.getConnection();
+		PreparedStatement p = con.prepareStatement(query);
+		ResultSet r = p.executeQuery();
+		BookBean book = new BookBean(r.getString("bid"), r.getString("title"), r.getString("category"), Integer.parseInt(r.getString("price")));
+		r.close();
+		p.close();
+		con.close();
+		return book;
+	}
 }
