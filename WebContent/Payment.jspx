@@ -52,11 +52,16 @@
 	<div class= "pay">
 		<form action = "Start" method = "GET">
 				<div class="input-group input-group-lg">
-					Name: <input type="text" class="form-control"
-						placeholder="FirstName" name="j_firstName" id="firstname" />
+					First Name: <input type="text" class="form-control"
+						placeholder="First Name" name="j_firstName" id="fname" />
 				</div>
 				<br />
+				<div class="input-group input-group-lg">
+					Last Name: <input type="text" class="form-control"
+						placeholder="Last Name" name="j_lastName" id="lname" />
+				</div>
 				
+				<br />
 				<div class="input-group input-group-lg">
 					Credit Card Number: <input type="text" class="form-control"
 						placeholder="Card Number" name="j_card" id="card" />
