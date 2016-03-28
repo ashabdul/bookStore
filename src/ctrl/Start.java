@@ -107,7 +107,7 @@ public class Start extends HttpServlet {
 				String bookISBN = request.getParameter("addToCart").substring(5);
 				BookBean book = new BookBean();
 				book = search.retriveByBID(bookISBN);
-				user.getCart().add(book.getBid(),book.getTitle(),book.getCategory(), book.getPrice());
+				user.getCart().add(book);
 				System.out.println("Button value = " + request.getParameter("addToCart"));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
