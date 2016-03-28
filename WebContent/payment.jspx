@@ -79,14 +79,58 @@
 				
 				<br/>
 				<div class="input-group input-group-lg">
-					Billing Address: <input type="text" class="form-control"
-						placeholder="Billing Address" name="j_Baddress" id="Baddress" />
+					Billing Address: 
+					
+					<input type="text" class="form-control"
+						placeholder="Street Address" name="j_Bstreet" id="Bstreet" />
+				</div>
+				<br />
+				<div class="input-group input-group-lg">		
+					<input type="text" class="form-control"
+						placeholder="Province" name="j_Bprovince" id="Bprovince" />	
+				</div>
+				<br />
+				<div class="input-group input-group-lg">		
+					<input type="text" class="form-control"
+						placeholder="Country" name="j_Bcountry" id="Bcountry" />
+				</div>
+				<br />
+				<div class="input-group input-group-lg">		
+					<input type="text" class="form-control"
+						placeholder="ZIP" name="j_Bzip" id="Bzip" />
+				</div>
+				<br />
+				<div class="input-group input-group-lg">		
+					<input type="text" class="form-control"
+						placeholder="Phone Number" name="j_Bphone" id="Bphone" />			
 				</div>
 				
 				<br/>
 				<div class="input-group input-group-lg">
-					Shipping Address: <input type="text" class="form-control"
-						placeholder="Shipping Address" name="j_Saddress" id="Saddress" />
+					Shipping Address: 
+					
+					<input type="text" class="form-control"
+						placeholder="Street Address" name="j_Sstreet" id="Sstreet" />
+				</div>
+				<br />
+				<div class="input-group input-group-lg">		
+					<input type="text" class="form-control"
+						placeholder="Province" name="j_Sprovince" id="Sprovince" />	
+				</div>
+				<br />
+				<div class="input-group input-group-lg">		
+					<input type="text" class="form-control"
+						placeholder="Country" name="j_Scountry" id="Scountry" />
+				</div>
+				<br />
+				<div class="input-group input-group-lg">		
+					<input type="text" class="form-control"
+						placeholder="ZIP" name="j_Szip" id="Szip" />
+				</div>
+				<br />
+				<div class="input-group input-group-lg">		
+					<input type="text" class="form-control"
+						placeholder="Phone Number" name="j_Sphone" id="Sphone" />			
 				</div>
 				<br />
 				<button type="submit" class="float" name="Submit" value="true">Purchase</button>
