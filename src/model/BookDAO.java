@@ -67,7 +67,7 @@ private DataSource ds;
 
 	/*added by Michel*/
 	public BookBean retriveByBID(String bid) throws SQLException{
-		String query = "SELECT * FROM books WHERE bid like '%"
+		String query = "SELECT * FROM book WHERE bid like '%"
 				+ bid + "%'";
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
