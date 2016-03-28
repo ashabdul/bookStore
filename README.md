@@ -15,12 +15,12 @@ Restart your server and test SSL with: https://localhost:8443/
 
 I have pushed some minor changes to login.jspx to be compatible.  Everything else must modify non-shared files.  
 
-1. Modify web.xml,  insert the following text at the end just before the </web-app> tag.  This adds a new group of users called "partner", specifies that /home.jspx (change this, it was set as a test) requires this group in order to access, and specifies that /login.jspx has the form for logging in.
+1. Modify web.xml,  insert the following text at the end just before the ```</web-app>``` tag.  This adds a new group of users called "partner", specifies that /home.jspx (change this, it was set as a test) requires this group in order to access, and specifies that /login.jspx has the form for logging in.
 ```
 <security-constraint>
 	<web-resource-collection>
 		<web-resource-name>Partners</web-resource-name>
-		<url-pattern>/home.jspx</url-pattern>
+		<url-pattern>/temp.jspx</url-pattern>
 		<http-method>GET</http-method>
 		<http-method>POST</http-method>
 	</web-resource-collection>
@@ -33,11 +33,11 @@ I have pushed some minor changes to login.jspx to be compatible.  Everything els
 		<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 	</user-data-constraint>
 </security-constraint>
-	
+
 <security-constraint>
 	<web-resource-collection>
       		<web-resource-name>Admins</web-resource-name>
-      		<url-pattern>/cart.jspx</url-pattern>
+      		<url-pattern>/home.jspx</url-pattern>
       		<http-method>GET</http-method>
       		<http-method>POST</http-method>
     	</web-resource-collection>
@@ -45,7 +45,7 @@ I have pushed some minor changes to login.jspx to be compatible.  Everything els
 	<auth-constraint>
 		<role-name>admin</role-name>
 	</auth-constraint>
-	 
+
 	<user-data-constraint>
       		<transport-guarantee>CONFIDENTIAL</transport-guarantee>
       	 </user-data-constraint>
@@ -60,12 +60,23 @@ I have pushed some minor changes to login.jspx to be compatible.  Everything els
 </login-config>
 ```
 
-2. Go to tomcat-users.xml and add the following before the </tomcat-users> tag.  This specifies a user with role "partner" so it is a valid authenticator to access /home.jspx.
+2. In context.xml before the ```</context>``` tag insert the following.  Make sure not to delete any existing Resource tag.  This adds a link to the database as a login database and links to the realms (they manage logins for us).
+
 ```
-<role rolename="partner"/>
-<role rolename="admin"
-<user username="admin" password="admin" roles="admin"
-<user username="william" password="hello" roles="partner,admin"/>
+	<Resource name="jdbc/auth" description="Sample authentication"
+		type="javax.sql.DataSource" auth="Container" driverClassName="org.apache.derby.jdbc.EmbeddedDriver"
+		maxActive="10" maxIdle="3" maxWait="10000" url="jdbc:derby:/home/william/Programming/4413/Workspace/Project/DB" />
+
+	<Realm className="org.apache.catalina.realm.DataSourceRealm"
+		userTable="APP.accounts" userNameCol="userName" userCredCol="password"
+		userRoleTable="user_roles" roleNameCol="role" localDataSource="true"
+		dataSourceName="jdbc/auth" />
 ```
 
-The problem here is that the passwords are still plain text however I have not yet been able to get hashing to work.  So, I provide this so anyone who needs auth working to continue their own work can do so.  
+With those changes you should be able to now test the servlet.  The code provided above will create a lock on /home.jspx requiring admin priviledge to view.  Put into the database the following:
+```
+INSERT INTO accounts (userName, password, account_type) VALUES ('Andy', 'abc123', 'admin');
+INSERT INTO user_roles (userName, role) VALUES ('Andy', 'admin');
+```
+
+This will now add a user Andy with password abc123 and you should be able to access /home.jspx with those credentials.
