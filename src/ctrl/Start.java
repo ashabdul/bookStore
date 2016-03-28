@@ -38,6 +38,9 @@ public class Start extends HttpServlet {
 		try
 		{
 			search = new BookDAO();
+			user = new UserBean();
+			review = new ReviewDAO();
+			System.out.println("search ready");
 		}
 
 		catch(ClassNotFoundException e)
@@ -46,16 +49,16 @@ public class Start extends HttpServlet {
 		}
 	}
 	
-	/* added by Michel*/
+	/* added by Michel
 	public void init()throws ServletException{
-    	 user = new UserBean();
+    	 
     	try {
-			review = new ReviewDAO();
+			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    }
+    }*/
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -104,20 +107,59 @@ public class Start extends HttpServlet {
 		if(request.getParameter("addToCart") != null)
 		{
 			try {
+
 				String bookISBN = request.getParameter("addToCart").substring(5);
 				BookBean book = new BookBean();
 				book = search.retriveByBID(bookISBN);
 				user.getCart().add(book);
+
 				System.out.println("Button value = " + request.getParameter("addToCart"));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
+		/* edited by Michel*/
 		if(request.getParameter("imagesubmit") != null)
 		{
+			
 			System.out.println("Image value = " + request.getParameter("imagesubmit"));
+			try {
+				//create a book object to hold the info of the clicked book after retrieving it from the database
+				BookBean book = search.retriveByBID(request.getParameter("imagesubmit"));
+				//create a linked list to hold all reviews for the book after retrieving them from the database
+				LinkedList<ReviewBean> reviewList = review.retriveReview(request.getParameter("imagesubmit"));
+				//calculate the average stars rating for the book
+				double stars = 0;
+				double tempStars = 0;
+				for(int i = 0; i < reviewList.size(); i++){
+					tempStars = tempStars + reviewList.get(i).getStars();
+				}
+				//handle the case for where there is no reviews so we avoid devide by 0 case
+				if(reviewList.size() > 0){
+				stars = tempStars / reviewList.size();
+				}
+				//set all request attributes to use in the display page
+				request.setAttribute("bookTitle", book.getTitle());
+				request.setAttribute("bookPrice", book.getPrice());
+				request.setAttribute("bookCategory", book.getCategory());
+				request.setAttribute("bookID", book.getBid());
+				request.setAttribute("reviewList", reviewList);
+				request.setAttribute("bookStars", stars);
+				//check if user is loged in to decide whether to show the write review part or not
+				if(user.getUserName() != null){
+					request.setAttribute("isLogedIn", "ture");
+				}
+				else{
+					request.setAttribute("isLogedIn", "false");
+				}
+				//redirect to the book display page
+				request.getRequestDispatcher("book.jspx").forward(request, response);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 	}
 

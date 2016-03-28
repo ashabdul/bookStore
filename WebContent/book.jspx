@@ -8,15 +8,14 @@
 		doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
 		doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
 		omit-xml-declaration="true" />
-	<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Mom&amp;Pop Book Store Home</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>${bookTitle }</title>
 <link rel="stylesheet" href="res/main.css" type="text/css"
 	charset="utf-8" />
 </head>
 <body>
-<form action="Start" method="POST">
-
 <div id="banner">
 	<a href="home.jspx">
 		<img src="images/Banner.jpg" alt="Banner" width="250" height="100"></img>
@@ -27,8 +26,8 @@
 	
 </div>
 
-	<ul>
-    <li><a href="home.jspx">Home</a></li>
+<ul>
+    <li><a href="home.html" class="active">Home</a></li>
     <li><a href="login.jspx">Log in</a></li>
     <li>
       <div class="dropdown">
@@ -39,30 +38,32 @@
       </div>
     </li>
     <li id="searchbar" style="float: right"><input type="text"
-      id="search" placeholder="Search" name="searchValue"/> <input
-      type="submit" id="searchbutton" value="Search" name="searchSubmit" /></li>
+      id="search" placeholder="Search" /> <input
+      type="button" id="searchbutton" value="Search" /></li>
     <li style="float: right"><a href="cart.jspx">Cart</a></li>
     <li style="float: right"><a href="checkout.jspx">Checkout</a></li>
   </ul>
-
-	<br/>
-	<br/>
-	<br/>		
-		<c:forEach items="${list}" var="booklist">
-			<tr>
-
-				<td><button name="imagesubmit" value="${booklist.bid}"><img src="images/${booklist.bid}.jpg" alt="Book" height="200" width="150"></img></button></td>
-				<td>${booklist.title} </td>
-
-				<br/>
-				<td>$${booklist.price}0 </td>
-				<br/>
-				<button name="addToCart" value="${booklist.bid}" type="submit">Add To Cart</button>
-				<br/>
-				<br/>
-			</tr>
-		</c:forEach>
-	</form>
+  
+  <H2>${bookTitle}</H2>
+  <BR />
+  <BR />
+  <img src="/images/${bookID}.jpg" alt="Smiley face" height="42" width="42">
+  <BR />
+  <BR />
+  <LABEL>Price = ${bookPrice}</LABEL>
+  
+  <TABLE>
+  <c:forEach var="review" items="${reviewList}"> 
+	<tr>
+		<td>${review.review}</td>
+	</tr>
+	</c:forEach>
+	</TABLE>
+  <c:if test="${isLogedIn=='true'}> 
+ <form action = "Start" method="POST">
+  <textarea name="testArea" rows="5" cols="50"></textarea>
+  <button type="submit" name="submitReview" value="textArea" >submit review</button>
+</c:if>
 </body>
-	</html>
+</html>
 </jsp:root>
