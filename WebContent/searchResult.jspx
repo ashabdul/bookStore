@@ -50,8 +50,10 @@
 	<br/>		
 		<c:forEach items="${list}" var="booklist">
 			<tr>
-				<td><img src="images/${booklist.bid}.jpg" alt="Book" height="200" width="150"></img> </td>
+
+				<td><button name="imagesubmit" value="${booklist.bid}"><img src="images/${booklist.bid}.jpg" alt="Book" height="200" width="150"></img></button></td>
 				<td>${booklist.title} </td>
+
 				<br/>
 				<td>$${booklist.price}0 </td>
 				<br/>

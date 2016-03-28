@@ -107,11 +107,12 @@ public class Start extends HttpServlet {
 		if(request.getParameter("addToCart") != null)
 		{
 			try {
-				String bookISBN = request.getParameter("addToCart");
-				//create a book object to hold the info of the book to be added after retrieving it from the database
-				BookBean book = search.retriveByBID(bookISBN);
-				// add the book to the cart
-				//user.getCart().add(book);
+
+				String bookISBN = request.getParameter("addToCart").substring(5);
+				BookBean book = new BookBean();
+				book = search.retriveByBID(bookISBN);
+				user.getCart().add(book);
+
 				System.out.println("Button value = " + request.getParameter("addToCart"));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

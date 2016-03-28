@@ -15,10 +15,9 @@ public class Cart {
 	private String isbn = "";
 	private Map<String, BookBean> list = new HashMap<String, BookBean>();
 	
-	public void add(String bid, String name, String category, double price)
+	public void add(BookBean book)
 	{
-		BookBean book = new BookBean(bid, name, category, price);
-		list.put(bid, book);
+		list.put(book.getBid(), book);
 	}
 	
 	public void remove(String bid)
