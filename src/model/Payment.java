@@ -19,10 +19,19 @@ public class Payment {
 			request.getRequestDispatcher("Home.jspx").forward(request, response);
 		}
 		
-		String BAddress = request.getParameter("Baddress");
-		String SAddress = request.getParameter("SAddress");
+		String BStreet = request.getParameter("Bstreet");
+		String SStreet = request.getParameter("Sstreet");
+		String BProvince = request.getParameter("Bprovince");
+		String SProvince = request.getParameter("Sprovince");
+		String BCountry = request.getParameter("Bcountry");
+		String SCountry = request.getParameter("Scountry");
+		String BZip = request.getParameter("Bzip");
+		String SZip = request.getParameter("Szip");
+		String BPhone = request.getParameter("Bphone");
+		String SPhone = request.getParameter("Sphone");
 		
-		if (BAddress != SAddress){
+		
+		if (BStreet != SStreet || BProvince != SProvince || BCountry != SCountry || BZip != SZip || BPhone != SPhone){
 			System.out.println("Addresses do not match");
 		}
 		
