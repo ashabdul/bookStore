@@ -47,6 +47,21 @@ DataSource ds;
 		return address;
 	}
 	
+	public AddressBean retriveLast() throws SQLException{
+		String query = "select * from address where id= (SELECT MAX(id) FROM address)" ;
+		Connection con = this.ds.getConnection();
+		PreparedStatement p = con.prepareStatement(query);
+		ResultSet r = p.executeQuery();
+		AddressBean address = new AddressBean(r.getString("id"),r.getString("street"),
+				r.getString("province"),r.getString("country"),r.getString("zip"), r.getString("phone"));
+		System.out.println("retrived address: " + address.toString());
+		r.close();
+		p.close();
+		con.close();
+		return address;
+	}
+	
+	
 	/*
 	 * add a new address row to the table
 	 */
