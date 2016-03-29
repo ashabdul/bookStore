@@ -13,8 +13,8 @@ public class POBean {
 	int address;
 	
 	
-	public POBean(String lname, String fname, String status, int address) {
-		this.id = (Integer) null;
+	public POBean(int id,String lname, String fname, String status, int address) {
+		this.id = id;
 		Lname = lname;
 		Fname = fname;
 		this.status = status;
