@@ -45,14 +45,14 @@
         <span id="error"></span>
         <div class="input-group input-group-lg">
           Username: <input type="text" class="form-control"
-            placeholder="Username or email" name="j_username" id="username" />
+            placeholder="Username or email" name="username" id="username" />
         </div>
 
         <br />
 
         <div class="input-group input-group-lg">
           Password: <input type="password" class="form-control"
-            placeholder="Password" name="j_password" id="password" />
+            placeholder="Password" name="password" id="password" />
         </div>
 
         <br />
