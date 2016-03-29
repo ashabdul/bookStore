@@ -8,7 +8,7 @@
     omit-xml-declaration="true" />
   <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Register</title>
+<title>Failed to Sign In</title>
 <link rel="stylesheet" href="res/main.css" type="text/css"
   charset="utf-8" />
 <link rel="StyleSheet" href="res/login.css" type="text/css"
@@ -35,29 +35,14 @@
   </ul>
   <br />
   <br />
-  <div class="login">
-    <div class="heading">
+  <div class="FailedMessage">
+    <div class="heading login">
 
-      <h2>Register</h2>
+      <h2>Sign In Failed</h2>
 
-      <form action="Register" method="POST" onsubmit="return validate();">
-        <label name="error">${error_msg}</label>
-        <span id="error"></span>
-        <div class="input-group input-group-lg">
-          Username: <input type="text" class="form-control"
-            placeholder="Username or email" name="username" id="username" />
-        </div>
-
-        <br />
-
-        <div class="input-group input-group-lg">
-          Password: <input type="password" class="form-control"
-            placeholder="Password" name="password" id="password" />
-        </div>
-
-        <br />
-        <button type="submit" class="float" name="Register" value="true">Register</button>
-      </form>
+      <p>
+        The system could not log you in with that username/password.  It may be because you have not yet registered or have mistyped your credentials.  You can return to the previous page to try again or navigate elsewhere to continue without signing in.
+      </p>
     </div>
   </div>
 
