@@ -13,7 +13,7 @@ public class POBean {
 	int address;
 	
 	
-	public POBean(int id, String lname, String fname, String status, int address) {
+	public POBean(int id,String lname, String fname, String status, int address) {
 		this.id = id;
 		Lname = lname;
 		Fname = fname;

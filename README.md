@@ -37,7 +37,7 @@ I have pushed some minor changes to login.jspx to be compatible.  Everything els
 <security-constraint>
 	<web-resource-collection>
       		<web-resource-name>Admins</web-resource-name>
-      		<url-pattern>/home.jspx</url-pattern>
+      		<url-pattern>/temp2.jspx</url-pattern>
       		<http-method>GET</http-method>
       		<http-method>POST</http-method>
     	</web-resource-collection>
@@ -50,12 +50,30 @@ I have pushed some minor changes to login.jspx to be compatible.  Everything els
       		<transport-guarantee>CONFIDENTIAL</transport-guarantee>
       	 </user-data-constraint>
   </security-constraint>
+  
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Users</web-resource-name>
+      <url-pattern>/login.jspx</url-pattern>
+      <url-pattern>/cart.jspx</url-pattern>
+      <http-method>GET</http-method>
+      <http-method>POST</http-method>
+    </web-resource-collection>
+
+    <auth-constraint>
+      <role-name>user</role-name>
+    </auth-constraint>
+
+    <user-data-constraint>
+      <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
 
 <login-config>
 	<auth-method>FORM</auth-method>
 	<form-login-config>
-		<form-login-page>/login.jspx</form-login-page>
-		<form-error-page>/login-failed.html</form-error-page>
+		<form-login-page>/reallogin.jspx</form-login-page>
+		<form-error-page>/login-failed.jspx</form-error-page>
 	</form-login-config>
 </login-config>
 ```

@@ -8,7 +8,7 @@
     omit-xml-declaration="true" />
   <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Login</title>
+<title>Register</title>
 <link rel="stylesheet" href="res/main.css" type="text/css"
   charset="utf-8" />
 <link rel="StyleSheet" href="res/login.css" type="text/css"
@@ -18,7 +18,7 @@
 <body>
   <ul>
     <li><a href="home.jspx">Home</a></li>
-    <li><a href="register.jspx" class="active">Register</a></li>
+    <li><a href="login.jspx" class="active">Log In</a></li>
     <li>
       <div class="dropdown">
         <button class="dropbtn">Category</button>
@@ -38,7 +38,7 @@
   <div class="login">
     <div class="heading">
 
-      <h2>Sign in</h2>
+      <h2>Register</h2>
 
       <form action="Register" method="POST" onsubmit="return validate();">
         <label name="error">${error_msg}</label>
