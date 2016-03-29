@@ -45,6 +45,26 @@ public class UserDAO {
 		con.close();
 		return user;
 	}
+	/*
+	 * Created by William
+	 * Simply checks if a user is in the database
+	 */
+	
+	public boolean hasUser(String userName) throws SQLException {
+		String query = "select username from accounts where username = \'" + userName + "\'";
+		Connection con = this.ds.getConnection();
+		PreparedStatement p = con.prepareStatement(query);
+		ResultSet r = p.executeQuery();
+		
+		if(!r.next()) { //If there is no first row the name is not in the database
+			r.close();
+			p.close();
+			return false;
+		}
+		r.close();
+		p.close();
+		return true;
+	}
 	
 	/*
 	 * update user's password 
@@ -92,10 +112,12 @@ public class UserDAO {
 		Connection con = this.ds.getConnection();
 		PreparedStatement p1 = con.prepareStatement(query1);
 		PreparedStatement p2 = con.prepareStatement(query2);
-		ResultSet r1 = p1.executeQuery();
-		ResultSet r2 = p2.executeQuery();
-		r1.close();
-		r2.close();
+		p1.execute();
+		p2.execute();
+		//ResultSet r1 = p1.executeQuery();
+		//ResultSet r2 = p2.executeQuery();
+		//r1.close();
+		//r2.close();
 		p1.close();
 		p2.close();
 		con.close();
