@@ -64,6 +64,7 @@ public class Start extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//When first visiting the website always redirect to home.
+		System.out.println("User is: " + request.getRemoteUser() + " they are an admin: " + request.isUserInRole("admin"));
 		response.sendRedirect("home.jspx");
 	}
 
