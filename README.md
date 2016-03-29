@@ -55,7 +55,7 @@ I have pushed some minor changes to login.jspx to be compatible.  Everything els
 	<auth-method>FORM</auth-method>
 	<form-login-config>
 		<form-login-page>/login.jspx</form-login-page>
-		<form-error-page>/login-failed.html</form-error-page>
+		<form-error-page>/login-failed.jspx</form-error-page>
 	</form-login-config>
 </login-config>
 ```

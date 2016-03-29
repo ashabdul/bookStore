@@ -47,6 +47,9 @@ public class Register extends HttpServlet {
 			System.out.println("You have registered as " + request.getParameter("username"));
 			System.out.println("with password " + request.getParameter("password"));
 		}
+		else if (Boolean.parseBoolean(request.getParameter("logout"))) { //Came from a logout button
+			request.logout();
+		}
 		else { //Somehow came from another area, send themm to the registration form
 			request.getRequestDispatcher("/register.jspx").forward(request, response);
 		}

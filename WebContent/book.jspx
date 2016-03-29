@@ -47,7 +47,7 @@
   <H2>${bookTitle}</H2>
   <BR />
   <BR />
-  <img src="WebContent/images/${bookID}.jpg" alt="Smiley face" height="42" width="42"></img>
+  <img src="images/${bookID}.jpg" alt="Smiley face" height="42" width="42"></img>
   <BR />
   <BR />
   <LABEL>Price = ${bookPrice}</LABEL>
