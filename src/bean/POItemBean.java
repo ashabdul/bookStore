@@ -8,16 +8,16 @@ package bean;
 public class POItemBean {
 	int id;
 	String bid;
-	int price;
+	int quantity;
+	int unitPrice;
 	
-	
-	public POItemBean(int id, String bid, int price) {
+	public POItemBean(int id, String bid, int quantity, int unitPrice) {
 		super();
 		this.id = id;
 		this.bid = bid;
-		this.price = price;
+		this.quantity = quantity;
+		this.unitPrice = unitPrice;
 	}
-
 
 	/**
 	 * @return the id
@@ -26,14 +26,12 @@ public class POItemBean {
 		return id;
 	}
 
-
 	/**
 	 * @param id the id to set
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	/**
 	 * @return the bid
@@ -42,7 +40,6 @@ public class POItemBean {
 		return bid;
 	}
 
-
 	/**
 	 * @param bid the bid to set
 	 */
@@ -50,30 +47,41 @@ public class POItemBean {
 		this.bid = bid;
 	}
 
-
 	/**
-	 * @return the price
+	 * @return the quantiry
 	 */
-	public int getPrice() {
-		return price;
+	public int getQuantity() {
+		return quantity;
 	}
 
-
 	/**
-	 * @param price the price to set
+	 * @param quantiry the quantiry to set
 	 */
-	public void setPrice(int price) {
-		this.price = price;
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 
+	/**
+	 * @return the unitPrice
+	 */
+	public int getUnitPrice() {
+		return unitPrice;
+	}
+
+	/**
+	 * @param unitPrice the unitPrice to set
+	 */
+	public void setUnitPrice(int unitPrice) {
+		this.unitPrice = unitPrice;
+	}
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
-		return "POItemBean [id=" + id + ", bid=" + bid + ", price=" + price
-				+ "]";
+		return "POItemBean [id=" + id + ", bid=" + bid + ", quantity="
+				+ quantity + ", unitPrice=" + unitPrice + "]";
 	}
 	
 	

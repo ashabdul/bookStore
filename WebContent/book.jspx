@@ -27,7 +27,7 @@
 </div>
 
 <ul>
-    <li><a href="home.html" class="active">Home</a></li>
+    <li><a href="home.jspx" class="active">Home</a></li>
     <li><a href="login.jspx">Log In</a></li>
     <li>
       <div class="dropdown">
@@ -40,7 +40,7 @@
     <li id="searchbar" style="float: right"><input type="text"
       id="search" placeholder="Search" /> <input
       type="button" id="searchbutton" value="Search" /></li>
-    <li style="float: right"><a href="cart.jspx">Cart</a></li>
+<li style="float: right"><button id="cartsubmit" name="cartsubmit" value="0"><img src="images/cart.png" class="thumbnail" height="40" width="50" /></button></li>
     <li style="float: right"><a href="checkout.jspx">Checkout</a></li>
   </ul>
   

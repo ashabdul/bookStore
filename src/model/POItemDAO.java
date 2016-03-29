@@ -34,8 +34,8 @@ DataSource ds;
 	 * add a poitem 
 	 */
 	public void addPOItem(POItemBean item) throws SQLException{
-		String query = "INSERT INTO poitem (id, bid, price) VALUES ('" + item.getId() + "', '" +
-				item.getBid() + "', '" + item.getPrice() + "')";
+		String query = "INSERT INTO poitem (id, bid, quantity, unitPrice) VALUES ('" + item.getId() + "', '" +
+				item.getBid() + "', '" + item.getQuantity() + "', '" + item.getUnitPrice() + "')";
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		ResultSet r = p.executeQuery();
