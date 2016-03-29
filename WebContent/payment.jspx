@@ -95,27 +95,27 @@
 					Billing Address: 
 					
 					<input type="text" class="form-control"
-						placeholder="Street Address" name="j_Bstreet" id="Bstreet" />
+						placeholder="Street Address" name="j_Bstreet" id="bStreet" />
 				</div>
 				<br />
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
-						placeholder="Province" name="j_Bprovince" id="Bprovince" />	
+						placeholder="Province" name="j_Bprovince" id="bProvince" />	
 				</div>
 				<br />
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
-						placeholder="Country" name="j_Bcountry" id="Bcountry" />
+						placeholder="Country" name="j_Bcountry" id="bCountry" />
 				</div>
 				<br />
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
-						placeholder="ZIP" name="j_Bzip" id="Bzip" />
+						placeholder="ZIP" name="j_Bzip" id="bZip" />
 				</div>
 				<br />
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
-						placeholder="Phone Number" name="j_Bphone" id="Bphone" />			
+						placeholder="Phone Number" name="j_Bphone" id="bPhone" />			
 				</div>
 				
 				<br/>
@@ -123,30 +123,34 @@
 					Shipping Address: 
 					
 					<input type="text" class="form-control"
-						placeholder="Street Address" name="j_Sstreet" id="Sstreet" />
+						placeholder="Street Address" name="j_Sstreet" id="sStreet" />
 				</div>
 				<br />
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
-						placeholder="Province" name="j_Sprovince" id="Sprovince" />	
+						placeholder="Province" name="j_Sprovince" id="sProvince" />	
 				</div>
 				<br />
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
-						placeholder="Country" name="j_Scountry" id="Scountry" />
+						placeholder="Country" name="j_Scountry" id="sCountry" />
 				</div>
 				<br />
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
-						placeholder="ZIP" name="j_Szip" id="Szip" />
+						placeholder="ZIP" name="j_Szip" id="sZip" />
 				</div>
 				<br />
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
-						placeholder="Phone Number" name="j_Sphone" id="Sphone" />			
+						placeholder="Phone Number" name="j_Sphone" id="sPhone" />			
 				</div>
 				<br />
-				<button type="submit" class="float" name="Submit" value="true">Purchase</button>
+				
+				<label name="addressError">${address_error}</label>
+				<span id="addressError"></span>
+				
+				<button type="submit" class="float" name="placeOrder" value="true">Place Order</button>
 				<br />
 		</form>
 	
