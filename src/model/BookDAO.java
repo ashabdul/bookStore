@@ -44,7 +44,7 @@ private DataSource ds;
 	SQLException{
 		String query = "select * from book where UPPER(title) like UPPER('%"+ name + "%') OR UPPER(bid) like UPPER('%"+ name + "%') OR UPPER(category) like UPPER('%"+ name + "%')";
 		//String query = "select * from book where UPPER(title) like UPPER('%trump%')";
-		
+		System.out.println("questy:" + query);
 		Map<String, BookBean> rv = new HashMap<String, BookBean>();
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
@@ -72,8 +72,13 @@ private DataSource ds;
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		ResultSet r = p.executeQuery();
-		System.out.println(r.getRow());
-		BookBean book = new BookBean(r.getString("bid"), r.getString("title"), r.getString("category"), Integer.parseInt(r.getString("price")));
+		BookBean book = null;
+		
+		while (r.next())
+		{
+			book = new BookBean(r.getString("bid"), r.getString("title"), r.getString("category"), Integer.parseInt(r.getString("price")));
+			
+		}
 		r.close();
 		p.close();
 		con.close();

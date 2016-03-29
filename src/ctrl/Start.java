@@ -114,9 +114,13 @@ public class Start extends HttpServlet {
 		{
 			try {
 
+
 				String bookISBN = request.getParameter("addToCart").substring(5);
+				Map<String, BookBean> map = new HashMap<String, BookBean>();
 				BookBean book = new BookBean();
-				book = search.retriveByBID(bookISBN);
+				map = search.retrieve(bookISBN);
+				book = map.get(request.getParameter("addToCart"));
+
 				user.getCart().add(book);
 
 				System.out.println("Button value = " + request.getParameter("addToCart"));

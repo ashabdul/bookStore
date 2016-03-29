@@ -41,7 +41,7 @@
    <li id="searchbar" style="float: right"><input type="text"
       id="search" placeholder="Search" name="searchValue"/> <input
       type="submit" id="searchbutton" value="Search" name="searchSubmit" /></li>
-    <li style="float: right" class="active"><a href="cart.jspx">Cart</a></li>
+    <li style="float: right"><button id="cartsubmit" name="cartsubmit" value="0"><img src="images/cart.png" class="thumbnail" height="40" width="50" /></button></li>
     <li style="float: right"><a href="checkout.jspx">Checkout</a></li>
   </ul>
 	<br />
