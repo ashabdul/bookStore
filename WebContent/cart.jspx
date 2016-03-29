@@ -29,7 +29,7 @@
 
 	<ul>
     <li><a href="home.jspx">Home</a></li>
-    <li><a href="register.jspx">Register</a></li>
+    <li><a href="login.jspx">Log In</a></li>
     <li>
       <div class="dropdown">
         <button class="dropbtn">Category</button>
