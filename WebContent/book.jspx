@@ -47,7 +47,7 @@
   <H2>${bookTitle}</H2>
   <BR />
   <BR />
-  <img src="/images/${bookID}.jpg" alt="Smiley face" height="42" width="42">
+  <img src="WebContent/images/${bookID}.jpg" alt="Smiley face" height="42" width="42"></img>
   <BR />
   <BR />
   <LABEL>Price = ${bookPrice}</LABEL>
@@ -59,11 +59,13 @@
 	</tr>
 	</c:forEach>
 	</TABLE>
-  <c:if test="${isLogedIn=='true'}> 
+  <c:if test="${isLogedIn=='true'}"> 
  <form action = "Start" method="POST">
   <textarea name="testArea" rows="5" cols="50"></textarea>
   <button type="submit" name="submitReview" value="textArea" >submit review</button>
+  </form>
 </c:if>
+
 </body>
 </html>
 </jsp:root>
