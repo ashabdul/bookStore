@@ -72,6 +72,7 @@ private DataSource ds;
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		ResultSet r = p.executeQuery();
+		System.out.println(r.getRow());
 		BookBean book = new BookBean(r.getString("bid"), r.getString("title"), r.getString("category"), Integer.parseInt(r.getString("price")));
 		r.close();
 		p.close();

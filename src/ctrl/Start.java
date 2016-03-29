@@ -123,10 +123,10 @@ public class Start extends HttpServlet {
 		if(request.getParameter("imagesubmit") != null)
 		{
 			
-			System.out.println("Image value = " + request.getParameter("imagesubmit"));
+			System.out.println("clicked," + request.getParameter("imagesubmit"));
 			try {
 				//create a book object to hold the info of the clicked book after retrieving it from the database
-				BookBean book = search.retriveByBID(request.getParameter("imagesubmit"));
+				BookBean book = search.retrieve(request.getParameter("imagesubmit")).get(request.getParameter("imagesubmit"));
 				//create a linked list to hold all reviews for the book after retrieving them from the database
 				LinkedList<ReviewBean> reviewList = review.retriveReview(request.getParameter("imagesubmit"));
 				//calculate the average stars rating for the book
