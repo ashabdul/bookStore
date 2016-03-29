@@ -21,7 +21,11 @@ public class UserBean {
 		this.cart = new Cart();
 	}
 	public UserBean() {
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stub\
+		this.userName = null;
+		this.password = null;
+		this.type = null;
+		this.cart = new Cart();
 	}
 	/**
 	 * @return the cart

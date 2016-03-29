@@ -109,9 +109,13 @@ public class Start extends HttpServlet {
 		{
 			try {
 
-				String bookISBN = request.getParameter("addToCart").substring(5);
-				BookBean book = new BookBean();
-				book = search.retriveByBID(bookISBN);
+				System.out.println("len" + request.getParameter("addToCart").length());
+				String bookISBN = request.getParameter("addToCart");
+				System.out.println("the ISBN:"+bookISBN);
+				BookBean book = search.retrieve(bookISBN).get(bookISBN);
+				//System.out.println("search:" + search.retrieve(request.getParameter("imagesubmit")).get(request.getParameter("imagesubmit")).toString());
+				//book = search.retrieve(request.getParameter("imagesubmit")).get(request.getParameter("imagesubmit"));
+				System.out.println(book.toString());
 				user.getCart().add(book);
 
 				System.out.println("Button value = " + request.getParameter("addToCart"));
