@@ -18,7 +18,7 @@
 <body>
 	<ul>
 		<li><a href="home.jspx">Home</a></li>
-		<li><a href="login.jspx" class="active">Log in</a></li>
+		<li><a href="register.jspx" class="active">Register</a></li>
 		<li>
 			<div class="dropdown">
 				<button class="dropbtn">Category</button>
@@ -40,7 +40,7 @@
 
 			<h2>Sign in</h2>
 
-			<form action="j_security_check" method="POST" onsubmit="return validate();">
+			<form action="j_security_check" method="POST" onsubmit="">
 				<label name="error">${error_msg}</label>
 				<span id="error"></span>
 				<div class="input-group input-group-lg">
@@ -57,8 +57,6 @@
 
 				<br />
 				<button type="submit" class="float" name="Login" value="true">Login</button>
-				<br />
-				<button type="submit" class="float" name="Register" value="true">Register</button>
 			</form>
 		</div>
 	</div>

@@ -29,7 +29,7 @@
 
 	<ul>
     <li><a href="home.jspx">Home</a></li>
-    <li><a href="login.jspx">Log in</a></li>
+    <li><a href="register.jspx">Register</a></li>
     <li>
       <div class="dropdown">
         <button class="dropbtn">Category</button>
@@ -48,14 +48,16 @@
 	<br/>
 	<br/>
 	<br/>		
-		<c:forEach items="${list}" var="stulist">
+		<c:forEach items="${list}" var="booklist">
 			<tr>
-				<td><button name="imagesubmit" value="${stulist.bid}"><img src="images/${stulist.bid}.jpg" alt="Book" height="200" width="150"></img></button></td>
-				<td>${stulist.title} </td>
+
+				<td><button name="imagesubmit" value="${booklist.bid}"><img src="images/${booklist.bid}.jpg" alt="Book" height="200" width="150"></img></button></td>
+				<td>${booklist.title} </td>
+
 				<br/>
-				<td>$${stulist.price}0 </td>
+				<td>$${booklist.price}0 </td>
 				<br/>
-				<button name="addToCart" value="${stulist.bid}" type="submit">Add To Cart</button>
+				<button name="addToCart" value="${booklist.bid}" type="submit">Add To Cart</button>
 				<br/>
 				<br/>
 			</tr>
