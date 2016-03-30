@@ -157,7 +157,7 @@ INSERT INTO POItem (id, bid, price) VALUES (3, 'b003', 100);
 */
 Inserting TABLE if exists VisitEvent;
 CREATE TABLE VisitEvent (
-day varchar(8) NOT NULL,
+date date default current_date NOT NULL,
 bid varchar(20) not null REFERENCES Book(bid),
 eventtype VARCHAR(9) CONSTRAINT eventtype_ck CHECK (eventtype IN ('VIEW','CART','PURCHASE')) NOT NULL,
 FOREIGN KEY(bid) REFERENCES Book(bid)
