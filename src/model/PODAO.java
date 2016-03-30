@@ -34,7 +34,7 @@ DataSource ds;
 	 */
 	public void addPO(POBean po) throws SQLException{
 		String query = "INSERT INTO po (lname, fname, status, address) VALUES ('" + po.getLname() + "', '" +
-				po.getFname() + "', '" + po.getStatus() + "', '" + po.getAddress() + "')";
+				po.getFname() + "', '" + po.getStatus() + "', " + po.getAddress() + ")";
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		p.executeQuery();
