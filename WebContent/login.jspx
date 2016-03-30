@@ -8,7 +8,7 @@
     omit-xml-declaration="true" />
   <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Failed to Sign In</title>
+<title>Signed In</title>
 <link rel="stylesheet" href="res/main.css" type="text/css"
   charset="utf-8" />
 <link rel="StyleSheet" href="res/login.css" type="text/css"
