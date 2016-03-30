@@ -53,7 +53,7 @@ DataSource ds;
 		con.close();
 	}
 	
-	//implement the retrieval method
+	//retrieve last po from po table
 	public POBean retriveLast() throws SQLException{
 		String query = "SELECT * FROM po WHERE id= (SELECT MAX(id) FROM PO)" ;
 		Connection con = this.ds.getConnection();

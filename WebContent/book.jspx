@@ -66,8 +66,14 @@
 
 	<c:if test="${isLogedIn == 'ture'}">
 		<form action="Start" method="POST">
-			<textarea name="textArea" rows="5" cols="50"> </textarea>
-			<button type="submit" name="submitReview" value="textArea">submit
+			Rating:<BR /> <input type="radio" name="stars" value="1"> 1
+			</input> <input type="radio" name="stars" value="2"> 2 </input> <input
+				type="radio" name="stars" value="3"> 3</input> <input type="radio"
+				name="stars" value="4"> 4 </input> <input type="radio" name="stars"
+				value="5"> 5 </input><BR />
+			 <TEXTAREA autofocus="true" name="textArea" hint="Enter Text here"
+				rows="5" cols="50"></TEXTAREA>
+			<button type="submit" name="submitReview" value="${bookID}">submit
 				review</button>
 		</form>
 	</c:if>
