@@ -38,6 +38,7 @@ DataSource ds;
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		ResultSet r = p.executeQuery();
+		r.next();
 		AddressBean address = new AddressBean(r.getString("id"),r.getString("street"),
 				r.getString("province"),r.getString("country"),r.getString("zip"), r.getString("phone"));
 		System.out.println("retrived address: " + address.toString());
@@ -52,6 +53,7 @@ DataSource ds;
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		ResultSet r = p.executeQuery();
+		r.next();
 		AddressBean address = new AddressBean(r.getString("id"),r.getString("street"),
 				r.getString("province"),r.getString("country"),r.getString("zip"), r.getString("phone"));
 		System.out.println("retrived address: " + address.toString());
@@ -70,8 +72,7 @@ DataSource ds;
 				address.getProvince() + "', '" + address.getCountry() + "', '" + address.getZip() + "', '" + address.getPhone() + "')";
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
-		ResultSet r = p.executeQuery();
-		r.close();
+		p.execute();
 		p.close();
 		con.close();
 	}
@@ -80,11 +81,10 @@ DataSource ds;
 	 * remove an address by id
 	 */
 	public void removeAddress(String id) throws SQLException{
-		String query = "delete from address whrer id=" + id;
+		String query = "delete from address where id=" + id;
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
-		ResultSet r = p.executeQuery();
-		r.close();
+		p.execute();
 		p.close();
 		con.close();
 	}
