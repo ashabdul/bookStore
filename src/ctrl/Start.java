@@ -79,7 +79,8 @@ public class Start extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().setAttribute("LoggedInUserName", request.getRemoteUser());
-		
+		user.setUserName(request.getRemoteUser());
+		System.out.println("is loged is as: "+ request.getRemoteUser());
 		if(request.getParameter("searchSubmit") != null)
 		{
 			System.out.println("Start: ");
@@ -111,7 +112,7 @@ public class Start extends HttpServlet {
 			request.getRequestDispatcher("searchResult.jspx").forward(request, response);
 		}
 		
-		/* edited by Michel*/
+		/* edited by Michel */
 		if(request.getParameter("addToCart") != null)
 		{
 			try {
@@ -157,9 +158,11 @@ public class Start extends HttpServlet {
 				//check if user is loged in to decide whether to show the write review part or not
 				if(user.getUserName() != null){
 					request.setAttribute("isLogedIn", "ture");
+					System.out.println("user is loged in..show review");
 				}
 				else{
 					request.setAttribute("isLogedIn", "false");
+					System.out.println("user is NOT loged in.. DONT show review");
 				}
 				//redirect to the book display page
 				request.getRequestDispatcher("book.jspx").forward(request, response);

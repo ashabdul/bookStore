@@ -37,8 +37,7 @@ DataSource ds;
 				po.getFname() + "', '" + po.getStatus() + "', '" + po.getAddress() + "')";
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
-		ResultSet r = p.executeQuery();
-		r.close();
+		p.executeQuery();
 		p.close();
 		con.close();
 	}

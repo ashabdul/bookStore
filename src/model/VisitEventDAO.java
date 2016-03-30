@@ -1,7 +1,7 @@
 /**
-	 * @author Michel Abd Alsamad
-	 * 	
-	 */
+ * @author Michel Abd Alsamad
+ * 	
+ */
 
 
 package model;
