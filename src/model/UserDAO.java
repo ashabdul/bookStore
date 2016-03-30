@@ -111,10 +111,6 @@ public class UserDAO {
 		PreparedStatement p2 = con.prepareStatement(query2);
 		p1.execute();
 		p2.execute();
-		//ResultSet r1 = p1.executeQuery();
-		//ResultSet r2 = p2.executeQuery();
-		//r1.close();
-		//r2.close();
 		p1.close();
 		p2.close();
 		con.close();
