@@ -75,11 +75,9 @@ public class UserDAO {
 				+ username + "%'";
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
-		ResultSet r = p.executeQuery();
-		System.out.println(r);
-		UserBean user = new UserBean(r.getString("username"),r.getString("password"),r.getString("account_type"));
+		p.execute();
+		UserBean user = this.retriveUser(username);
 		System.out.println("UPDATED USER" + user.toString());
-		r.close();
 		p.close();
 		con.close();
 		return user;
@@ -93,11 +91,9 @@ public class UserDAO {
 				+ username + "%'"; 
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
-		ResultSet r = p.executeQuery();
-		System.out.println(r);
-		UserBean user = new UserBean(r.getString("username"),r.getString("password"),r.getString("account_type"));
+		p.execute();
+		UserBean user = this.retriveUser(username);
 		System.out.println("UPDATED USER" + user.toString());
-		r.close();
 		p.close();
 		con.close();
 		return user;
@@ -128,11 +124,15 @@ public class UserDAO {
 	 * delete account by username
 	 */
 	public void removeUser(String username) throws SQLException{
-		String query = "DELETE FROM ACCOUNTS WHERE username LIKE '%" + username + "%'"; 
+	String query = "DELETE FROM ACCOUNTS WHERE username LIKE '%" + username + "%'";
+	String query2 = "DELETE FROM user_roles WHERE username LIKE '%" + username + "%'";
 	Connection con = this.ds.getConnection();
 	PreparedStatement p = con.prepareStatement(query);
+	PreparedStatement p2 = con.prepareStatement(query2);
 	p.execute();
+	p2.execute();
 	p.close();
+	p2.close();
 	con.close();
 	}
 }
