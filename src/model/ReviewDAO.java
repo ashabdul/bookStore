@@ -36,11 +36,11 @@ DataSource ds;
 	 */
 	public void addReview(ReviewBean review) throws SQLException{
 		String query = "INSERT INTO reviews (bid, review, stars) VALUES ('" + review.getBid() + "', '" +
-				review.getReview() + "', '" + review.getStars() + "')";
+				review.getReview() + "', " + review.getStars() + ")";
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
-		ResultSet r = p.executeQuery();
-		r.close();
+		p.execute();
+		System.out.println(p);
 		p.close();
 		con.close();
 	}

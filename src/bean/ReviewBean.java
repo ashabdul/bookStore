@@ -12,8 +12,14 @@ public class ReviewBean {
 	String review;
 	int stars;
 	
+	
+	public ReviewBean(String bid, String review, int stars) {
+		this.bid = bid;
+		this.review = review;
+		this.stars = stars;
+	}
+
 	public ReviewBean(String id, String bid, String review, int stars) {
-		super();
 		this.id = id;
 		this.bid = bid;
 		this.review = review;

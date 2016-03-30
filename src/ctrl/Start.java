@@ -79,6 +79,7 @@ public class Start extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//this String will hold the ISBN for the book currently bein viewd
 		request.getSession().setAttribute("LoggedInUserName", request.getRemoteUser());
 		user.setUserName(request.getRemoteUser());
 		System.out.println("is loged is as: "+ request.getRemoteUser());
@@ -112,6 +113,26 @@ public class Start extends HttpServlet {
 			request.setAttribute("list", books.values());
 			request.getRequestDispatcher("searchResult.jspx").forward(request, response);
 		}
+		
+		/* edited by Michel */
+		/*this will handle the event of pressing add review button in book.jspx page*/
+		if(request.getParameter("submitReview") != null)
+		{
+			try {
+			String ISBN = request.getParameter("submitReview");
+			System.out.println("isbn to review=" + request.getParameter("submitReview"));
+			System.out.println("review submitted: "+request.getParameter("textArea"));
+			ReviewBean review = new ReviewBean(ISBN,request.getParameter("textArea"), Integer.parseInt(request.getParameter("stars")));
+			ReviewDAO reviewDAO = new ReviewDAO();
+			reviewDAO.addReview(review);
+			
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+
 		
 		/* edited by Michel */
 		if(request.getParameter("addToCart") != null)
