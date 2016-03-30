@@ -43,7 +43,6 @@ private DataSource ds;
 	public Map<String, BookBean> retrieve(String name) throws
 	SQLException{
 		String query = "select * from book where UPPER(title) like UPPER('%"+ name + "%') OR UPPER(bid) like UPPER('%"+ name + "%') OR UPPER(category) like UPPER('%"+ name + "%')";
-		//String query = "select * from book where UPPER(title) like UPPER('%trump%')";
 		System.out.println("questy:" + query);
 		Map<String, BookBean> rv = new HashMap<String, BookBean>();
 		Connection con = this.ds.getConnection();
@@ -63,25 +62,5 @@ private DataSource ds;
 		p.close();
 		con.close();
 		return rv;
-	}
-
-	/*added by Michel*/
-	public BookBean retriveByBID(String bid) throws SQLException{
-		String query = "SELECT * FROM book WHERE bid like '%"
-				+ bid + "%'";
-		Connection con = this.ds.getConnection();
-		PreparedStatement p = con.prepareStatement(query);
-		ResultSet r = p.executeQuery();
-		BookBean book = null;
-		
-		while (r.next())
-		{
-			book = new BookBean(r.getString("bid"), r.getString("title"), r.getString("category"), Integer.parseInt(r.getString("price")));
-			
-		}
-		r.close();
-		p.close();
-		con.close();
-		return book;
 	}
 }

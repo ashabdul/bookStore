@@ -78,6 +78,7 @@ public class Start extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getSession().setAttribute("LoggedInUserName", request.getRemoteUser());
 		
 		if(request.getParameter("searchSubmit") != null)
 		{
@@ -114,16 +115,12 @@ public class Start extends HttpServlet {
 		if(request.getParameter("addToCart") != null)
 		{
 			try {
-
-
-				String bookISBN = request.getParameter("addToCart").substring(5);
+				String bookISBN = request.getParameter("addToCart");
 				Map<String, BookBean> map = new HashMap<String, BookBean>();
 				BookBean book = new BookBean();
 				map = search.retrieve(bookISBN);
 				book = map.get(request.getParameter("addToCart"));
-
 				user.getCart().add(book);
-
 				System.out.println("Button value = " + request.getParameter("addToCart"));
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
