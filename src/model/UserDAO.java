@@ -38,7 +38,8 @@ public class UserDAO {
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		ResultSet r = p.executeQuery();
-		UserBean user = new UserBean(r.getString("username"),r.getString("password"),r.getString("type"));
+		r.next();
+		UserBean user = new UserBean(r.getString("username"),r.getString("password"),r.getString("account_type"));
 		System.out.println("found" + user.toString());
 		r.close();
 		p.close();
@@ -130,8 +131,7 @@ public class UserDAO {
 		String query = "DELETE FROM ACCOUNTS WHERE username LIKE '%" + username + "%'"; 
 	Connection con = this.ds.getConnection();
 	PreparedStatement p = con.prepareStatement(query);
-	ResultSet r = p.executeQuery();
-	r.close();
+	p.execute();
 	p.close();
 	con.close();
 	}

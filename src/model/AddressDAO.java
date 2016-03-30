@@ -80,7 +80,7 @@ DataSource ds;
 	 * remove an address by id
 	 */
 	public void removeAddress(String id) throws SQLException{
-		String query = "delete from address whrer id=" + id;
+		String query = "delete from address where id=" + id;
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		ResultSet r = p.executeQuery();
