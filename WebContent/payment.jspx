@@ -47,19 +47,6 @@
 	<br />
 	<br />
 	<br />
-	<div class="items">
-
-			<fieldset>
-				<legend>List of items bought</legend>
-				<table>
-				<thead>
-					<hd>Name of Book</hd>
-					<hd>Price</hd>
-				</thead> 
-				</table>
-			</fieldset>
-	</div>
-	
 	
 	<div class= "pay">
 		<form action = "Start" method = "POST">

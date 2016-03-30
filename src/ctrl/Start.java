@@ -34,6 +34,7 @@ public class Start extends HttpServlet {
 	private BookDAO search = null;
 	private UserBean user;
 	private ReviewDAO review;
+	int RequestCount = 0;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -174,16 +175,19 @@ public class Start extends HttpServlet {
 		}
 	
 		/*Added by Ashfaq*/
-		int count = 0;
+		
 		String status;
 		if (request.getParameter("placeOrder") != null){
-			count++;
+			RequestCount++;
 			
-			if(count == 3){
+			if(RequestCount == 3){
 				System.out.println("Request denied");
 				request.getRequestDispatcher("home.jspx").forward(request, response);//Need to change the home page to Request denied Page
 				status = "DENIED";
-				count = 0;
+				RequestCount = 0;
+			}
+			else{
+				status = "PROCESSED";
 			}
 			
 			String BStreet = request.getParameter("j_Bstreet");
@@ -204,11 +208,11 @@ public class Start extends HttpServlet {
 				System.out.println("Addresses do not match");
 				
 				request.setAttribute("address_error", "Billing and Shipping Adresses do not match!");
-				request.getRequestDispatcher("payment.jspx").forward(request, response);
+				request.getRequestDispatcher("requestDenied.jspx").forward(request, response);
 				
 			}
 			
-			status = "PROCESSED";
+			
 			String LName = request.getParameter("lname");
 			String FName = request.getParameter("fname");
 			
@@ -285,7 +289,7 @@ public class Start extends HttpServlet {
 				e.printStackTrace();
 			}*/
 			
-			
+			request.getRequestDispatcher("paymentSuccess.jspx").forward(request, response);
 			
 			
 			
