@@ -178,24 +178,26 @@ public class Start extends HttpServlet {
 			
 			if(count == 3){
 				System.out.println("Request denied");
-				request.getRequestDispatcher("Home.jspx").forward(request, response);//Need to change the home page to Request denied Page
+				request.getRequestDispatcher("home.jspx").forward(request, response);//Need to change the home page to Request denied Page
 				status = "Denied";
 				count = 0;
 			}
 			
-			String BStreet = request.getParameter("bStreet");
-			String SStreet = request.getParameter("sStreet");
-			String BProvince = request.getParameter("bProvince");
-			String SProvince = request.getParameter("sProvince");
-			String BCountry = request.getParameter("bCountry");
-			String SCountry = request.getParameter("sCountry");
-			String BZip = request.getParameter("bZip");
-			String SZip = request.getParameter("sZip");
-			String BPhone = request.getParameter("bPhone");
-			String SPhone = request.getParameter("sPhone");
+			String BStreet = request.getParameter("j_Bstreet");
+			String SStreet = request.getParameter("j_Sstreet");
+			String BProvince = request.getParameter("j_Bprovince");
+			String SProvince = request.getParameter("j_Sprovince");
+			String BCountry = request.getParameter("j_Bcountry");
+			String SCountry = request.getParameter("j_Scountry");
+			String BZip = request.getParameter("j_Bzip");
+			String SZip = request.getParameter("j_Szip");
+			String BPhone = request.getParameter("j_Bphone");
+			String SPhone = request.getParameter("j_Sphone");
+			
+			//System.out.println(BStreet + SStreet + BProvince + SProvince + BCountry + SCountry + BZip + SZip + BPhone + SPhone);
 			
 			
-			if (BStreet != SStreet || BProvince != SProvince || BCountry != SCountry || BZip != SZip || BPhone != SPhone){
+			if (!(BStreet.equals(SStreet)) || !(BProvince.equals(SProvince)) || !(BCountry.equals(SCountry)) || !(BZip.equals(SZip)) || !(BPhone.equals(SPhone))){
 				System.out.println("Addresses do not match");
 				
 				request.setAttribute("address_error", "Billing and Shipping Adresses do not match!");
@@ -279,6 +281,8 @@ public class Start extends HttpServlet {
 				System.out.println("Error inserting new Visit!");
 				e.printStackTrace();
 			}*/
+			
+			
 			
 			
 			

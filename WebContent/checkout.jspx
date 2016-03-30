@@ -47,6 +47,8 @@
 	<br />
 	<div class="body">
 		<span>Website body</span>
+		<button id="payment" name="payment" value="0"></button><a href="payment.jspx">Checkout</a>
+		
 	</div>
 	</form>
 </body>
