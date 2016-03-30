@@ -131,5 +131,12 @@ public class AddressBean {
 				+ ", phone=" + phone + "]";
 	}
 	
-	
+	/*William*/
+	public boolean equals(AddressBean bean) {
+		if(this.street.equals(bean.street) && this.province.equals(bean.province) && this.country.equals(bean.country)
+				&& this.zip.equals(bean.zip) && this.phone.equals(bean.phone)) {
+			return true;
+		}
+		return false;
+	}
 }
