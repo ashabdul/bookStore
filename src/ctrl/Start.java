@@ -12,10 +12,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.AddressBean;
+import bean.POBean;
+import bean.POItemBean;
 import bean.ReviewBean;
 import bean.UserBean;
+import model.AddressDAO;
 import model.BookBean;
 import model.BookDAO;
+import model.PODAO;
+import model.POItemDAO;
 import model.ReviewDAO;
 
 
@@ -162,6 +168,122 @@ public class Start extends HttpServlet {
 			}
 			
 		}
+	
+		/*Added by Ashfaq*/
+		int count = 0;
+		String status;
+		if (request.getParameter("placeOrder") != null){
+			count++;
+			
+			if(count == 3){
+				System.out.println("Request denied");
+				request.getRequestDispatcher("Home.jspx").forward(request, response);//Need to change the home page to Request denied Page
+				status = "Denied";
+				count = 0;
+			}
+			
+			String BStreet = request.getParameter("bStreet");
+			String SStreet = request.getParameter("sStreet");
+			String BProvince = request.getParameter("bProvince");
+			String SProvince = request.getParameter("sProvince");
+			String BCountry = request.getParameter("bCountry");
+			String SCountry = request.getParameter("sCountry");
+			String BZip = request.getParameter("bZip");
+			String SZip = request.getParameter("sZip");
+			String BPhone = request.getParameter("bPhone");
+			String SPhone = request.getParameter("sPhone");
+			
+			
+			if (BStreet != SStreet || BProvince != SProvince || BCountry != SCountry || BZip != SZip || BPhone != SPhone){
+				System.out.println("Addresses do not match");
+				
+				request.setAttribute("address_error", "Billing and Shipping Adresses do not match!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);
+				
+			}
+			
+			status = "Success";
+			String LName = request.getParameter("lname");
+			String FName = request.getParameter("fname");
+			
+			AddressBean newAddress = new AddressBean(null, SStreet, SProvince, SCountry, SZip, SPhone);
+			
+			AddressDAO address = null;
+			try{
+				address = new AddressDAO();
+			}
+			catch(Exception e){
+				System.out.print("Error getting AddressDAO for registration!");
+				e.printStackTrace();
+			}
+			
+			try{
+				address.addAddress(newAddress);
+			}
+			catch (SQLException e) {
+				System.out.println("Error inserting new Address!");
+				e.printStackTrace();
+			}
+			
+			PODAO po = null;
+			try {
+				POBean newPO = new POBean(0, LName, FName, status, Integer.parseInt(address.retriveLast().getId()));
+				po = new PODAO();
+				po.addPO(newPO);
+			} 
+			catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				System.out.println("Error Creating bean");
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			/*POItemBean newPOItem = new POItembean(0, user.bid, user.price);
+		    POItemDAO poItem = null;
+		    
+		    try{
+				poItem = new POItemDAO();
+			}
+			catch(Exception e){
+				System.out.print("Error getting POItemDAO for registration!");
+				e.printStackTrace();
+			}
+		    
+		    try{
+				poItem.addPOItem(POItemBean);
+			}
+			catch (SQLException e) {
+				System.out.println("Error inserting new POItem!");
+				e.printStackTrace();
+			}*/
+			
+			/*
+			VisitEventBean VisitBean = new VisitBean();
+			VisitEventDAO visit = null;
+			
+			try{
+				visit = new VisitEventDAO();
+			}
+			catch(Exception e){
+				System.out.print("Error getting VisitEventDAO for registration!");
+				e.printStackTrace();
+			}
+		    
+		    try{
+				visit.addVisit(VisitBean);
+			}
+			catch (SQLException e) {
+				System.out.println("Error inserting new Visit!");
+				e.printStackTrace();
+			}*/
+			
+			
+			
+		}//Ashfaq's end
+		
+		
 	}
 
 }
