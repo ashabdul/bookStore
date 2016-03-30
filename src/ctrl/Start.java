@@ -76,6 +76,7 @@ public class Start extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * William
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().setAttribute("LoggedInUserName", request.getRemoteUser());
@@ -284,7 +285,5 @@ public class Start extends HttpServlet {
 			
 		}//Ashfaq's end
 		
-		
 	}
-
 }
