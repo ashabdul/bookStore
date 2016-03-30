@@ -143,9 +143,9 @@ CREATE INDEX POitem_IDX_bid ON POItem(bid);
 #
 # Inserting data for table 'POitem'
 #
-INSERT INTO POItem (id, bid, price) VALUES (1, 'b001', 20);
-INSERT INTO POItem (id, bid, price) VALUES (2, 'b002', 201);
-INSERT INTO POItem (id, bid, price) VALUES (3, 'b003', 100);
+INSERT INTO POItem (id, bid, unitPrice, quantity) VALUES (1, 'b001', 20, 2);
+INSERT INTO POItem (id, bid, unitPrice, quantity) VALUES (2, 'b002', 201, 1);
+INSERT INTO POItem (id, bid, unitPrice, quantity) VALUES (3, 'b003', 100, 5);
 #
 #
 
