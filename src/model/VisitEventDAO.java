@@ -1,3 +1,9 @@
+/**
+ * @author Michel Abd Alsamad
+ * 	
+ */
+
+
 package model;
 
 import java.sql.Connection;
@@ -5,12 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
-
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
-import bean.ReviewBean;
 import bean.VisitEventBean;
 
 public class VisitEventDAO {
@@ -93,6 +96,17 @@ DataSource ds;
 		p.close();
 		con.close();
 		return list;
+	}
+	/**
+	 * @add visitEvent to the table
+	 */
+	public void addUser(VisitEventBean visit) throws SQLException{
+		String query = "INSERT INTO VISITEVENT (bid, event_type) values ('" + visit.getBid() + "', '"+ visit.getEventType() + "')"; 
+		Connection con = this.ds.getConnection();
+		PreparedStatement p = con.prepareStatement(query);
+		p.execute();
+		p.close();
+		con.close();
 	}
 	
 }
