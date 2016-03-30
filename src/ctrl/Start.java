@@ -182,7 +182,7 @@ public class Start extends HttpServlet {
 			if(count == 3){
 				System.out.println("Request denied");
 				request.getRequestDispatcher("home.jspx").forward(request, response);//Need to change the home page to Request denied Page
-				status = "Denied";
+				status = "DENIED";
 				count = 0;
 			}
 			
@@ -208,7 +208,7 @@ public class Start extends HttpServlet {
 				
 			}
 			
-			status = "Success";
+			status = "PROCESSED";
 			String LName = request.getParameter("lname");
 			String FName = request.getParameter("fname");
 			
