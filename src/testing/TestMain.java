@@ -23,6 +23,9 @@ public class TestMain extends HttpServlet {
 	 * Start.java is not tested automatically.
 	 * Register.java is not tested automatically because it requires a browser session and is better tested manually.
 	 */
+	
+	//IMPORTANT: It is highly recommended that you completely clear the database of any and all "user" level entries in both accounts and
+	//user_roles tables to avoid any collisions in the database during testing.
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response); //Allows us to write the instructions just once regardless of if its a GET or POST
