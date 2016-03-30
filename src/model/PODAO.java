@@ -9,11 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
 import bean.POBean;
 
 public class PODAO {
@@ -56,4 +54,18 @@ DataSource ds;
 	}
 	
 	//implement the retrieval method
+	public POBean retriveLast() throws SQLException{
+		String query = "SELECT * FROM po WHERE id= (SELECT MAX(id) FROM PO)" ;
+		Connection con = this.ds.getConnection();
+		PreparedStatement p = con.prepareStatement(query);
+		ResultSet r = p.executeQuery();
+		r.next();
+		POBean po = new POBean(r.getInt("id"),r.getString("lname"),
+				r.getString("fname"),r.getString("status"),r.getInt("address"));
+		System.out.println("retrived PO: " + po.toString());
+		r.close();
+		p.close();
+		con.close();
+		return po;
+	}
 }
