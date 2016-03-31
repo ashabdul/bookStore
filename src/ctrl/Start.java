@@ -203,7 +203,7 @@ public class Start extends HttpServlet {
 			
 			if(RequestCount == 3){
 				System.out.println("Request denied");
-				request.getRequestDispatcher("home.jspx").forward(request, response);//Need to change the home page to Request denied Page
+				request.getRequestDispatcher("requestDenied.jspx").forward(request, response);//Need to change the home page to Request denied Page
 				status = "DENIED";
 				RequestCount = 0;
 			}
@@ -222,20 +222,83 @@ public class Start extends HttpServlet {
 			String BPhone = request.getParameter("j_Bphone");
 			String SPhone = request.getParameter("j_Sphone");
 			
+			String LName = request.getParameter("j_lastName");
+			String FName = request.getParameter("j_firstName");
+			
+			String Card = request.getParameter("j_card");
 			//System.out.println(BStreet + SStreet + BProvince + SProvince + BCountry + SCountry + BZip + SZip + BPhone + SPhone);
+			System.out.println(FName);
+			
+			if(FName == ""){
+				
+				System.out.println("First Name is empty");
+				request.setAttribute("firstname_error", "First Name is empty!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);
+			}
+			else if(LName == ""){
+				System.out.println("Last Name is empty");
+				request.setAttribute("lastname_error", "Last Name is empty!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);
+			}
+			else if(Card == ""){
+				System.out.println("Credit Card is empty");
+				request.setAttribute("card_error", "Credit Card detials are empty!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);
+			}
+			else if(BStreet == ""){
+				System.out.println("Billing Street is empty");
+				request.setAttribute("billingstreet_error", "Street of Billing address is empty!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);
+			}
+			else if(BCountry == ""){
+				System.out.println("Billing Country is empty");
+				request.setAttribute("billingcountry_error", "Country of Billing address is empty!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);	
+			}
+			else if(BZip == ""){
+				System.out.println("Billing Zip is empty");
+				request.setAttribute("billingzip_error", "Zip of Billing address is empty!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);
+			}
+			else if(BPhone == ""){
+				System.out.println("Billing Phone is empty");
+				request.setAttribute("billingphone_error", "Phone Number of Billing address is empty!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);
+			}
+			else if(SStreet == ""){
+				System.out.println("Shipping Street is empty");
+				request.setAttribute("shippingstreet_error", "Street of Shipping address is empty!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);
+			}
+			else if(SCountry == ""){
+				System.out.println("Shipping Country is empty");
+				request.setAttribute("shippingcountry_error", "Country of Shipping address is empty!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);	
+			}
+			else if(SZip == ""){
+				System.out.println("Shipping Zip is empty");
+				request.setAttribute("shippingzip_error", "Zip of Shipping address is empty!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);
+			}
+			else if(SPhone == ""){
+				System.out.println("Shipping Phone is empty");
+				request.setAttribute("shippingphone_error", "Phone Number of Shipping address is empty!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);
+			}
+			
+			else{
+				
+			
 			
 			
 			if (!(BStreet.equals(SStreet)) || !(BProvince.equals(SProvince)) || !(BCountry.equals(SCountry)) || !(BZip.equals(SZip)) || !(BPhone.equals(SPhone))){
 				System.out.println("Addresses do not match");
 				
 				request.setAttribute("address_error", "Billing and Shipping Adresses do not match!");
-				request.getRequestDispatcher("requestDenied.jspx").forward(request, response);
+				request.getRequestDispatcher("payment.jspx").forward(request, response);
 				
 			}
 			
-			
-			String LName = request.getParameter("lname");
-			String FName = request.getParameter("fname");
 			
 			AddressBean newAddress = new AddressBean(null, SStreet, SProvince, SCountry, SZip, SPhone);
 			
@@ -313,7 +376,7 @@ public class Start extends HttpServlet {
 			request.getRequestDispatcher("paymentSuccess.jspx").forward(request, response);
 			
 			
-			
+			}	
 		}//Ashfaq's end
 		
 		

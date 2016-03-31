@@ -12,7 +12,8 @@
 <link rel="stylesheet" href="res/main.css" type="text/css"
 	charset="utf-8" />
 <link rel="StyleSheet" href="res/payment.css" type="text/css"
-	title="cse4413" media="screen, print" />	
+	title="cse4413" media="screen, print" />
+
 </head>
 <body>
 <form action="Start" method="POST">
@@ -54,18 +55,31 @@
 					First Name: <input type="text" class="form-control"
 						placeholder="First Name" name="j_firstName" id="fname" />
 				</div>
+			
+				<br />
+				
+				<label name="firstNameError">${firstname_error}</label>
+				<span id="firstNameError"></span>
 				<br />
 				<div class="input-group input-group-lg">
 					Last Name: <input type="text" class="form-control"
 						placeholder="Last Name" name="j_lastName" id="lname" />
 				</div>
-				
 				<br />
+				
+				<label name="lastNameError">${lastname_error}</label>
+				<span id="lastNameError"></span>
+				<br />
+				
 				<div class="input-group input-group-lg">
 					Credit Card Number: <input type="text" class="form-control"
-						placeholder="Card Number" name="j_card" id="card" />
+						placeholder="Card Number" name="j_card" id="card" onblur="return isNumberKey(event)"/>
 				</div>
 				<br/>
+				
+				<label name="cardError">${card_error}</label>
+				<span id="cardError"></span>
+				<br />
 				
 				<div class="input-group input-group-lg">
 					Type: <br/>
@@ -84,25 +98,49 @@
 						placeholder="Street Address" name="j_Bstreet" id="bStreet" />
 				</div>
 				<br />
+				
+				<label name="BStreetError">${billingstreet_error}</label>
+				<span id="BStreetError"></span>
+				<br />
+				
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
 						placeholder="Province" name="j_Bprovince" id="bProvince" />	
 				</div>
 				<br />
+				
+				<label name="BProvinceError">${billingprovince_error}</label>
+				<span id="BProvinceError"></span>
+				<br />
+				
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
 						placeholder="Country" name="j_Bcountry" id="bCountry" />
 				</div>
 				<br />
+				
+				<label name="BCountryError">${billingcountry_error}</label>
+				<span id="BCountryError"></span>
+				<br />
+				
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
 						placeholder="ZIP" name="j_Bzip" id="bZip" />
 				</div>
 				<br />
+				
+				<label name="BZipError">${billingzip_error}</label>
+				<span id="BZipError"></span>
+				<br />
+				
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
 						placeholder="Phone Number" name="j_Bphone" id="bPhone" />			
 				</div>
+				
+				<label name="BPhoneError">${billingphone_error}</label>
+				<span id="BZipError"></span>
+				<br />
 				
 				<br/>
 				<div class="input-group input-group-lg">
@@ -112,30 +150,55 @@
 						placeholder="Street Address" name="j_Sstreet" id="sStreet" />
 				</div>
 				<br />
+				
+				<label name="SStreetError">${shippingstreet_error}</label>
+				<span id="SStreetError"></span>
+				<br />
+				
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
 						placeholder="Province" name="j_Sprovince" id="sProvince" />	
 				</div>
 				<br />
+				
+				<label name="SProvinceError">${shippingprovince_error}</label>
+				<span id="SProvinceError"></span>
+				<br />
+				
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
 						placeholder="Country" name="j_Scountry" id="sCountry" />
 				</div>
 				<br />
+				<label name="SCountryError">${shippingcountry_error}</label>
+				<span id="SCountryError"></span>
+				<br />
+				
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
 						placeholder="ZIP" name="j_Szip" id="sZip" />
 				</div>
 				<br />
+				
+				<label name="SZipError">${shippingzip_error}</label>
+				<span id="SZipError"></span>
+				<br />
+				
+				
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
 						placeholder="Phone Number" name="j_Sphone" id="sPhone" />			
 				</div>
 				<br />
 				
+				<label name="SPhoneError">${shippingphone_error}</label>
+				<span id="SZipError"></span>
+				<br />
+				
 				<label name="addressError">${address_error}</label>
 				<span id="addressError"></span>
 				
+				<br/>
 				<button type="submit" class="float" name="placeOrder" value="true">Place Order</button>
 				<br />
 		</form>

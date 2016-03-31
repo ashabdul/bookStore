@@ -12,6 +12,8 @@
 <title>Mom&amp;Pop Book Store Home</title>
 <link rel="stylesheet" href="res/main.css" type="text/css"
 	charset="utf-8" />
+<link rel="StyleSheet" href="res/login.css" type="text/css"
+  title="cse4413" media="screen, print" />	
 </head>
 <body>
 <form action="Start" method="POST">
@@ -46,8 +48,13 @@
 	<br />
 	<br />
 	<br />
+  <div class="FailedMessage">
+    <div class="heading login">
 
-	<h1 style="color:blue;">Payment Successful!</h1>
+      <h2 style="color:blue;">Payment Successful!</h2>
+      
+    </div>
+  </div>
 </form>
 </body>
 </html>
