@@ -79,6 +79,7 @@ public class Start extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * William
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//this String will hold the ISBN for the book currently bein viewd
@@ -406,8 +407,5 @@ public class Start extends HttpServlet {
 			
 			}	
 		}//Ashfaq's end
-
-
 	}
-
 }
