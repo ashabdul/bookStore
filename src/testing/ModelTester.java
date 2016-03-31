@@ -15,13 +15,53 @@ public class ModelTester {
 		//Each class gets its own method for maintainability
 		out.print("<h3>AddressDAO:</h3>");
 		AddressDAOTest(out);
-
-		out.print("<h3>UserDAO:</h3>");
-		UserDAOTest(out);
-
+		
 		out.print("<h3>BookDAO:</h3>");
 		BookDAOTest(out);
+		
+		//out.print("<h3>PODAO:</h3>");
+		//PODAOTest(out);
+		
+		out.print("<h3>UserDAO:</h3>");
+		UserDAOTest(out);
 		return true;
+	}
+
+	private static void PODAOTest(PrintWriter out) {
+		PODAO testDAO = null;
+		POBean testBean = null;
+		
+		String lname = "Smith";
+		String fname = "John";
+		String status = "ordered";
+		int address = 1; /*Foreign Key Constraint on PODAO requires address.  An address '1' should already exist*/
+		
+		try {
+			testDAO = new PODAO();
+			testBean = new POBean(0, lname, fname, status, address);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		out.print("<br />Adding POBean to PODAO");
+		try {
+			testDAO.addPO(testBean);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			if(testDAO.retriveLast().equals(new POBean(0, lname, fname, status, address))) {
+				out.print("<br />Added successfuly");
+			} else {
+				out.print("<br />Bean not inserted successfuly");
+				out.print("<br />Got: " + testDAO.retriveLast().toString());
+				out.print("<br />Wanted: " + testBean.toString());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		out.print("<br />Removing POBean");
 	}
 
 	private static void BookDAOTest(PrintWriter out) {

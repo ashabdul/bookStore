@@ -111,5 +111,15 @@ public class POBean {
 				+ ", status=" + status + ", address=" + address + "]";
 	}
 	
+	public boolean equals(POBean bean) {
+		Boolean test = false;
+		
+		if(Lname == bean.Lname && Fname == bean.Fname && status == bean.status && address == bean.address) {
+			test = true;
+		}
+		
+		return test;
+	}
+	
 	
 }

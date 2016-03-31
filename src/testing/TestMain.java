@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author William
  *
  */
-@WebServlet(urlPatterns = {"/TestCases", "/TestCases/BeanOnly", "/TestCases/ModelOnly"})
+@WebServlet(urlPatterns = {"/TestCases"})
 public class TestMain extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	/*
@@ -23,7 +23,7 @@ public class TestMain extends HttpServlet {
 	 * Start.java is not tested automatically.
 	 * Register.java is not tested automatically because it requires a browser session and is better tested manually.
 	 */
-	
+
 	//IMPORTANT: It is highly recommended that you completely clear the database of any and all "user" level entries in both accounts and
 	//user_roles tables to avoid any collisions in the database during testing.
 
@@ -32,27 +32,11 @@ public class TestMain extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//This PrintWriter object is used to write to the clients screen
 		PrintWriter out = response.getWriter();
 
-		boolean testBean = true; //By default test both sets
-		boolean testModel = true;
-		
-		if(request.getServletPath().equals("/TestCases/ModelOnly")) {
-			testBean = false;
-		} else if(request.getServletPath().equals("/TestCases/BeanOnly")) {
-			testModel = false;
-		}
-
 		out.println("<h1>Testing Results</h1>");
-		if(testBean) {
-			out.println("<h2>BeanTester:</h2>");
-
-			BeanTester.runTests(out); //This tester prints its own messages to the user
-		}
-		if(testModel) {
-			out.println("<h2>ModelTester:</h2>");
-
-			ModelTester.runTests(out);
-		}
+		//Leave this class clean in case of future edits, delegate testing to a tester class.
+		ModelTester.runTests(out);
 	}
 }
