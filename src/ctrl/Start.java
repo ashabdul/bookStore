@@ -36,6 +36,7 @@ public class Start extends HttpServlet {
 	private BookDAO search = null;
 	private UserBean user;
 	private ReviewDAO review;
+	int RequestCount = 0;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -226,17 +227,67 @@ public class Start extends HttpServlet {
 		}
 
 		/*Added by Ashfaq*/
-		int count = 0;
+		
 		String status;
 		if (request.getParameter("placeOrder") != null){
+<<<<<<< HEAD
 			count++;
 
 			if(count == 3){
+=======
+			RequestCount++;
+			
+			if(RequestCount == 3){
+>>>>>>> my-new-branch
 				System.out.println("Request denied");
-				request.getRequestDispatcher("home.jspx").forward(request, response);//Need to change the home page to Request denied Page
-				status = "Denied";
-				count = 0;
+				request.getRequestDispatcher("requestDenied.jspx").forward(request, response);//Need to change the home page to Request denied Page
+				status = "DENIED";
+				RequestCount = 0;
 			}
+			else{
+				status = "PROCESSED";
+			}
+			
+			String BStreet = request.getParameter("j_Bstreet");
+			String SStreet = request.getParameter("j_Sstreet");
+			String BProvince = request.getParameter("j_Bprovince");
+			String SProvince = request.getParameter("j_Sprovince");
+			String BCountry = request.getParameter("j_Bcountry");
+			String SCountry = request.getParameter("j_Scountry");
+			String BZip = request.getParameter("j_Bzip");
+			String SZip = request.getParameter("j_Szip");
+			String BPhone = request.getParameter("j_Bphone");
+			String SPhone = request.getParameter("j_Sphone");
+			
+			String LName = request.getParameter("j_lastName");
+			String FName = request.getParameter("j_firstName");
+			
+			String Card = request.getParameter("j_card");
+			//System.out.println(BStreet + SStreet + BProvince + SProvince + BCountry + SCountry + BZip + SZip + BPhone + SPhone);
+			System.out.println(FName);
+			
+			if(FName == ""){
+				
+				System.out.println("First Name is empty");
+				request.setAttribute("firstname_error", "First Name is empty!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);
+			}
+			else if(LName == ""){
+				System.out.println("Last Name is empty");
+				request.setAttribute("lastname_error", "Last Name is empty!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);
+			}
+			else if(Card == ""){
+				System.out.println("Credit Card is empty");
+				request.setAttribute("card_error", "Credit Card detials are empty!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);
+			}
+			else if(BStreet == ""){
+				System.out.println("Billing Street is empty");
+				request.setAttribute("billingstreet_error", "Street of Billing address is empty!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);
+			}
+<<<<<<< HEAD
 
 			String BStreet = request.getParameter("bStreet");
 			String SStreet = request.getParameter("sStreet");
@@ -251,17 +302,66 @@ public class Start extends HttpServlet {
 
 
 			if (BStreet != SStreet || BProvince != SProvince || BCountry != SCountry || BZip != SZip || BPhone != SPhone){
+=======
+			else if(BCountry == ""){
+				System.out.println("Billing Country is empty");
+				request.setAttribute("billingcountry_error", "Country of Billing address is empty!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);	
+			}
+			else if(BZip == ""){
+				System.out.println("Billing Zip is empty");
+				request.setAttribute("billingzip_error", "Zip of Billing address is empty!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);
+			}
+			else if(BPhone == ""){
+				System.out.println("Billing Phone is empty");
+				request.setAttribute("billingphone_error", "Phone Number of Billing address is empty!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);
+			}
+			else if(SStreet == ""){
+				System.out.println("Shipping Street is empty");
+				request.setAttribute("shippingstreet_error", "Street of Shipping address is empty!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);
+			}
+			else if(SCountry == ""){
+				System.out.println("Shipping Country is empty");
+				request.setAttribute("shippingcountry_error", "Country of Shipping address is empty!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);	
+			}
+			else if(SZip == ""){
+				System.out.println("Shipping Zip is empty");
+				request.setAttribute("shippingzip_error", "Zip of Shipping address is empty!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);
+			}
+			else if(SPhone == ""){
+				System.out.println("Shipping Phone is empty");
+				request.setAttribute("shippingphone_error", "Phone Number of Shipping address is empty!");
+				request.getRequestDispatcher("payment.jspx").forward(request, response);
+			}
+			
+			else{
+				
+			
+			
+			
+			if (!(BStreet.equals(SStreet)) || !(BProvince.equals(SProvince)) || !(BCountry.equals(SCountry)) || !(BZip.equals(SZip)) || !(BPhone.equals(SPhone))){
+>>>>>>> my-new-branch
 				System.out.println("Addresses do not match");
 
 				request.setAttribute("address_error", "Billing and Shipping Adresses do not match!");
 				request.getRequestDispatcher("payment.jspx").forward(request, response);
 
 			}
+<<<<<<< HEAD
 
 			status = "Success";
 			String LName = request.getParameter("lname");
 			String FName = request.getParameter("fname");
 
+=======
+			
+			
+>>>>>>> my-new-branch
 			AddressBean newAddress = new AddressBean(null, SStreet, SProvince, SCountry, SZip, SPhone);
 
 			AddressDAO address = null;
@@ -334,9 +434,17 @@ public class Start extends HttpServlet {
 				System.out.println("Error inserting new Visit!");
 				e.printStackTrace();
 			}*/
+<<<<<<< HEAD
 
 
 
+=======
+			
+			request.getRequestDispatcher("paymentSuccess.jspx").forward(request, response);
+			
+			
+			}	
+>>>>>>> my-new-branch
 		}//Ashfaq's end
 
 

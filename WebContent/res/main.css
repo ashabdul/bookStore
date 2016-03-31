@@ -171,3 +171,11 @@ li a:hover {
     height: 40px;
     left: 3px;
 }
+
+label {
+color: #FF0000;
+font-weight: bold;
+display: block;
+width: 150px;
+
+}

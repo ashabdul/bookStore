@@ -22,6 +22,7 @@
 				src="images/Banner2.jpg" alt="Banner" width="400" height="100"></img>
 			</span>
 
+<<<<<<< HEAD
 		</div>
 
 		<ul>
@@ -55,6 +56,33 @@
 		<div class="body">
 			<span>Website body</span>
 		</div>
+=======
+	<ul>
+    <li><a href="home.jspx">Home</a></li>
+    <li><a href="login.jspx">Log In</a></li>
+    <li>
+      <div class="dropdown">
+        <button class="dropbtn">Category</button>
+        <div class="dropdown-content">
+          <a href="#">Science</a> <a href="#">Fiction</a> <a href="#">Engineering</a>
+        </div>
+      </div>
+    </li>
+    <li id="searchbar" style="float: right"><input type="text"
+      id="search" placeholder="Search" name="searchValue"/> <input
+      type="submit" id="searchbutton" value="Search" name="searchSubmit" /></li>
+    <li style="float: right"><button id="cartsubmit" name="cartsubmit" value="0"><img src="images/cart.png" class="thumbnail" height="40" width="50" /></button></li>
+    <li style="float: right" class="active"><a href="checkout.jspx">Checkout</a></li>
+  </ul>
+	<br />
+	<br />
+	<br />
+	<div class="body">
+		<span>Website body</span>
+		<button id="payment" name="payment" value="0"></button><a href="payment.jspx">Checkout</a>
+		
+	</div>
+>>>>>>> my-new-branch
 	</form>
 </body>
 	</html>
