@@ -3,12 +3,14 @@
  */
 package model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * @author Basit
  *
  */
+@XmlRootElement(name="bookReport")
 public class BookBean {
-	
 	private String bid = "", title = "", category = "";
 	private double price  = 0;
 	
