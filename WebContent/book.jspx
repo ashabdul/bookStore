@@ -61,7 +61,6 @@
 					name="cartsubmit" value="0">
 					<img src="images/cart.png" class="thumbnail" height="40" width="50" />
 				</button></li>
-			<li style="float: right"><a href="checkout.jspx">Checkout</a></li>
 		</ul>
 	</form>
 	<H2>${bookTitle}</H2>
