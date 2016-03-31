@@ -29,4 +29,14 @@ public class Cart {
 	{
 		return list.size();
 	}
+	
+	public Map<String, BookBean> getCart()
+	{
+		return list;
+	}
+	
+	public void clear()
+	{
+		list.clear();
+	}
 }

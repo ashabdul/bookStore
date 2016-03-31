@@ -66,6 +66,36 @@ public class Start extends HttpServlet {
 		//When first visiting the website always redirect to home.
 		System.out.println("User is: " + request.getRemoteUser() + " they are an admin: " + request.isUserInRole("admin"));
 		response.sendRedirect("home.jspx");
+		//System.out.println(request.getQueryString());
+		System.out.println("hello");
+		System.out.println(request.getParameter("addToCart"));
+		
+		if(request.getParameter("addToCart") != null)
+		{
+			System.out.println("in doGet");
+			try {
+				
+				String bookISBN = request.getParameter("addToCart");
+				Map<String, BookBean> map = new HashMap<String, BookBean>();
+				BookBean book = new BookBean();
+				map = search.retrieve(bookISBN);
+				book = map.get(request.getParameter("addToCart"));
+
+				//user.getCart().clear();
+				user.getCart().add(book);
+				
+				for(BookBean b: user.getCart().getCart().values())
+				{
+					System.out.println("Book in cart = " + b.getTitle());
+				}
+				response.getWriter().write("true");
+				
+				System.out.println("Button value = " + request.getParameter("addToCart"));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/**
@@ -108,8 +138,7 @@ public class Start extends HttpServlet {
 		if(request.getParameter("addToCart") != null)
 		{
 			try {
-
-
+				
 				String bookISBN = request.getParameter("addToCart").substring(5);
 				Map<String, BookBean> map = new HashMap<String, BookBean>();
 				BookBean book = new BookBean();

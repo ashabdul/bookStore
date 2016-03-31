@@ -1,27 +1,28 @@
 /**
  * 
  */
-function doSimpleAjax(address){
+function doSimpleAjax(address, isbn){
 	var request = new XMLHttpRequest();
 	var data = "";
 
 	/* add your code here to grab all parameters from form*/
-	var data = document.getElementById("addtocart");
+	data = isbn;
+	var url = address + "?addToCart=" + data;
 
-	request.open("POST", (address + "?" + data), true);
+	request.open("GET", url, true);
 	request.onreadystatechange = function() {
 		handler(request);
 	};
-	request.send(null);
+	request.send();
 }
 
 function handler(request)
 {
 	if ((request.readyState == 4) && (request.status == 200))
 	{
-		var boolean = request.responseText;
+		var bool = request.responseText;
 		//var target = document.getElementById("ajaxTarget");
-		if(boolean.equals("true"))
+		if(bool == "true")
 		{
 			alert("Added to cart");
 		}
