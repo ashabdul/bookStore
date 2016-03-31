@@ -97,11 +97,33 @@ DataSource ds;
 		con.close();
 		return list;
 	}
+	
+	/**
+	 * @return LinkedList of number of book sold of each book id
+	 */
+	public LinkedList<BookBean> retrieveNumberPurchasedInMonth(int month) throws SQLException{
+		String query = "SELECT date, bid, COUNT(bid) AS count FROM visiteventT WHERE month(date) =" + month + "AND event_type='PURCHASE' GROUP BY bid, date";
+		LinkedList<BookBean> list = new LinkedList<BookBean>();
+		Connection con = this.ds.getConnection();
+		PreparedStatement p = con.prepareStatement(query);
+		ResultSet r = p.executeQuery();
+		while (r.next()){
+			String bid = r.getString("bid");
+			int sold = r.getInt("count");
+			BookBean event = new BookBean(bid, sold);
+			list.add(event);
+		}
+		r.close();
+		p.close();
+		con.close();
+		return list;
+	}
+	
 	/**
 	 * @add visitEvent to the table
 	 */
 	public void addEvent(VisitEventBean visit) throws SQLException{
-		String query = "INSERT INTO VISITEVENT (bid, event_type) values ('" + visit.getBid() + "', '"+ visit.getEventType() + "')"; 
+		String query = "INSERT INTO visitevent (bid, event_type) values ('" + visit.getBid() + "', '"+ visit.getEventType() + "')"; 
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		p.execute();

@@ -11,7 +11,10 @@ public class BookBean {
 	
 	private String bid = "", title = "", category = "";
 	private double price  = 0;
+	private int sold;   //only used for visit event table (to be printed in the analysis page)
 	
+	
+
 	public BookBean ()
 	{
 		
@@ -23,6 +26,12 @@ public class BookBean {
 		this.title = title;
 		this.category = category;
 		this.price = price;
+	}
+	//this constructor will  be used when retriving info from visit event table
+	public BookBean (String bid, int sold)
+	{
+		this.bid = bid;
+		this.sold = sold;
 	}
 
 	/**
@@ -79,5 +88,18 @@ public class BookBean {
 	 */
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	/**
+	 * @return the sold
+	 */
+	public int getSold() {
+		return sold;
+	}
+
+	/**
+	 * @param sold the sold to set
+	 */
+	public void setSold(int sold) {
+		this.sold = sold;
 	}
 }
