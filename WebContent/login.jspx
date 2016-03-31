@@ -16,7 +16,7 @@
 <link rel="StyleSheet" href="res/login.css" type="text/css"
 	title="cse4413" media="screen, print" />
 <script type="text/javascript" src="res/loginValidate.js">;</script>
-<META http-equiv="refresh" content="5; home.jspx" />
+<META http-equiv="refresh" content="2; /Project" />
 </head>
 <body>
 	<ul>
