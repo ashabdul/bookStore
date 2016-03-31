@@ -57,23 +57,13 @@ public class Start extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
-	/* added by Michel
-	public void init()throws ServletException{
-
-    	try {
-
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    }*/
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//When first visiting the website always redirect to home.
 		System.out.println("User is: " + request.getRemoteUser() + " they are an admin: " + request.isUserInRole("admin"));
+
 		//if the user is loged in set attribute isLogedIn = true
 		if(request.getRemoteUser() != null){
 			request.setAttribute("isLogedIn", "true");
@@ -83,6 +73,7 @@ public class Start extends HttpServlet {
 		}
 		user.setUserName(request.getRemoteUser());
 		request.getRequestDispatcher("home.jspx").forward(request, response);
+
 	}
 
 	/**

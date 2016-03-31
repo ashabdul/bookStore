@@ -16,6 +16,7 @@
 <link rel="StyleSheet" href="res/login.css" type="text/css"
 	title="cse4413" media="screen, print" />
 <script type="text/javascript" src="res/loginValidate.js">;</script>
+<META http-equiv="refresh" content="2; /Project" />
 </head>
 <body>
 	<ul>
@@ -44,7 +45,7 @@
 
 			<h2>You're Now Logged In</h2>
 
-			<p>You have now been logged in.</p>
+			<p>You have now been logged in.  Press any of the navigation keys or wait to be directed home.</p>
 		</div>
 	</div>
 

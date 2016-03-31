@@ -13,6 +13,7 @@
 <title>Mom&amp;Pop Book Store Home</title>
 <link rel="stylesheet" href="res/main.css" type="text/css"
 	charset="utf-8" />
+	<script type="text/javascript" src="res/Ajax.js"><jsp:text /></script>
 </head>
 <body>
 	<form action="Start" method="POST">
@@ -65,6 +66,12 @@
 					</button></td>
 				<td>${booklist.title}</td>
 
+				<br/>
+				<td>$${booklist.price}0 </td>
+				<br/>
+				<button id="addToCart" name="addToCart" value="${booklist.bid}" type="submit" onclick="doSimpleAjax('/Project/Start', '${booklist.bid}');return false;">Add To Cart</button>
+				<br/>
+				<br/>
 				<br />
 				<td>$${booklist.price}0</td>
 				<br />
