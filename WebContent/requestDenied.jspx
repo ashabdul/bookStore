@@ -10,44 +10,57 @@
 		omit-xml-declaration="true" />
 	<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Failed to Sign In</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>Mom&amp;Pop Book Store Home</title>
 <link rel="stylesheet" href="res/main.css" type="text/css"
-  charset="utf-8" />
+	charset="utf-8" />
 <link rel="StyleSheet" href="res/login.css" type="text/css"
-  title="cse4413" media="screen, print" />
-<script type="text/javascript" src="res/loginValidate.js">;</script>
+  title="cse4413" media="screen, print" />	
 </head>
 <body>
-  <ul>
-    <li><a href="home.jspx">Home</a></li>
+<form action="Start" method="POST">
+
+<div id="banner">
+	<a href="home.jspx">
+		<img src="images/Banner.jpg" alt="Banner" width="250" height="100"></img>
+	</a>
+	<span id="banner2">
+		<img id="banner2" src="images/Banner2.jpg" alt="Banner" width="400" height="100"></img>
+	</span>
+	
+</div>
+
+<ul>
+    <li><a href="home.jspx" class="active">Home</a></li>
     <li><a href="login.jspx">Log In</a></li>
     <li>
       <div class="dropdown">
         <button class="dropbtn">Category</button>
         <div class="dropdown-content">
-          <a href="#">Science</a> <a href="#">Fiction</a> <a href="#">Engineering</a>
+          <a href="scienceBooks.jspx">Science</a> <a href="fictionBooks.jspx">Fiction</a> <a href="engineeringBooks.jspx">Engineering</a>
         </div>
       </div>
     </li>
     <li id="searchbar" style="float: right"><input type="text"
-      id="search" placeholder="Search" /> <input type="button"
-      id="searchbutton" value="Search" /></li>
-    <li style="float: right"><a href="cart.jspx">Cart</a></li>
+      id="search" placeholder="Search" /> <input
+      type="button" id="searchbutton" value="Search" /></li>
+    <li style="float: right"><button id="cartsubmit" name="cartsubmit" value="0"><img src="images/cart.png" class="thumbnail" height="40" width="50" /></button></li>
     <li style="float: right"><a href="checkout.jspx">Checkout</a></li>
   </ul>
-  <br />
-  <br />
+	<br />
+	<br />
+	<br />
   <div class="FailedMessage">
     <div class="heading login">
 
-      <h2>Sign In Failed</h2>
+      <h2 style="color:red;">Request Denied!</h2>
 
       <p>
-        The system could not log you in with that username/password.  It may be because you have not yet registered or have mistyped your credentials.  You can return to the previous page to try again or navigate elsewhere to continue without signing in.
+        Request is denied because it is the Third Request!
       </p>
     </div>
   </div>
-
+</form>
 </body>
-  </html>
+</html>
 </jsp:root>

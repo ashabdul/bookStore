@@ -97,6 +97,7 @@ public class Register extends HttpServlet {
 		
 		//Registration went fine
 		request.setAttribute("error_msg", err_msg);
-		request.getRequestDispatcher(dispatchLocation).forward(request, response);
+		response.sendRedirect(dispatchLocation);
+		//request.getRequestDispatcher(dispatchLocation).forward(request, response);
 	}
 }

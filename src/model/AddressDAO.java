@@ -61,16 +61,4 @@ DataSource ds;
 		p.close();
 		con.close();
 	}
-	
-	/*
-	 * remove an address by id
-	 */
-	public void removeAddress(String id) throws SQLException{
-		String query = "delete from address where id=" + id;
-		Connection con = this.ds.getConnection();
-		PreparedStatement p = con.prepareStatement(query);
-		p.execute();
-		p.close();
-		con.close();
-	}
 }

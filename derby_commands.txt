@@ -143,9 +143,9 @@ CREATE INDEX POitem_IDX_bid ON POItem(bid);
 #
 # Inserting data for table 'POitem'
 #
-INSERT INTO POItem (id, bid, price) VALUES (1, 'b001', 20);
-INSERT INTO POItem (id, bid, price) VALUES (2, 'b002', 201);
-INSERT INTO POItem (id, bid, price) VALUES (3, 'b003', 100);
+INSERT INTO POItem (id, bid, unitPrice, quantity) VALUES (1, 'b001', 20, 2);
+INSERT INTO POItem (id, bid, unitPrice, quantity) VALUES (2, 'b002', 201, 1);
+INSERT INTO POItem (id, bid, unitPrice, quantity) VALUES (3, 'b003', 100, 5);
 #
 #
 
@@ -199,7 +199,7 @@ CREATE TABLE reviews(
 id INT CONSTRAINT reviewid_ck CHECK (id > 0) NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 0, INCREMENT BY 1),
 bid VARCHAR(20) NOT NULL,
 review VARCHAR(20000),
-stars INT CONSTRAINT stars_ck CHECK (stars > 0 AND stars < 6),
+stars INT CONSTRAINT stars_ck CHECK (stars > -1 AND stars < 6),
 PRIMARY KEY(id),
 FOREIGN KEY (bid) REFERENCES book (bid)
 );

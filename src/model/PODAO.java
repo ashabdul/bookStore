@@ -9,11 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
-
 import bean.POBean;
 
 public class PODAO {
@@ -34,11 +32,10 @@ DataSource ds;
 	 */
 	public void addPO(POBean po) throws SQLException{
 		String query = "INSERT INTO po (lname, fname, status, address) VALUES ('" + po.getLname() + "', '" +
-				po.getFname() + "', '" + po.getStatus() + "', '" + po.getAddress() + "')";
+				po.getFname() + "', '" + po.getStatus() + "', " + po.getAddress() + ")";
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
-		ResultSet r = p.executeQuery();
-		r.close();
+		p.execute();
 		p.close();
 		con.close();
 	}
@@ -56,5 +53,19 @@ DataSource ds;
 		con.close();
 	}
 	
-	//implement the retrieval method
+	//retrieve last po from po table
+	public POBean retriveLast() throws SQLException{
+		String query = "SELECT * FROM po WHERE id= (SELECT MAX(id) FROM PO)" ;
+		Connection con = this.ds.getConnection();
+		PreparedStatement p = con.prepareStatement(query);
+		ResultSet r = p.executeQuery();
+		r.next();
+		POBean po = new POBean(r.getInt("id"),r.getString("lname"),
+				r.getString("fname"),r.getString("status"),r.getInt("address"));
+		System.out.println("retrived PO: " + po.toString());
+		r.close();
+		p.close();
+		con.close();
+		return po;
+	}
 }

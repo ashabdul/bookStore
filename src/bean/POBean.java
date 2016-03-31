@@ -17,7 +17,7 @@ public class POBean {
 		this.id = id;
 		Lname = lname;
 		Fname = fname;
-		this.status = status;
+		this.status = status.toUpperCase();
 		this.address = address;
 	}
 

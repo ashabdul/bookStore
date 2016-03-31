@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:f="http://java.sun.com/jsp/jstl/fmt" version="2.0">
 	<jsp:directive.page contentType="text/html; charset=ISO-8859-1"
 		pageEncoding="ISO-8859-1" session="false" />
 	<jsp:output doctype-root-element="html"
@@ -19,19 +21,6 @@
 	<ul>
 		<li><a href="home.jspx">Home</a></li>
 		<li><a href="login.jspx" class="active">Log In</a></li>
-		<li>
-			<div class="dropdown">
-				<button class="dropbtn">Category</button>
-				<div class="dropdown-content">
-					<a href="#">Science</a> <a href="#">Fiction</a> <a href="#">Engineering</a>
-				</div>
-			</div>
-		</li>
-		<li id="searchbar" style="float: right"><input type="text"
-			id="search" placeholder="Search" /> <input type="button"
-			id="searchbutton" value="Search" /></li>
-		<li style="float: right"><a href="cart.jspx">Cart</a></li>
-		<li style="float: right"><a href="checkout.jspx">Checkout</a></li>
 	</ul>
 	<br />
 	<br />
