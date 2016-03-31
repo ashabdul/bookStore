@@ -13,6 +13,8 @@
 	charset="utf-8" />
 <link rel="StyleSheet" href="res/payment.css" type="text/css"
 	title="cse4413" media="screen, print" />
+	
+<script type="text/javascript" src="res/validate_credit_card.js"><jsp:text /></script>	
 
 </head>
 <body>
@@ -73,7 +75,7 @@
 				
 				<div class="input-group input-group-lg">
 					Credit Card Number: <input type="text" class="form-control"
-						placeholder="Card Number" name="j_card" id="card" onblur="return isNumberKey(event)"/>
+						placeholder="Card Number" name="j_card" id="card" onblur="isNumberKey(event)"/>
 				</div>
 				<br/>
 				
