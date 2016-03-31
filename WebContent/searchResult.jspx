@@ -15,51 +15,66 @@
 	charset="utf-8" />
 </head>
 <body>
-<form action="Start" method="POST">
+	<form action="Start" method="POST">
 
-<div id="banner">
-	<a href="home.jspx">
-		<img src="images/Banner.jpg" alt="Banner" width="250" height="100"></img>
-	</a>
-	<span id="banner2">
-		<img id="banner2" src="images/Banner2.jpg" alt="Banner" width="400" height="100"></img>
-	</span>
-	
-</div>
+		<div id="banner">
+			<a href="home.jspx"> <img src="images/Banner.jpg" alt="Banner"
+				width="250" height="100"></img>
+			</a> <span id="banner2"> <img id="banner2"
+				src="images/Banner2.jpg" alt="Banner" width="400" height="100"></img>
+			</span>
 
-	<ul>
-    <li><a href="home.jspx">Home</a></li>
-    <li><a href="login.jspx">Log In</a></li>
-    <li>
-      <div class="dropdown">
-        <button class="dropbtn">Category</button>
-        <div class="dropdown-content">
-          <a href="scienceBooks.jspx">Science</a> <a href="fictionBooks.jspx">Fiction</a> <a href="engineeringBooks.jspx">Engineering</a>
-        </div>
-      </div>
-    </li>
-    <li id="searchbar" style="float: right"><input type="text"
-      id="search" placeholder="Search" name="searchValue"/> <input
-      type="submit" id="searchbutton" value="Search" name="searchSubmit" /></li>
-    <li style="float: right"><button id="cartsubmit" name="cartsubmit" value="0"><img src="images/cart.png" class="thumbnail" height="40" width="50" /></button></li>
-    <li style="float: right"><a href="checkout.jspx">Checkout</a></li>
-  </ul>
+		</div>
 
-	<br/>
-	<br/>
-	<br/>		
+		<ul>
+			<li><a href="home.jspx">Home</a></li>
+			<c:choose>
+				<c:when test="${isLogedIn == 'ture'}">
+					<li><a href="logout.jspx">Log Out</a></li>
+				</c:when>
+				<c:otherwise>
+					<li><a href="login.jspx">Log In</a></li>
+				</c:otherwise>
+			</c:choose>
+			<li>
+				<div class="dropdown">
+					<button class="dropbtn">Category</button>
+					<div class="dropdown-content">
+						<a href="scienceBooks.jspx">Science</a> <a
+							href="fictionBooks.jspx">Fiction</a> <a
+							href="engineeringBooks.jspx">Engineering</a>
+					</div>
+				</div>
+			</li>
+			<li id="searchbar" style="float: right"><input type="text"
+				id="search" placeholder="Search" name="searchValue" /> <input
+				type="submit" id="searchbutton" value="Search" name="searchSubmit" /></li>
+			<li style="float: right"><button id="cartsubmit"
+					name="cartsubmit" value="0">
+					<img src="images/cart.png" class="thumbnail" height="40" width="50" />
+				</button></li>
+			<li style="float: right"><a href="checkout.jspx">Checkout</a></li>
+		</ul>
+
+		<br /> <br /> <br />
 		<c:forEach items="${list}" var="booklist">
 			<tr>
 
-				<td><button name="imagesubmit" value="${booklist.bid}"><img src="images/${booklist.bid}.jpg" alt="Book" height="200" width="150"></img></button></td>
-				<td>${booklist.title} </td>
+				<td><button name="imagesubmit" value="${booklist.bid}">
+						<img src="images/${booklist.bid}.jpg" alt="Book" height="200"
+							width="150"></img>
+					</button></td>
+				<td>${booklist.title}</td>
 
-				<br/>
-				<td>$${booklist.price}0 </td>
-				<br/>
-				<button id="addtocart" name="addToCart" value="${booklist.bid}" type="submit" onclick="doSimpleAjax('/studentCalc5/Startup/Ajax/');return false;">Add To Cart</button>
-				<br/>
-				<br/>
+				<br />
+				<td>$${booklist.price}0</td>
+				<br />
+				<button id="addtocart" name="addToCart" value="${booklist.bid}"
+					type="submit"
+					onclick="doSimpleAjax('/studentCalc5/Startup/Ajax/');return false;">Add
+					To Cart</button>
+				<br />
+				<br />
 			</tr>
 		</c:forEach>
 	</form>

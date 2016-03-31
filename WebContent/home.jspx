@@ -27,7 +27,14 @@
 
 		<ul>
 			<li><a href="home.jspx" class="active">Home</a></li>
-			<li><a href="login.jspx">Log In</a></li>
+			<c:choose>
+				<c:when test="${isLogedIn == 'ture'}">
+					<li><a href="logout.jspx">Log Out</a></li>
+				</c:when>
+				<c:otherwise>
+					<li><a href="login.jspx">Log In</a></li>
+				</c:otherwise>
+			</c:choose>
 			<li>
 				<div class="dropdown">
 					<button class="dropbtn">Category</button>

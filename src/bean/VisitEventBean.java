@@ -18,7 +18,7 @@ public class VisitEventBean {
 	
 	public VisitEventBean(String bid, String eventType) {
 		this.bid = bid;
-		this.eventType = eventType;
+		this.eventType = eventType.toUpperCase();
 	}
 
 	/*
