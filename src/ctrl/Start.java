@@ -74,7 +74,15 @@ public class Start extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//When first visiting the website always redirect to home.
 		System.out.println("User is: " + request.getRemoteUser() + " they are an admin: " + request.isUserInRole("admin"));
-		response.sendRedirect("home.jspx");
+		//if the user is loged in set attribute isLogedIn = true
+		if(request.getRemoteUser() != null){
+			request.setAttribute("isLogedIn", "true");
+		}
+		else{
+			request.setAttribute("isLogedIn", "false");
+		}
+		user.setUserName(request.getRemoteUser());
+		request.getRequestDispatcher("home.jspx").forward(request, response);
 	}
 
 	/**
@@ -82,13 +90,28 @@ public class Start extends HttpServlet {
 	 * William
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//this String will hold the ISBN for the book currently bein viewd
-		request.getSession().setAttribute("LoggedInUserName", request.getRemoteUser());
+	//added by michel
+		//set the user name based on the username from the login system
 		user.setUserName(request.getRemoteUser());
-
+		//set isLogedIn attribute based on the user name not bein null indicating that the user did log in
+		if(user.getUserName() != null){
+			request.setAttribute("isLogedIn", "true");
+		}
+		else{
+			request.setAttribute("isLogedIn", "false");
+		}
+	//-------------------------------------------
 		System.out.println("is loged is as: "+ request.getRemoteUser());
 		if(request.getParameter("searchSubmit") != null)
 		{
+			//check if the user is loged in to set the isLogedIn attribute accordingly 
+			if(user.getUserName() != null){
+				request.setAttribute("isLogedIn", "true");
+			}
+			else{
+				request.setAttribute("isLogedIn", "false");
+			}
+			
 			System.out.println("Start: ");
 			String searchParam = "";
 			Map<String, BookBean> books = new HashMap<String, BookBean>();
@@ -137,7 +160,6 @@ public class Start extends HttpServlet {
 				ReviewDAO reviewDAO = new ReviewDAO();
 				reviewDAO.addReview(review);
 
-
 			}catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -149,6 +171,13 @@ public class Start extends HttpServlet {
 		/* edited by Michel */
 		if(request.getParameter("addToCart") != null)
 		{
+			//check if the user is loged in to set the isLogedIn attribute accordingly 
+			if(user.getUserName() != null){
+				request.setAttribute("isLogedIn", "true");
+			}
+			else{
+				request.setAttribute("isLogedIn", "false");
+			}
 			try {
 				String bookISBN = request.getParameter("addToCart");
 				Map<String, BookBean> map = new HashMap<String, BookBean>();
@@ -170,6 +199,14 @@ public class Start extends HttpServlet {
 		if(request.getParameter("imagesubmit") != null)
 		{
 
+			//check if the user is loged in to set the isLogedIn attribute accordingly 
+			if(user.getUserName() != null){
+				request.setAttribute("isLogedIn", "true");
+			}
+			else{
+				request.setAttribute("isLogedIn", "false");
+			}
+			
 			System.out.println("clicked," + request.getParameter("imagesubmit"));
 			try {
 				//create a book object to hold the info of the clicked book after retrieving it from the database
@@ -204,13 +241,13 @@ public class Start extends HttpServlet {
 				request.setAttribute("bookID", book.getBid());
 				request.setAttribute("reviewList", reviewList);
 				request.setAttribute("bookStars", format.format(stars));
-				//check if user is loged in to decide whether to show the write review part or not
+				/*//check if user is loged in to decide whether to show the write review part or not
 				if(user.getUserName() != null){
-					request.setAttribute("isLogedIn", "ture");
+					request.setAttribute("isLogedIn", "true");
 				}
 				else{
 					request.setAttribute("isLogedIn", "false");
-				}
+				}*/
 				//insert a VIEW visit event to the VisitEvent table
 				VisitEventDAO visitEvent = new VisitEventDAO();
 				VisitEventBean event = new VisitEventBean(book.getBid(),"VIEW");

@@ -29,7 +29,7 @@
 		<ul>
 			<li><a href="home.jspx">Home</a></li>
 			<c:choose>
-				<c:when test="${isLogedIn == 'ture'}">
+				<c:when test="${isLogedIn == 'true'}">
 					<li><a href="logout.jspx">Log Out</a></li>
 				</c:when>
 				<c:otherwise>
@@ -53,7 +53,6 @@
 					name="cartsubmit" value="0">
 					<img src="images/cart.png" class="thumbnail" height="40" width="50" />
 				</button></li>
-			<li style="float: right"><a href="checkout.jspx">Checkout</a></li>
 		</ul>
 
 		<br /> <br /> <br />

@@ -29,11 +29,6 @@
         </div>
       </div>
     </li>
-    <li id="searchbar" style="float: right"><input type="text"
-      id="search" placeholder="Search" /> <input type="button"
-      id="searchbutton" value="Search" /></li>
-    <li style="float: right"><a href="cart.jspx">Cart</a></li>
-    <li style="float: right"><a href="checkout.jspx">Checkout</a></li>
   </ul>
   <br />
   <br />

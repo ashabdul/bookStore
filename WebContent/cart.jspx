@@ -29,7 +29,7 @@
 		<ul>
 			<li><a href="home.jspx">Home</a></li>
 			<c:choose>
-				<c:when test="${isLogedIn == 'ture'}">
+				<c:when test="${isLogedIn == 'true'}">
 					<li><a href="logout.jspx">Log Out</a></li>
 				</c:when>
 				<c:otherwise>
