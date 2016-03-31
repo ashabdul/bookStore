@@ -230,15 +230,9 @@ public class Start extends HttpServlet {
 		
 		String status;
 		if (request.getParameter("placeOrder") != null){
-<<<<<<< HEAD
-			count++;
-
-			if(count == 3){
-=======
 			RequestCount++;
 			
 			if(RequestCount == 3){
->>>>>>> my-new-branch
 				System.out.println("Request denied");
 				request.getRequestDispatcher("requestDenied.jspx").forward(request, response);//Need to change the home page to Request denied Page
 				status = "DENIED";
@@ -287,22 +281,6 @@ public class Start extends HttpServlet {
 				request.setAttribute("billingstreet_error", "Street of Billing address is empty!");
 				request.getRequestDispatcher("payment.jspx").forward(request, response);
 			}
-<<<<<<< HEAD
-
-			String BStreet = request.getParameter("bStreet");
-			String SStreet = request.getParameter("sStreet");
-			String BProvince = request.getParameter("bProvince");
-			String SProvince = request.getParameter("sProvince");
-			String BCountry = request.getParameter("bCountry");
-			String SCountry = request.getParameter("sCountry");
-			String BZip = request.getParameter("bZip");
-			String SZip = request.getParameter("sZip");
-			String BPhone = request.getParameter("bPhone");
-			String SPhone = request.getParameter("sPhone");
-
-
-			if (BStreet != SStreet || BProvince != SProvince || BCountry != SCountry || BZip != SZip || BPhone != SPhone){
-=======
 			else if(BCountry == ""){
 				System.out.println("Billing Country is empty");
 				request.setAttribute("billingcountry_error", "Country of Billing address is empty!");
@@ -340,30 +318,18 @@ public class Start extends HttpServlet {
 			}
 			
 			else{
-				
-			
-			
 			
 			if (!(BStreet.equals(SStreet)) || !(BProvince.equals(SProvince)) || !(BCountry.equals(SCountry)) || !(BZip.equals(SZip)) || !(BPhone.equals(SPhone))){
->>>>>>> my-new-branch
 				System.out.println("Addresses do not match");
-
+				
 				request.setAttribute("address_error", "Billing and Shipping Adresses do not match!");
 				request.getRequestDispatcher("payment.jspx").forward(request, response);
-
+				
 			}
-<<<<<<< HEAD
-
-			status = "Success";
-			String LName = request.getParameter("lname");
-			String FName = request.getParameter("fname");
-
-=======
 			
 			
->>>>>>> my-new-branch
 			AddressBean newAddress = new AddressBean(null, SStreet, SProvince, SCountry, SZip, SPhone);
-
+			
 			AddressDAO address = null;
 			try{
 				address = new AddressDAO();
@@ -372,7 +338,7 @@ public class Start extends HttpServlet {
 				System.out.print("Error getting AddressDAO for registration!");
 				e.printStackTrace();
 			}
-
+			
 			try{
 				address.addAddress(newAddress);
 			}
@@ -380,7 +346,7 @@ public class Start extends HttpServlet {
 				System.out.println("Error inserting new Address!");
 				e.printStackTrace();
 			}
-
+			
 			PODAO po = null;
 			try {
 				POBean newPO = new POBean(0, LName, FName, status, Integer.parseInt(address.retriveLast().getId()));
@@ -395,10 +361,10 @@ public class Start extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
+			
 			/*POItemBean newPOItem = new POItembean(0, user.bid, user.price);
 		    POItemDAO poItem = null;
-
+		    
 		    try{
 				poItem = new POItemDAO();
 			}
@@ -406,7 +372,7 @@ public class Start extends HttpServlet {
 				System.out.print("Error getting POItemDAO for registration!");
 				e.printStackTrace();
 			}
-
+		    
 		    try{
 				poItem.addPOItem(POItemBean);
 			}
@@ -414,11 +380,11 @@ public class Start extends HttpServlet {
 				System.out.println("Error inserting new POItem!");
 				e.printStackTrace();
 			}*/
-
+			
 			/*
 			VisitEventBean VisitBean = new VisitBean();
 			VisitEventDAO visit = null;
-
+			
 			try{
 				visit = new VisitEventDAO();
 			}
@@ -426,7 +392,7 @@ public class Start extends HttpServlet {
 				System.out.print("Error getting VisitEventDAO for registration!");
 				e.printStackTrace();
 			}
-
+		    
 		    try{
 				visit.addVisit(VisitBean);
 			}
@@ -434,17 +400,11 @@ public class Start extends HttpServlet {
 				System.out.println("Error inserting new Visit!");
 				e.printStackTrace();
 			}*/
-<<<<<<< HEAD
-
-
-
-=======
 			
 			request.getRequestDispatcher("paymentSuccess.jspx").forward(request, response);
 			
 			
 			}	
->>>>>>> my-new-branch
 		}//Ashfaq's end
 
 
