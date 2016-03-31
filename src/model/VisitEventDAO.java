@@ -100,7 +100,7 @@ DataSource ds;
 	/**
 	 * @add visitEvent to the table
 	 */
-	public void addUser(VisitEventBean visit) throws SQLException{
+	public void addEvent(VisitEventBean visit) throws SQLException{
 		String query = "INSERT INTO VISITEVENT (bid, event_type) values ('" + visit.getBid() + "', '"+ visit.getEventType() + "')"; 
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);

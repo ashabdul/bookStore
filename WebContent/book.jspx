@@ -14,39 +14,56 @@
 <title>${bookTitle }</title>
 <link rel="stylesheet" href="res/main.css" type="text/css"
 	charset="utf-8" />
+<SCRIPT type="text/javascript">
+	reviewTextCheck = function(){
+		if(document.getElementById("reviewText").value == "." || document.getElementById("reviewText").value == ""){ 
+			alert("Please Fill the Review Box");
+		}
+	}
+	</SCRIPT>
 </head>
 <body>
-	<div id="banner">
-		<a href="home.jspx"> <img src="images/Banner.jpg" alt="Banner"
-			width="250" height="100"></img>
-		</a> <span id="banner2"> <img id="banner2" src="images/Banner2.jpg"
-			alt="Banner" width="400" height="100"></img>
-		</span>
+	<form action="Start" method="POST">
 
-	</div>
+		<div id="banner">
+			<a href="home.jspx"> <img src="images/Banner.jpg" alt="Banner"
+				width="250" height="100"></img>
+			</a> <span id="banner2"> <img id="banner2"
+				src="images/Banner2.jpg" alt="Banner" width="400" height="100"></img>
+			</span>
 
-	<ul>
-		<li><a href="home.jspx" class="active">Home</a></li>
-		<li><a href="login.jspx">Log In</a></li>
-		<li>
-			<div class="dropdown">
-				<button class="dropbtn">Category</button>
-				<div class="dropdown-content">
-					<a href="scienceBooks.jspx">Science</a> <a href="fictionBooks.jspx">Fiction</a>
-					<a href="engineeringBooks.jspx">Engineering</a>
+		</div>
+
+		<ul>
+			<li><a href="home.jspx" class="active">Home</a></li>
+			<c:choose>
+				<c:when test="${isLogedIn == 'ture'}">
+					<li><a href="logout.jspx">Log Out</a></li>
+				</c:when>
+				<c:otherwise>
+					<li><a href="login.jspx">Log In</a></li>
+				</c:otherwise>
+			</c:choose>
+			<li>
+				<div class="dropdown">
+					<button class="dropbtn">Category</button>
+					<div class="dropdown-content">
+						<a href="scienceBooks.jspx">Science</a> <a
+							href="fictionBooks.jspx">Fiction</a> <a
+							href="engineeringBooks.jspx">Engineering</a>
+					</div>
 				</div>
-			</div>
-		</li>
-		<li id="searchbar" style="float: right"><input type="text"
-			id="search" placeholder="Search" /> <input type="button"
-			id="searchbutton" value="Search" /></li>
-		<li style="float: right"><button id="cartsubmit"
-				name="cartsubmit" value="0">
-				<img src="images/cart.png" class="thumbnail" height="40" width="50" />
-			</button></li>
-		<li style="float: right"><a href="checkout.jspx">Checkout</a></li>
-	</ul>
-
+			</li>
+			<li id="searchbar" style="float: right"><input type="text"
+				id="search" placeholder="Search" name="searchValue" /> <input
+				type="submit" id="searchbutton" value="Search" name="searchSubmit" /></li>
+			<li style="float: right"><button id="cartsubmit"
+					name="cartsubmit" value="0">
+					<img src="images/cart.png" class="thumbnail" height="40" width="50" />
+				</button></li>
+			<li style="float: right"><a href="checkout.jspx">Checkout</a></li>
+		</ul>
+	</form>
 	<H2>${bookTitle}</H2>
 	<BR />
 	<BR />
@@ -55,7 +72,6 @@
 	<BR />
 	<BR />
 	<LABEL>Price = ${bookPrice}</LABEL>
-
 	<TABLE>
 		<c:forEach var="review" items="${reviewList}">
 			<tr>
@@ -63,21 +79,20 @@
 			</tr>
 		</c:forEach>
 	</TABLE>
-
+	<LABEL>rating is: ${bookStars} /5</LABEL>
 	<c:if test="${isLogedIn == 'ture'}">
 		<form action="Start" method="POST">
-			Rating:<BR /> <input type="radio" name="stars" value="1"> 1
-			</input> <input type="radio" name="stars" value="2"> 2 </input> <input
-				type="radio" name="stars" value="3"> 3</input> <input type="radio"
+			Rating:<BR /> <input type="radio" name="stars" value="1"> 1</input>
+			<input type="radio" name="stars" value="2"> 2 </input> <input
+				type="radio" name="stars" value="3"> 3 </input> <input type="radio"
 				name="stars" value="4"> 4 </input> <input type="radio" name="stars"
-				value="5"> 5 </input><BR />
-			 <TEXTAREA autofocus="true" name="textArea" hint="Enter Text here"
-				rows="5" cols="50"></TEXTAREA>
+				value="5"> 5 </input> <BR />
+			<TEXTAREA autofocus="true" name="textArea" required="true"
+				placeholder="Enter Text here" rows="5" cols="50" id="reviewText">.</TEXTAREA>
 			<button type="submit" name="submitReview" value="${bookID}">submit
 				review</button>
 		</form>
 	</c:if>
-
 </body>
 	</html>
 </jsp:root>

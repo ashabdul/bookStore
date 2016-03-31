@@ -2,6 +2,7 @@ package ctrl;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -17,13 +18,14 @@ import bean.POBean;
 import bean.POItemBean;
 import bean.ReviewBean;
 import bean.UserBean;
+import bean.VisitEventBean;
 import model.AddressDAO;
 import model.BookBean;
 import model.BookDAO;
 import model.PODAO;
 import model.POItemDAO;
 import model.ReviewDAO;
-
+import model.VisitEventDAO;
 
 /**
  * Servlet implementation class Start
@@ -54,12 +56,12 @@ public class Start extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/* added by Michel
 	public void init()throws ServletException{
-    	 
+
     	try {
-			
+
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -81,6 +83,7 @@ public class Start extends HttpServlet {
 		//this String will hold the ISBN for the book currently bein viewd
 		request.getSession().setAttribute("LoggedInUserName", request.getRemoteUser());
 		user.setUserName(request.getRemoteUser());
+
 		System.out.println("is loged is as: "+ request.getRemoteUser());
 		if(request.getParameter("searchSubmit") != null)
 		{
@@ -112,27 +115,35 @@ public class Start extends HttpServlet {
 			request.setAttribute("list", books.values());
 			request.getRequestDispatcher("searchResult.jspx").forward(request, response);
 		}
-		
+
 		/* edited by Michel */
 		/*this will handle the event of pressing add review button in book.jspx page*/
 		if(request.getParameter("submitReview") != null)
 		{
 			try {
-			String ISBN = request.getParameter("submitReview");
-			System.out.println("isbn to review=" + request.getParameter("submitReview"));
-			System.out.println("review submitted: "+request.getParameter("textArea"));
-			ReviewBean review = new ReviewBean(ISBN,request.getParameter("textArea"), Integer.parseInt(request.getParameter("stars")));
-			ReviewDAO reviewDAO = new ReviewDAO();
-			reviewDAO.addReview(review);
-			
-			} catch (ClassNotFoundException | SQLException e) {
+				String ISBN = request.getParameter("submitReview");
+				System.out.println("isbn to review=" + request.getParameter("submitReview"));
+				System.out.println("review submitted: "+ request.getParameter("textArea"));
+				ReviewBean review;
+				//handle the case when the user does not submit rating
+				if(request.getParameter("stars") == null){
+					review = new ReviewBean(ISBN,request.getParameter("textArea"), 0);
+				}
+				else{
+					review = new ReviewBean(ISBN,request.getParameter("textArea"), Integer.parseInt(request.getParameter("stars")));
+				}
+				ReviewDAO reviewDAO = new ReviewDAO();
+				reviewDAO.addReview(review);
+
+
+			}catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		}
 
-		
+
 		/* edited by Michel */
 		if(request.getParameter("addToCart") != null)
 		{
@@ -143,8 +154,12 @@ public class Start extends HttpServlet {
 				map = search.retrieve(bookISBN);
 				book = map.get(request.getParameter("addToCart"));
 				user.getCart().add(book);
+				//insert a CART visit event to the VisitEvent table
+				VisitEventDAO visitEvent = new VisitEventDAO();
+				VisitEventBean event = new VisitEventBean(book.getBid(),"CART");
+				visitEvent.addEvent(event);
 				System.out.println("Button value = " + request.getParameter("addToCart"));
-			} catch (SQLException e) {
+			} catch (SQLException | ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -152,7 +167,7 @@ public class Start extends HttpServlet {
 		/* edited by Michel*/
 		if(request.getParameter("imagesubmit") != null)
 		{
-			
+
 			System.out.println("clicked," + request.getParameter("imagesubmit"));
 			try {
 				//create a book object to hold the info of the clicked book after retrieving it from the database
@@ -162,12 +177,23 @@ public class Start extends HttpServlet {
 				//calculate the average stars rating for the book
 				double stars = 0;
 				double tempStars = 0;
+				DecimalFormat format = new DecimalFormat("#.0");
+
 				for(int i = 0; i < reviewList.size(); i++){
-					tempStars = tempStars + reviewList.get(i).getStars();
+					int currentStar = reviewList.get(i).getStars();
+					/*if the book have rating 0 then don't include it in the average calculator because it indicates no 
+					 *input from user for rating */
+					if(currentStar == 0){
+						continue;
+					}
+					else{
+						tempStars = tempStars + currentStar;
+					}
+
 				}
 				//handle the case for where there is no reviews so we avoid devide by 0 case
 				if(reviewList.size() > 0){
-				stars = tempStars / reviewList.size();
+					stars = tempStars / reviewList.size();
 				}
 				//set all request attributes to use in the display page
 				request.setAttribute("bookTitle", book.getTitle());
@@ -175,38 +201,43 @@ public class Start extends HttpServlet {
 				request.setAttribute("bookCategory", book.getCategory());
 				request.setAttribute("bookID", book.getBid());
 				request.setAttribute("reviewList", reviewList);
-				request.setAttribute("bookStars", stars);
+				request.setAttribute("bookStars", format.format(stars));
 				//check if user is loged in to decide whether to show the write review part or not
 				if(user.getUserName() != null){
 					request.setAttribute("isLogedIn", "ture");
-					System.out.println("user is loged in..show review");
 				}
 				else{
 					request.setAttribute("isLogedIn", "false");
-					System.out.println("user is NOT loged in.. DONT show review");
 				}
+				//insert a VIEW visit event to the VisitEvent table
+				VisitEventDAO visitEvent = new VisitEventDAO();
+				VisitEventBean event = new VisitEventBean(book.getBid(),"VIEW");
+				visitEvent.addEvent(event);
 				//redirect to the book display page
 				request.getRequestDispatcher("book.jspx").forward(request, response);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-			
+
 		}
-	
+
 		/*Added by Ashfaq*/
 		int count = 0;
 		String status;
 		if (request.getParameter("placeOrder") != null){
 			count++;
-			
+
 			if(count == 3){
 				System.out.println("Request denied");
 				request.getRequestDispatcher("home.jspx").forward(request, response);//Need to change the home page to Request denied Page
 				status = "Denied";
 				count = 0;
 			}
-			
+
 			String BStreet = request.getParameter("bStreet");
 			String SStreet = request.getParameter("sStreet");
 			String BProvince = request.getParameter("bProvince");
@@ -217,22 +248,22 @@ public class Start extends HttpServlet {
 			String SZip = request.getParameter("sZip");
 			String BPhone = request.getParameter("bPhone");
 			String SPhone = request.getParameter("sPhone");
-			
-			
+
+
 			if (BStreet != SStreet || BProvince != SProvince || BCountry != SCountry || BZip != SZip || BPhone != SPhone){
 				System.out.println("Addresses do not match");
-				
+
 				request.setAttribute("address_error", "Billing and Shipping Adresses do not match!");
 				request.getRequestDispatcher("payment.jspx").forward(request, response);
-				
+
 			}
-			
+
 			status = "Success";
 			String LName = request.getParameter("lname");
 			String FName = request.getParameter("fname");
-			
+
 			AddressBean newAddress = new AddressBean(null, SStreet, SProvince, SCountry, SZip, SPhone);
-			
+
 			AddressDAO address = null;
 			try{
 				address = new AddressDAO();
@@ -241,7 +272,7 @@ public class Start extends HttpServlet {
 				System.out.print("Error getting AddressDAO for registration!");
 				e.printStackTrace();
 			}
-			
+
 			try{
 				address.addAddress(newAddress);
 			}
@@ -249,7 +280,7 @@ public class Start extends HttpServlet {
 				System.out.println("Error inserting new Address!");
 				e.printStackTrace();
 			}
-			
+
 			PODAO po = null;
 			try {
 				POBean newPO = new POBean(0, LName, FName, status, Integer.parseInt(address.retriveLast().getId()));
@@ -264,10 +295,10 @@ public class Start extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 			/*POItemBean newPOItem = new POItembean(0, user.bid, user.price);
 		    POItemDAO poItem = null;
-		    
+
 		    try{
 				poItem = new POItemDAO();
 			}
@@ -275,7 +306,7 @@ public class Start extends HttpServlet {
 				System.out.print("Error getting POItemDAO for registration!");
 				e.printStackTrace();
 			}
-		    
+
 		    try{
 				poItem.addPOItem(POItemBean);
 			}
@@ -283,11 +314,11 @@ public class Start extends HttpServlet {
 				System.out.println("Error inserting new POItem!");
 				e.printStackTrace();
 			}*/
-			
+
 			/*
 			VisitEventBean VisitBean = new VisitBean();
 			VisitEventDAO visit = null;
-			
+
 			try{
 				visit = new VisitEventDAO();
 			}
@@ -295,7 +326,7 @@ public class Start extends HttpServlet {
 				System.out.print("Error getting VisitEventDAO for registration!");
 				e.printStackTrace();
 			}
-		    
+
 		    try{
 				visit.addVisit(VisitBean);
 			}
@@ -303,12 +334,12 @@ public class Start extends HttpServlet {
 				System.out.println("Error inserting new Visit!");
 				e.printStackTrace();
 			}*/
-			
-			
-			
+
+
+
 		}//Ashfaq's end
-		
-		
+
+
 	}
 
 }
