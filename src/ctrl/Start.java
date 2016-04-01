@@ -30,7 +30,7 @@ import model.VisitEventDAO;
 /**
  * Servlet implementation class Start
  */
-@WebServlet(urlPatterns = {"/Start", ""})
+@WebServlet(urlPatterns = {"/Start", "", "/ScienceBooks", "/FictionBooks", "/EngineeringBooks"})
 public class Start extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BookDAO search = null;
@@ -61,8 +61,45 @@ public class Start extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//When first visiting the website always redirect to home.
-		System.out.println("User is: " + request.getRemoteUser() + " they are an admin: " + request.isUserInRole("admin"));
+		/*
+		 * Segment authored by William
+		 * This is to handle the drop down menu on the navigation bar.  getRequestURI returns everything after the domain+port.
+		 * So if you press the Science category it directs to localhost:8080/Project/ScienceBooks (see home.jspx).  The getRequestURI
+		 * would return on this input "/Project/ScienceBooks".  The next line takes that return, finds the last index of '/' and
+		 * grabs the substring from that character + 1 to the end.  Thus /Project/ScienceBooks becomes Sciencebooks.
+		 * Now check and see if its any of the category buttons.  If so search for that category and direct to thre results page
+		 */
+		String subString = request.getRequestURI().substring(request.getRequestURI().lastIndexOf('/') + 1);
+		if(subString.equals("ScienceBooks")) {
+			try {
+				Map<String, BookBean> books = search.retrieve("science");
+				request.setAttribute("list", books.values());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			request.getRequestDispatcher("scienceBooks").forward(request, response);
+			return;
+		}
+		if(subString.equals("FictionBooks")) {
+			try {
+				Map<String, BookBean> books = search.retrieve("fiction");
+				request.setAttribute("list", books.values());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			request.getRequestDispatcher("fictionBooks").forward(request, response);
+			return;
+		}
+		if(subString.equals("EngineeringBooks")) {
+			try {
+				Map<String, BookBean> books = search.retrieve("engineering");
+				request.setAttribute("list", books.values());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			request.getRequestDispatcher("engineering").forward(request, response);
+			return;
+		}
 
 		//if the user is loged in set attribute isLogedIn = true
 		if(request.getRemoteUser() != null){
@@ -72,6 +109,7 @@ public class Start extends HttpServlet {
 			request.setAttribute("isLogedIn", "false");
 		}
 		user.setUserName(request.getRemoteUser());
+		//When first visiting the website always redirect to home.
 		request.getRequestDispatcher("home.jspx").forward(request, response);
 
 	}
@@ -81,6 +119,7 @@ public class Start extends HttpServlet {
 	 * William
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		//added by michel
 		//set the user name based on the username from the login system
 		user.setUserName(request.getRemoteUser());

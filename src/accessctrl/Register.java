@@ -66,7 +66,7 @@ public class Register extends HttpServlet {
 		}
 		//Insert into database now
 		// Default return location is the login.jspx page (which displays the 'login success' page).
-		String dispatchLocation = "login.jspx";
+		String dispatchLocation = "reallogin.jspx";
 		String err_msg = "Registration successful, please login to continue"; //Desired message to display -- No longer done on redirect, can remove.
 		
 		String userName = request.getParameter("username");
@@ -88,11 +88,12 @@ public class Register extends HttpServlet {
 			e.printStackTrace();
 		}
 		//Check if the username is already registered
+		Boolean alreadyRegistered = false;
 		try {
-			System.out.print("WOLOLOLOLOLOLOLOLOLOL");
 			if(newUserDAO.hasUser(userName)) { //Username found
 				dispatchLocation = "register.jspx"; //Since the username was already taken we send them back to register instead of logging in.
 				err_msg = "Username already in use, please try another one";
+				alreadyRegistered = true; //So we don't try to insert
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
@@ -100,7 +101,9 @@ public class Register extends HttpServlet {
 		
 		//Username is free to register
 		try {
-			newUserDAO.addUser(newUser);
+			if(!alreadyRegistered) {
+				newUserDAO.addUser(newUser);
+			}
 		} catch (SQLException e) {
 			System.out.println("Error inserting user for registration!");
 			e.printStackTrace();
@@ -108,7 +111,8 @@ public class Register extends HttpServlet {
 		
 		//Registration went fine
 		request.setAttribute("error_msg", err_msg);
-		response.sendRedirect(dispatchLocation);
+		request.getRequestDispatcher(dispatchLocation).forward(request, response);
+		//response.sendRedirect(dispatchLocation);
 		//request.getRequestDispatcher(dispatchLocation).forward(request, response);
 	}
 }
