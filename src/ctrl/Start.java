@@ -25,6 +25,7 @@ import model.BookDAO;
 import model.PODAO;
 import model.POItemDAO;
 import model.ReviewDAO;
+import model.UserDAO;
 import model.VisitEventDAO;
 
 /**
