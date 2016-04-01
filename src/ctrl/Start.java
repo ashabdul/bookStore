@@ -418,6 +418,54 @@ public class Start extends HttpServlet {
 
 			}
 		}
+		
+		//added by Ashfaq
+		if (request.getParameter("generateReport")!= null){
+			
+			request.getRequestDispatcher("booksSold.jspx").forward(request, response);
+			
+				if(request.getParameter("enterMonth")!= null){
+					try{
+						
+						LinkedList<VisitEventBean> PurchaseList = visit.retrievePurchaseEventByMonth(Integer.parseInt(request.getParameter("month")));
+					}
+					catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					}
+				}
+		}
+		//added by Ashfaq
+		if(request.getParameter("popularBooks")!= null){
+			request.getRequestDispatcher("popularBook.jsp").forward(request, response);
+			
+			try{
+				
+				LinkedList<BookBean> PopularBook = visit.retrieveMostPopularBook();
+			}
+			catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				}
+		}
+		//added by Ashfaq
+		if(request.getParameter("buyingStatistics")!= null){ 
+			request.getRequestDispatcher("buyerStats.jsp").forward(request, response);
+			
+			try{
+				UserDAO username = new UserDAO();
+				
+				
+				LinkedList<UserBean> BuyerStats = username.retrieveUserSpent();
+			}
+			catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	
 }
 }
