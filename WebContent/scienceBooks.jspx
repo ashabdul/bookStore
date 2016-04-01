@@ -28,7 +28,7 @@
 		</div>
 
 		<ul>
-			<li><a href="/Project/">Home</a></li>
+			<li><a href="/project/">Home</a></li>
 			<c:choose>
 				<c:when test="${isLogedIn == 'true'}">
 					<li><a href="logout.jspx">Log Out</a></li>
@@ -55,24 +55,7 @@
 					<img src="images/cart.png" class="thumbnail" height="40" width="50" />
 				</button></li>
 		</ul>
-		<br /> <br /> <br />
-		<c:forEach items="${list}" var="booklist">
-      <tr>
-
-        <td><button name="imagesubmit" value="${booklist.bid}">
-            <img src="images/${booklist.bid}.jpg" alt="Book" height="200"
-              width="150"></img>
-          </button></td>
-        <td>${booklist.title}</td>
-
-        <br/>
-        <td>$${booklist.price}0 </td>
-        <br/>
-        <button id="addToCart" name="addToCart" value="${booklist.bid}" type="submit" onclick="doSimpleAjax('/Project/Start', '${booklist.bid}');return false;">Add To Cart</button>
-        <br/>
-        <br/>
-      </tr>
-    </c:forEach>
+		<br /> <br /> <br /> Science books go here
 	</form>
 </body>
 	</html>
