@@ -30,7 +30,7 @@ import model.VisitEventDAO;
 /**
  * Servlet implementation class Start
  */
-@WebServlet(urlPatterns = {"/Start", "", "/ScienceBooks", "/FictionBooks", "/EngineeringBooks", "Logout"})
+@WebServlet(urlPatterns = {"/Start", "", "/ScienceBooks", "/FictionBooks", "/EngineeringBooks", "/Logout"})
 public class Start extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BookDAO search = null;
@@ -61,6 +61,29 @@ public class Start extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getParameter("addToCart") != null){
+			String bookISBN = request.getParameter("addToCart");
+			Map<String, BookBean> map = new HashMap<String, BookBean>();
+			BookBean book = new BookBean();
+			try {
+				map = search.retrieve(bookISBN);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			book = map.get(request.getParameter("addToCart"));
+		
+			//user.getCart().clear();
+			user.getCart().add(book);
+			
+			for(BookBean b: user.getCart().getCartItems().values())
+			{
+			System.out.println("Book in cart = " + b.getTitle());
+			}
+			response.getWriter().write("true");
+			
+			System.out.println("Button value = " + request.getParameter("addToCart"));
+		}
 		/*
 		 * Segment authored by William
 		 * This is to handle the drop down menu on the navigation bar.  getRequestURI returns everything after the domain+port.
@@ -72,25 +95,6 @@ public class Start extends HttpServlet {
 		String subString = request.getRequestURI().substring(request.getRequestURI().lastIndexOf('/') + 1);
 		if(subString.equals("ScienceBooks")) {
 			try {
-
-				
-				String bookISBN = request.getParameter("addToCart");
-				Map<String, BookBean> map = new HashMap<String, BookBean>();
-				BookBean book = new BookBean();
-				map = search.retrieve(bookISBN);
-				book = map.get(request.getParameter("addToCart"));
-
-				//user.getCart().clear();
-				user.getCart().add(book);
-				
-				for(BookBean b: user.getCart().getCartItems().values())
-				{
-					System.out.println("Book in cart = " + b.getTitle());
-				}
-				response.getWriter().write("true");
-				
-				System.out.println("Button value = " + request.getParameter("addToCart"));
-
 				Map<String, BookBean> books = search.retrieve("science");
 				request.setAttribute("list", books.values());
 			} catch (SQLException e) {
