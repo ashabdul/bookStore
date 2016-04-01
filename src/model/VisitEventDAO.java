@@ -123,7 +123,7 @@ DataSource ds;
 	 * @return LinkedList of the top 10 viewed booked
 	 */
 	public LinkedList<BookBean> retrieveMostPopularBook() throws SQLException{
-		String query = "SELECT bid, COUNT(bid) AS count FROM VISITEVENT WHERE event_type='CART' GROUP BY bid ORDER BY count DESC FETCH NEXT 2 ROWS ONLY;";
+		String query = "SELECT bid, COUNT(bid) AS count FROM VISITEVENT WHERE event_type='VIEW' GROUP BY bid ORDER BY count DESC FETCH NEXT 2 ROWS ONLY;";
 		LinkedList<BookBean> list = new LinkedList<BookBean>();
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);

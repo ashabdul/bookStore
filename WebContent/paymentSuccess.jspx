@@ -47,7 +47,9 @@
 	<br />
   <div class="FailedMessage">
     <div class="heading login">
+
       <h2 style="color:blue;">Payment Successful!</h2>
+      
     </div>
   </div>
 </form>

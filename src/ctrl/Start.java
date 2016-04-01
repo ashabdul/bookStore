@@ -36,7 +36,6 @@ public class Start extends HttpServlet {
 	private BookDAO search = null;
 	private UserBean user;
 	private ReviewDAO review;
-	private VisitEventDAO visit;
 	int RequestCount = 0;
 
 	/**
@@ -50,7 +49,6 @@ public class Start extends HttpServlet {
 			search = new BookDAO();
 			user = new UserBean();
 			review = new ReviewDAO();
-			visit = new VisitEventDAO();
 			System.out.println("search ready");
 		}
 
@@ -274,7 +272,6 @@ public class Start extends HttpServlet {
 				VisitEventBean event = new VisitEventBean(book.getBid(),"CART");
 				visitEvent.addEvent(event);
 				System.out.println("Button value = " + request.getParameter("addToCart"));
-				String bookToCart = (String) getServletContext().getAttribute(book.getBid());
 			} catch (SQLException | ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -412,39 +409,6 @@ public class Start extends HttpServlet {
 
 			}
 		}
-		
-		
-		//added by Ashfaq
-		if (request.getParameter("generateReport")!= null){
-			
-			request.getRequestDispatcher("booksSold.jspx").forward(request, response);
-			
-				if(request.getParameter("enterMonth")!= null){
-					try{
-						VisitEventBean visitEvent;
-						LinkedList<VisitEventBean> PurchaseList = visit.retrievePurchaseEventByMonth(Integer.parseInt(request.getParameter("month")));
-					}
-					catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-					}
-				}
-		}
-		
-		if(request.getParameter("popularBooks")!= null){
-			request.getRequestDispatcher("popularBook.jsp").forward(request, response);
-			
-			try{
-				VisitEventBean visitEvent;
-				LinkedList<BookBean> PopularBook = visit.retrieveMostPopularBook();
-			}
-			catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				}
-		}
-		
-		
 	
 }
 }
