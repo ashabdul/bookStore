@@ -45,15 +45,17 @@
     <li style="float: right"><button id="cartsubmit" name="cartsubmit" value="0"><img src="images/cart.png" class="thumbnail" height="40" width="50" /></button></li>
     <li style="float: right"><a href="checkout.jspx">Checkout</a></li>
   </ul>
-	<br />
-	<br />
-	<br />
-  <div class="FailedMessage">
-    <div class="heading login">
-      <h2 style="color:blue;">Payment Successful!</h2>
-    </div>
-  </div>
+	
+	<button type="submit" class="float" name="generateReport" value="true">Generate Monthly Report</button>
+				<br />
+	
+	<button type="submit" class="float" name="popularBooks" value="true">Popular Books</button>
+				<br />
+				
+	<button type="submit" class="float" name="buyingStatistics" value="true">Buying Statistics</button>
+				<br />			
+	
 </form>
 </body>
 </html>
-</jsp:root>
+</jsp:root>	
