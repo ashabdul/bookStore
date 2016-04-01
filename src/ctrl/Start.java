@@ -72,6 +72,25 @@ public class Start extends HttpServlet {
 		String subString = request.getRequestURI().substring(request.getRequestURI().lastIndexOf('/') + 1);
 		if(subString.equals("ScienceBooks")) {
 			try {
+
+				
+				String bookISBN = request.getParameter("addToCart");
+				Map<String, BookBean> map = new HashMap<String, BookBean>();
+				BookBean book = new BookBean();
+				map = search.retrieve(bookISBN);
+				book = map.get(request.getParameter("addToCart"));
+
+				//user.getCart().clear();
+				user.getCart().add(book);
+				
+				for(BookBean b: user.getCart().getCartItems().values())
+				{
+					System.out.println("Book in cart = " + b.getTitle());
+				}
+				response.getWriter().write("true");
+				
+				System.out.println("Button value = " + request.getParameter("addToCart"));
+
 				Map<String, BookBean> books = search.retrieve("science");
 				request.setAttribute("list", books.values());
 			} catch (SQLException e) {
@@ -94,6 +113,7 @@ public class Start extends HttpServlet {
 			try {
 				Map<String, BookBean> books = search.retrieve("engineering");
 				request.setAttribute("list", books.values());
+
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -108,9 +128,35 @@ public class Start extends HttpServlet {
 		else{
 			request.setAttribute("isLogedIn", "false");
 		}
+
+		
+		if(request.getParameter("submitReview") != null && request.getParameter("bid") != null)
+		{
+			try {
+				System.out.println("review submitted: "+ request.getParameter("submitReview"));
+				ReviewBean review;
+				//handle the case when the user does not submit rating
+				if(request.getParameter("stars") == null){
+					review = new ReviewBean(request.getParameter("bid"), request.getParameter("textArea"), 0);
+				}
+				else{
+					review = new ReviewBean(request.getParameter("bid"), request.getParameter("textArea"), Integer.parseInt(request.getParameter("stars")));
+				}
+				ReviewDAO reviewDAO = new ReviewDAO();
+				reviewDAO.addReview(review);
+
+
+			}catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
 		user.setUserName(request.getRemoteUser());
 		//When first visiting the website always redirect to home.
 		request.getRequestDispatcher("home.jspx").forward(request, response);
+
 
 	}
 
@@ -169,6 +215,12 @@ public class Start extends HttpServlet {
 
 			request.setAttribute("list", books.values()); //Store the results of the search as an attribute to be grabbed in jspx
 			request.getRequestDispatcher("searchResult.jspx").forward(request, response); //Forward to the results pags
+		}
+		
+		if(request.getParameter("cartsubmit") != null)
+		{
+			request.setAttribute("list", user.getCart().getCartItems().values());
+			request.getRequestDispatcher("cart.jspx").forward(request, response);
 		}
 
 		/* edited by Michel */

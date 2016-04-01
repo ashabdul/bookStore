@@ -57,6 +57,10 @@ INSERT INTO Book (bid, title, price, category) VALUES ('1500982415', 'Engineerin
  INSERT INTO Book (bid, title, price, category) VALUES ('1554077486', 'The Universe and Beyond', 19, 'Science');
  INSERT INTO Book (bid, title, price, category) VALUES ('1770854339', 'Hubble''s Universe: Greatest Discoveries and Latest Images', 20, 'Science');
  INSERT INTO Book (bid, title, price, category) VALUES ('1591263336', 'Rapid Preparation for the Fundamentals of Engineering Exam', 122, 'Engineering');
+<<<<<<< HEAD
+ INSERT INTO Book (bid, title, price, category) VALUES ('1118787315', 'Practical Reverse Engineering', 50, 'Engineering');
+=======
+>>>>>>> 8e5a4a1c03ac9b3ec3ffcde0f5ad9cb41c1d42fd
  
  
 
@@ -68,7 +72,7 @@ INSERT INTO Book (bid, title, price, category) VALUES ('1500982415', 'Engineerin
 * id: address id
 *
 */
-DROP TABLE if exists Address;
+DROP TABLE Address;
 CREATE TABLE Address (
 id INT CONSTRAINT id_ck CHECK (id > 0) NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
 street VARCHAR(100) NOT NULL,
@@ -99,7 +103,7 @@ INSERT INTO Address (street, province, country, zip, phone) VALUES ('789 Keele S
 * id: purchase order id
 * status:status of purchase
 */
-DROP TABLE if exists PO;
+DROP TABLE PO;
 CREATE TABLE PO (
 id INT CONSTRAINT POid_ck CHECK (id > 0) NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
 lname VARCHAR(20) NOT NULL,
@@ -125,7 +129,7 @@ insert into po (lname, fname, status, address) values ('michel', 'alsamad', 'ORD
 * bid: unique identifier of Book
 * price: unit price
 */
-DROP TABLE if exists POItem;
+DROP TABLE POItem;
 CREATE TABLE POItem (
 id INT CONSTRAINT POItemid_ck CHECK (id > 0) NOT NULL,
 bid VARCHAR(20) NOT NULL,

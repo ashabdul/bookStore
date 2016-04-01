@@ -52,36 +52,34 @@
 		<div class="body">
 			<span></span>
 
-			<H2>Hello ${user.userName},Your Cart Items</H2>
+			<H2>Items in ${user.userName}'s cart</H2>
 
 			<H3>Cart Items</H3>
-			<TABLE style="width: 65%" border="2">
-				<tr>
-					<td width="20%"><img src="images/0393081087.jpg"
-						alt="Smiley face" height="100" width="100"></img></td>
-					<td width="20%">Book name</td>
-					<td width="20%">$12</td>
-					<td width="5%"><input type="number" min="0" max="99" size="2"
-						maxlength="2" name="numberOfItem"></input></td>
-				</tr>
-
-			</TABLE>
-
 
 			<TABLE style="width: 65%" border="2">
-				<c:forEach var="item" items="${cartList}">
+				<thead>
 					<tr>
-						<td width="20%"><img src="WebContent/images/${item.bid}.jpg"
-							alt="Smiley face" height="42" width="42"></img></td>
+						<th class="row-1 row-ID">Picture</th>
+						<th class="row-2 row-name">Name</th>
+						<th class="row-3 row-job">Price</th>
+						<th class="row-4 row-email">Quantity</th>
+    				</tr>
+  				</thead>
+				<c:forEach items="${list}"
+								var="item">
+								<tr>
+					<td width="20%"><img src="images/${item.bid}.jpg" alt="Books"
+										height="200" width="140"></img></td>
 						<td width="20%">${item.title}</td>
-						<td width="20%">$${item.price}</td>
+						<td width="20%">$${item.price}0</td>
 						<td width="5%"><input type="number" min="0" max="99" size="2"
-							maxlength="2" name="numberOfItem"></input></td>
+										maxlength="2" name="numberOfItem"></input></td>
 					</tr>
 				</c:forEach>
-			</TABLE>
+			
+						</TABLE>
 
-			<label> Total prica</label> <Label name="price">The price
+			<label> Total price</label> <Label name="price">The price
 				goes here</Label>
 		</div>
 	</form>

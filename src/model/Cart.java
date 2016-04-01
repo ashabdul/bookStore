@@ -30,7 +30,7 @@ public class Cart {
 		return list.size();
 	}
 	
-	public Map<String, BookBean> getCart()
+	public Map<String, BookBean> getCartItems()
 	{
 		return list;
 	}

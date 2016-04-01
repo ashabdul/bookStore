@@ -12,8 +12,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>${bookTitle }</title>
-<link rel="stylesheet" href="res/main.css" type="text/css"
-	charset="utf-8" />
+<link rel="stylesheet" href="res/main.css" type="text/css" charset="utf-8" />
+<link rel="stylesheet" href="res/starRating.css" type="text/css" charset="utf-8" />
 <SCRIPT type="text/javascript">
 	reviewTextCheck = function(){
 		if(document.getElementById("reviewText").value == "." || document.getElementById("reviewText").value == ""){ 
@@ -21,6 +21,9 @@
 		}
 	}
 	</SCRIPT>
+	
+	<script type="text/javascript" src="submitReview.js"><jsp:text /></script>
+	
 </head>
 <body>
 	<form action="Start" method="POST">
@@ -66,11 +69,23 @@
 	<H2>${bookTitle}</H2>
 	<BR />
 	<BR />
-	<img src="images/${bookID}.jpg" alt="Smiley face" height="42"
-		width="42"></img>
+	<img src="images/${bookID}.jpg" alt="Book" height="400" width="300"></img>
+
+<span>
+	<br/>
+	<span id="price">List price:  CDN $${bookPrice}0</span>
+	<br/>
 	<BR />
+	<span id="rating">Rating: ${bookStars} out of 5</span>
+	<br/>
 	<BR />
-	<LABEL>Price = ${bookPrice}</LABEL>
+	
+	<button id="addToCart" name="addToCart" value="${bookID}" type="submit" onclick="doSimpleAjax('/Project/Start', '${bookID}');return false;">Add To Cart</button>
+	<br/>
+	
+</span>
+
+	
 	<TABLE>
 		<c:forEach var="review" items="${reviewList}">
 			<tr>
@@ -78,6 +93,28 @@
 			</tr>
 		</c:forEach>
 	</TABLE>
+
+	
+	<form action="Start" method="POST">
+			
+			Rating:<BR />
+			<input type="radio" name="stars" value="1"> 1 </input>
+			<input type="radio" name="stars" value="2"> 2 </input> 
+			<input type="radio" name="stars" value="3"> 3 </input>
+			<input type="radio" name="stars" value="4"> 4 </input> 
+			<input type="radio" name="stars" value="5"> 5 </input> 
+			<BR />
+			<BR />
+			<BR />
+			
+			<c:if test="${isLogedIn == 'ture'}">
+			<Label for="reviewText"> Review:</Label>
+			<TEXTAREA autofocus="true" name="textArea" required="true" placeholder="Enter Text here" rows="5" cols="50" id="reviewText"><jsp:text /></TEXTAREA>
+			<br/>
+			<button type="submit" name="submitReview" value="${bookID}" onclick="doSimpleAjax('/Project/Start', '${bookID}');return false;">submit review</button>
+			</c:if> 
+	</form>
+
 	<LABEL>rating is: ${bookStars} /5</LABEL>
 	<c:if test="${isLogedIn == 'true'}">
 		<form action="Start" method="POST">
