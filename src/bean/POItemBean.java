@@ -17,13 +17,11 @@ public class POItemBean {
 	/**
 	 * @constructor this is the main constructor 
 	 */
-	public POItemBean(int id, String bid, int quantity, int unitPrice,
-			int finalPrice, String userName) {
+	public POItemBean(int id, String bid, int quantity, int unitPrice, String userName) {
 		this.id = id;
 		this.bid = bid;
 		this.quantity = quantity;
 		this.unitPrice = unitPrice;
-		this.finalPrice = finalPrice;
 		this.userName = userName;
 	}
 

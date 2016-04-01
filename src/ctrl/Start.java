@@ -81,7 +81,7 @@ public class Start extends HttpServlet {
 	 * William
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	//added by michel
+		//added by michel
 		//set the user name based on the username from the login system
 		user.setUserName(request.getRemoteUser());
 		//set isLogedIn attribute based on the user name not bein null indicating that the user did log in
@@ -91,7 +91,7 @@ public class Start extends HttpServlet {
 		else{
 			request.setAttribute("isLogedIn", "false");
 		}
-	//-------------------------------------------
+		//-------------------------------------------
 		System.out.println("is loged is as: "+ request.getRemoteUser());
 		if(request.getParameter("searchSubmit") != null) //If the user arrived via the search box
 		{
@@ -102,7 +102,7 @@ public class Start extends HttpServlet {
 			else{
 				request.setAttribute("isLogedIn", "false");
 			}
-			
+
 			System.out.println("Start: ");
 			String searchParam = "";
 			Map<String, BookBean> books = new HashMap<String, BookBean>();
@@ -197,7 +197,7 @@ public class Start extends HttpServlet {
 			else{
 				request.setAttribute("isLogedIn", "false");
 			}
-			
+
 			System.out.println("clicked," + request.getParameter("imagesubmit"));
 			try {
 				//create a book object to hold the info of the clicked book after retrieving it from the database
@@ -255,12 +255,12 @@ public class Start extends HttpServlet {
 
 		}
 
-		/*Added by Ashfaq*/
-		
+		//added by michel with help from ashfaq
+
 		String status;
 		if (request.getParameter("placeOrder") != null){
 			RequestCount++;
-			
+
 			if(RequestCount == 3){
 				System.out.println("Request denied");
 				request.getRequestDispatcher("requestDenied.jspx").forward(request, response);//Need to change the home page to Request denied Page
@@ -269,172 +269,55 @@ public class Start extends HttpServlet {
 			}
 			else{
 				status = "PROCESSED";
-			}
-			
-			String BStreet = request.getParameter("j_Bstreet");
-			String SStreet = request.getParameter("j_Sstreet");
-			String BProvince = request.getParameter("j_Bprovince");
-			String SProvince = request.getParameter("j_Sprovince");
-			String BCountry = request.getParameter("j_Bcountry");
-			String SCountry = request.getParameter("j_Scountry");
-			String BZip = request.getParameter("j_Bzip");
-			String SZip = request.getParameter("j_Szip");
-			String BPhone = request.getParameter("j_Bphone");
-			String SPhone = request.getParameter("j_Sphone");
-			
-			String LName = request.getParameter("j_lastName");
-			String FName = request.getParameter("j_firstName");
-			
-			String Card = request.getParameter("j_card");
-			//System.out.println(BStreet + SStreet + BProvince + SProvince + BCountry + SCountry + BZip + SZip + BPhone + SPhone);
-			System.out.println(FName);
-			
-			if(FName == ""){
+
+				String SStreet = request.getParameter("j_Sstreet");
+				String SProvince = request.getParameter("j_Sprovince");
+				String SCountry = request.getParameter("j_Scountry");
+				String SZip = request.getParameter("j_Szip");
+				String SPhone = request.getParameter("j_Sphone");
+				String LName = request.getParameter("j_lastName");
+				String FName = request.getParameter("j_firstName");
+
+					
+				try {	
+				//create addressBean from the form and add it to the DB
+				AddressBean newAddress = new AddressBean(null, SStreet, SProvince, SCountry, SZip, SPhone);
+				AddressDAO address;
 				
-				System.out.println("First Name is empty");
-				request.setAttribute("firstname_error", "First Name is empty!");
-				request.getRequestDispatcher("payment.jspx").forward(request, response);
-			}
-			else if(LName == ""){
-				System.out.println("Last Name is empty");
-				request.setAttribute("lastname_error", "Last Name is empty!");
-				request.getRequestDispatcher("payment.jspx").forward(request, response);
-			}
-			else if(Card == ""){
-				System.out.println("Credit Card is empty");
-				request.setAttribute("card_error", "Credit Card detials are empty!");
-				request.getRequestDispatcher("payment.jspx").forward(request, response);
-			}
-			else if(BStreet == ""){
-				System.out.println("Billing Street is empty");
-				request.setAttribute("billingstreet_error", "Street of Billing address is empty!");
-				request.getRequestDispatcher("payment.jspx").forward(request, response);
-			}
-			else if(BCountry == ""){
-				System.out.println("Billing Country is empty");
-				request.setAttribute("billingcountry_error", "Country of Billing address is empty!");
-				request.getRequestDispatcher("payment.jspx").forward(request, response);	
-			}
-			else if(BZip == ""){
-				System.out.println("Billing Zip is empty");
-				request.setAttribute("billingzip_error", "Zip of Billing address is empty!");
-				request.getRequestDispatcher("payment.jspx").forward(request, response);
-			}
-			else if(BPhone == ""){
-				System.out.println("Billing Phone is empty");
-				request.setAttribute("billingphone_error", "Phone Number of Billing address is empty!");
-				request.getRequestDispatcher("payment.jspx").forward(request, response);
-			}
-			else if(SStreet == ""){
-				System.out.println("Shipping Street is empty");
-				request.setAttribute("shippingstreet_error", "Street of Shipping address is empty!");
-				request.getRequestDispatcher("payment.jspx").forward(request, response);
-			}
-			else if(SCountry == ""){
-				System.out.println("Shipping Country is empty");
-				request.setAttribute("shippingcountry_error", "Country of Shipping address is empty!");
-				request.getRequestDispatcher("payment.jspx").forward(request, response);	
-			}
-			else if(SZip == ""){
-				System.out.println("Shipping Zip is empty");
-				request.setAttribute("shippingzip_error", "Zip of Shipping address is empty!");
-				request.getRequestDispatcher("payment.jspx").forward(request, response);
-			}
-			else if(SPhone == ""){
-				System.out.println("Shipping Phone is empty");
-				request.setAttribute("shippingphone_error", "Phone Number of Shipping address is empty!");
-				request.getRequestDispatcher("payment.jspx").forward(request, response);
-			}
-			
-			else{
-			
-			if (!(BStreet.equals(SStreet)) || !(BProvince.equals(SProvince)) || !(BCountry.equals(SCountry)) || !(BZip.equals(SZip)) || !(BPhone.equals(SPhone))){
-				System.out.println("Addresses do not match");
-				
-				request.setAttribute("address_error", "Billing and Shipping Adresses do not match!");
-				request.getRequestDispatcher("payment.jspx").forward(request, response);
-				
-			}
-			
-			
-			AddressBean newAddress = new AddressBean(null, SStreet, SProvince, SCountry, SZip, SPhone);
-			
-			AddressDAO address = null;
-			try{
-				address = new AddressDAO();
-			}
-			catch(Exception e){
-				System.out.print("Error getting AddressDAO for registration!");
-				e.printStackTrace();
-			}
-			
-			try{
+					address = new AddressDAO();
+				 
 				address.addAddress(newAddress);
+				//create poBean and add it to the table, use address.getLast to retrieve the id of the address we just added
+				PODAO po = new PODAO();
+				//create a linked list of the cart
+				LinkedList<BookBean> books = (LinkedList<BookBean>) user.getCart().getCart().values();
+
+				//for each element in the cart, creat a PO item and add it to the db and create a POItem and add it to db
+				for(int i = 0; i < books.size(); i++){
+					POBean newPO = new POBean(0, LName, FName, status, Integer.parseInt(address.retriveLast().getId()));
+					po.addPO(newPO);
+					int quantity = 1;
+					String bookID = books.get(i).getBid();
+					int bookPrice = (int) books.get(i).getPrice();
+					String userName = request.getRemoteUser();
+					//the poItem id should be equal to the ID of the last entered po
+					POItemBean poItem = new POItemBean(po.retriveLast().getId(),bookID, quantity, bookPrice, userName);
+					POItemDAO itemDAO = new POItemDAO();
+					itemDAO.addPOItem(poItem);
+					//adding the visitEvent
+					VisitEventDAO visitEventDAO = new VisitEventDAO();
+					VisitEventBean visitBean = new VisitEventBean( bookID,"PURCHASE");
+					visitEventDAO.addEvent(visitBean);
+				}		
+				}
+				catch (ClassNotFoundException | SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				request.getRequestDispatcher("paymentSuccess.jspx").forward(request, response);
+
 			}
-			catch (SQLException e) {
-				System.out.println("Error inserting new Address!");
-				e.printStackTrace();
-			}
-			
-			PODAO po = null;
-			try {
-				
-				POBean newPO = new POBean(0, LName, FName, status, Integer.parseInt(address.retriveLast().getId()));
-				po = new PODAO();
-				po.addPO(newPO);
-			} 
-			catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				System.out.println("Error Creating bean");
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			/*POItemBean newPOItem = new POItembean(0, user.bid, user.price);
-		    POItemDAO poItem = null;
-		    
-		    try{
-				poItem = new POItemDAO();
-			}
-			catch(Exception e){
-				System.out.print("Error getting POItemDAO for registration!");
-				e.printStackTrace();
-			}
-		    
-		    try{
-				poItem.addPOItem(POItemBean);
-			}
-			catch (SQLException e) {
-				System.out.println("Error inserting new POItem!");
-				e.printStackTrace();
-			}*/
-			
-			/*
-			VisitEventBean VisitBean = new VisitBean();
-			VisitEventDAO visit = null;
-			
-			try{
-				visit = new VisitEventDAO();
-			}
-			catch(Exception e){
-				System.out.print("Error getting VisitEventDAO for registration!");
-				e.printStackTrace();
-			}
-		    
-		    try{
-				visit.addVisit(VisitBean);
-			}
-			catch (SQLException e) {
-				System.out.println("Error inserting new Visit!");
-				e.printStackTrace();
-			}*/
-			
-			request.getRequestDispatcher("paymentSuccess.jspx").forward(request, response);
-			
-			
-			}	
-		}//Ashfaq's end
-	}
+		}
+	
+}
 }

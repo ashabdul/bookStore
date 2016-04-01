@@ -55,7 +55,7 @@
 		<form action = "Start" method = "POST">
 				<div class="input-group input-group-lg">
 					First Name: <input type="text" class="form-control"
-						placeholder="First Name" name="j_firstName" id="fname" />
+						placeholder="First Name" required="true" name="j_firstName" id="fname" />
 				</div>
 			
 				<br />
@@ -65,7 +65,7 @@
 				<br />
 				<div class="input-group input-group-lg">
 					Last Name: <input type="text" class="form-control"
-						placeholder="Last Name" name="j_lastName" id="lname" />
+						placeholder="Last Name" required="true" name="j_lastName" id="lname" />
 				</div>
 				<br />
 				
@@ -75,7 +75,7 @@
 				
 				<div class="input-group input-group-lg">
 					Credit Card Number: <input type="text" class="form-control"
-						placeholder="Card Number" name="j_card" id="card" onblur="isNumberKey(event)"/>
+						placeholder="Card Number" required="true" name="j_card" id="card" onblur="isNumberKey(event)"/>
 				</div>
 				<br/>
 				
@@ -97,7 +97,7 @@
 					Billing Address: 
 					
 					<input type="text" class="form-control"
-						placeholder="Street Address" name="j_Bstreet" id="bStreet" />
+						placeholder="Street Address" required="true" name="j_Bstreet" id="bStreet" />
 				</div>
 				<br />
 				
@@ -107,7 +107,7 @@
 				
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
-						placeholder="Province" name="j_Bprovince" id="bProvince" />	
+						placeholder="Province" required="true" name="j_Bprovince" id="bProvince" />	
 				</div>
 				<br />
 				
@@ -117,7 +117,7 @@
 				
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
-						placeholder="Country" name="j_Bcountry" id="bCountry" />
+						placeholder="Country" required="true" name="j_Bcountry" id="bCountry" />
 				</div>
 				<br />
 				
@@ -127,7 +127,7 @@
 				
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
-						placeholder="ZIP" name="j_Bzip" id="bZip" />
+						placeholder="ZIP" required="true" name="j_Bzip" id="bZip" />
 				</div>
 				<br />
 				
@@ -137,7 +137,7 @@
 				
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
-						placeholder="Phone Number" name="j_Bphone" id="bPhone" />			
+						placeholder="Phone Number" required="true" name="j_Bphone" id="bPhone" />			
 				</div>
 				
 				<label name="BPhoneError">${billingphone_error}</label>
@@ -149,7 +149,7 @@
 					Shipping Address: 
 					
 					<input type="text" class="form-control"
-						placeholder="Street Address" name="j_Sstreet" id="sStreet" />
+						placeholder="Street Address" required="true" name="j_Sstreet" id="sStreet" />
 				</div>
 				<br />
 				
@@ -159,7 +159,7 @@
 				
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
-						placeholder="Province" name="j_Sprovince" id="sProvince" />	
+						placeholder="Province" required="true" name="j_Sprovince" id="sProvince" />	
 				</div>
 				<br />
 				
@@ -169,7 +169,7 @@
 				
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
-						placeholder="Country" name="j_Scountry" id="sCountry" />
+						placeholder="Country" required="true" name="j_Scountry" id="sCountry" />
 				</div>
 				<br />
 				<label name="SCountryError">${shippingcountry_error}</label>
@@ -178,7 +178,7 @@
 				
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
-						placeholder="ZIP" name="j_Szip" id="sZip" />
+						placeholder="ZIP" required="true" name="j_Szip" id="sZip" />
 				</div>
 				<br />
 				
@@ -189,7 +189,7 @@
 				
 				<div class="input-group input-group-lg">		
 					<input type="text" class="form-control"
-						placeholder="Phone Number" name="j_Sphone" id="sPhone" />			
+						placeholder="Phone Number" required="true" name="j_Sphone" id="sPhone" />			
 				</div>
 				<br />
 				
