@@ -22,7 +22,8 @@
 	}
 	</SCRIPT>
 	
-	<script type="text/javascript" src="submitReview.js"><jsp:text /></script>
+	<script type="text/javascript" src="res/Ajax.js"><jsp:text /></script>
+	<script type="text/javascript" src="res/submitReview.js"><jsp:text /></script>
 	
 </head>
 <body>
@@ -80,7 +81,7 @@
 	<br/>
 	<BR />
 	
-	<button id="addToCart" name="addToCart" value="${bookID}" type="submit" onclick="doSimpleAjax('/Project/Start', '${bookID}');return false;">Add To Cart</button>
+	<button id="addToCart" name="addToCart" value="${bookID}" type="submit" onclick="doAjax('/Project/Start', '${bookID}');return false;">Add To Cart</button>
 	<br/>
 	
 </span>
@@ -111,7 +112,7 @@
 			<Label for="reviewText"> Review:</Label>
 			<TEXTAREA autofocus="true" name="textArea" required="true" placeholder="Enter Text here" rows="5" cols="50" id="reviewText"><jsp:text /></TEXTAREA>
 			<br/>
-			<button type="submit" name="submitReview" value="${bookID}" onclick="doSimpleAjax('/Project/Start', '${bookID}');return false;">submit review</button>
+			<button type="submit" name="submitReview" value="${bookID}" onclick="doAjax('/Project/Start', '${bookID}');return false;">submit review</button>
 			</c:if> 
 	</form>
 
@@ -124,7 +125,7 @@
 				name="stars" value="4"> 4 </input> <input type="radio" name="stars"
 				value="5"> 5 </input> <BR />
 			<TEXTAREA autofocus="true" name="textArea" required="true"
-				placeholder="Enter Text here" rows="5" cols="50" id="reviewText">.</TEXTAREA>
+				placeholder="Enter Text here" rows="5" cols="50" id="reviewText"><jsp:text /></TEXTAREA>
 			<button type="submit" name="submitReview" value="${bookID}">submit
 				review</button>
 		</form>

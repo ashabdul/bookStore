@@ -3,98 +3,18 @@ Group Project for 4413
 
 ##SSL
 
-You will need to manually do two things.
-
-1. In Eclipse go to your server.xml file (server project folder).  In here fine the <connector> tag with parameter port="8443".  Add to the end of this tag the parameters keystoreFile="${user.home}/.keystore" keystorePass="abc123".  Now uncomment the tag (<!-- and -->).
-
-2. I've uploaded a .keystore file to github.  Copy the file to your home directory (C://Users/<username> or /home/<username>), do not put it into a subfolder.
+Copy the file .keystore from the root directory of the Project WAR file to your home directory (C://Users/<username> or /home/<username>), do not put it into a subfolder.
 
 Restart your server and test SSL with: https://localhost:8443/
 
-##Login
+##Derby
 
-I have pushed some minor changes to login.jspx to be compatible.  Everything else must modify non-shared files.  
+We have included a derby_commands.txt file which provides all the commands needed to create our tables and fill them with some data.  For the database to work properly a copy of derby.jar must be placed in WebContent/WEB-INF/lib, this should have been included.  You will also have to include a copy of the same derby.jar file into your Tomcat installation directory into the subdirectory lib.  The second jar in the Tomcat install directory is for use by the authentication system.
 
-1. Modify web.xml,  insert the following text at the end just before the ```</web-app>``` tag.  This adds a new group of users called "partner", specifies that /home.jspx (change this, it was set as a test) requires this group in order to access, and specifies that /login.jspx has the form for logging in.
-```
-<security-constraint>
-	<web-resource-collection>
-		<web-resource-name>Partners</web-resource-name>
-		<url-pattern>/temp.jspx</url-pattern>
-		<http-method>GET</http-method>
-		<http-method>POST</http-method>
-	</web-resource-collection>
+##How to Install
+Two War files have been included.  The first one (Project.war) includes everything needed to install and launch the Project server.  It contains the derby_commands.txt and the .keystore file for SSL.  The second War file contains a seperate Project intended for testing SOAP.  In order to test SOAP you must deploy both war files.
 
-	<auth-constraint>
-		<role-name>partner</role-name>
-	</auth-constraint>
+##How to Use
+Once the Project.war file has been deployed, the .keystore placed in the home directory, and derby.jar placed correctly simply start the server and navigate to localhost:8080/Project to load the homepage.  To run some tests visit localhost:8080/Project/TestCases.
 
-	<user-data-constraint>
-		<transport-guarantee>CONFIDENTIAL</transport-guarantee>
-	</user-data-constraint>
-</security-constraint>
-
-<security-constraint>
-	<web-resource-collection>
-      		<web-resource-name>Admins</web-resource-name>
-      		<url-pattern>/temp2.jspx</url-pattern>
-      		<http-method>GET</http-method>
-      		<http-method>POST</http-method>
-    	</web-resource-collection>
-
-	<auth-constraint>
-		<role-name>admin</role-name>
-	</auth-constraint>
-
-	<user-data-constraint>
-      		<transport-guarantee>CONFIDENTIAL</transport-guarantee>
-      	 </user-data-constraint>
-  </security-constraint>
-  
-  <security-constraint>
-    <web-resource-collection>
-      <web-resource-name>Users</web-resource-name>
-      <url-pattern>/login.jspx</url-pattern>
-      <url-pattern>/cart.jspx</url-pattern>
-      <http-method>GET</http-method>
-      <http-method>POST</http-method>
-    </web-resource-collection>
-
-    <auth-constraint>
-      <role-name>user</role-name>
-    </auth-constraint>
-
-    <user-data-constraint>
-      <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-    </user-data-constraint>
-  </security-constraint>
-
-<login-config>
-	<auth-method>FORM</auth-method>
-	<form-login-config>
-		<form-login-page>/reallogin.jspx</form-login-page>
-		<form-error-page>/login-failed.jspx</form-error-page>
-	</form-login-config>
-</login-config>
-```
-
-2. In context.xml before the ```</context>``` tag insert the following.  Make sure not to delete any existing Resource tag.  This adds a link to the database as a login database and links to the realms (they manage logins for us).
-
-```
-	<Resource name="jdbc/auth" description="Sample authentication"
-		type="javax.sql.DataSource" auth="Container" driverClassName="org.apache.derby.jdbc.EmbeddedDriver"
-		maxActive="10" maxIdle="3" maxWait="10000" url="jdbc:derby:/home/william/Programming/4413/Workspace/Project/DB" />
-
-	<Realm className="org.apache.catalina.realm.DataSourceRealm"
-		userTable="APP.accounts" userNameCol="userName" userCredCol="password"
-		userRoleTable="user_roles" roleNameCol="role" localDataSource="true"
-		dataSourceName="jdbc/auth" />
-```
-
-With those changes you should be able to now test the servlet.  The code provided above will create a lock on /home.jspx requiring admin priviledge to view.  Put into the database the following:
-```
-INSERT INTO accounts (userName, password, account_type) VALUES ('Andy', 'abc123', 'admin');
-INSERT INTO user_roles (userName, role) VALUES ('Andy', 'admin');
-```
-
-This will now add a user Andy with password abc123 and you should be able to access /home.jspx with those credentials.
+In order to test and use SOAP you must have deployed the second war file.  If it is deployed navigate to localhost:8080/Project/partner.html.  It will ask for a partner password, from the derby_commands.txt the username will be 'partner1' and password is 'abc123' at which point you can access the SOAP interface.  Simply select the bookDAO from the methods on the left side (it will be at the bottom of the list).  Enter an ISBN (or any search term) into the box in the center frame.  The SOAP response will show up as XML in the bottom frame containing all the information about the top result of your search.

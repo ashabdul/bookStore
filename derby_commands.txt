@@ -411,7 +411,13 @@ CREATE TABLE user_roles (
   PRIMARY KEY (userName, role)
 );
 
+insert into accounts (userName, password, account_type) values ('admin','admin','admin');
+insert into accounts (userName, password, account_type) values ('user1','abc123','user');
+insert into accounts (userName, password, account_type) values ('partner1','abc123','partner');
 
+insert into user_roles (userName, role) values ('admin','admin');
+insert into user_roles (userName, role) values ('user1','user');
+insert into user_roles (userName, role) values ('partner1','partner');
 
 /* 
 * reviews table
