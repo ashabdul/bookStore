@@ -381,7 +381,7 @@ public class Start extends HttpServlet {
 				//create poBean and add it to the table, use address.getLast to retrieve the id of the address we just added
 				PODAO po = new PODAO();
 				//create a linked list of the cart
-				LinkedList<BookBean> books = (LinkedList<BookBean>) user.getCart().getCart().values();
+				LinkedList<BookBean> books = (LinkedList<BookBean>) user.getCart().getCartItems().values();
 
 				//for each element in the cart, creat a PO item and add it to the db and create a POItem and add it to db
 				for(int i = 0; i < books.size(); i++){
