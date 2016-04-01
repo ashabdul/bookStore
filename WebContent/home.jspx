@@ -27,7 +27,7 @@
 		</div>
 
 		<ul>
-			<li><a href="/project/">Home</a></li>
+			<li><a href="/Project/">Home</a></li>
 			<c:choose>
 				<c:when test="${isLogedIn == 'true'}">
 					<li><a href="logout.jspx">Log Out</a></li>
@@ -40,9 +40,9 @@
 				<div class="dropdown">
 					<button class="dropbtn">Category</button>
 					<div class="dropdown-content">
-						<a href="scienceBooks.jspx">Science</a> <a
-							href="fictionBooks.jspx">Fiction</a> <a
-							href="engineeringBooks.jspx">Engineering</a>
+						<a href="/Project/ScienceBooks">Science</a> <a
+							href="/Project/FictionBooks">Fiction</a> <a
+							href="/Project/EngineeringBooks">Engineering</a>
 					</div>
 				</div>
 			</li>
