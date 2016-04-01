@@ -122,8 +122,8 @@ public class UserDAO {
 	 * delete account by username
 	 */
 	public void removeUser(String username) throws SQLException{
-	String query = "DELETE FROM ACCOUNTS WHERE username LIKE '%" + username + "%'";
-	String query2 = "DELETE FROM user_roles WHERE username LIKE '%" + username + "%'";
+	String query = "DELETE FROM ACCOUNTS WHERE username = '" + username + "'";
+	String query2 = "DELETE FROM user_roles WHERE username = '" + username + "'";
 	Connection con = this.ds.getConnection();
 	PreparedStatement p = con.prepareStatement(query);
 	PreparedStatement p2 = con.prepareStatement(query2);
