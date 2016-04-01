@@ -36,6 +36,7 @@ public class Start extends HttpServlet {
 	private BookDAO search = null;
 	private UserBean user;
 	private ReviewDAO review;
+	private VisitEventDAO visit;
 	int RequestCount = 0;
 
 	/**
@@ -49,6 +50,7 @@ public class Start extends HttpServlet {
 			search = new BookDAO();
 			user = new UserBean();
 			review = new ReviewDAO();
+			visit = new VisitEventDAO();
 			System.out.println("search ready");
 		}
 
