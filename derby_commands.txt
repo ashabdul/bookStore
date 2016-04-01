@@ -114,9 +114,8 @@ CREATE INDEX PO_IDX ON PO(address);
 #
 # Inserting data for table 'PO'
 #
-INSERT INTO PO (lname, fname, status, address) VALUES ('John', 'White', 'PROCESSED', 1);
-INSERT INTO PO (lname, fname, status, address) VALUES ('Peter', 'Black', 'DENIED', 2);
-INSERT INTO PO (lname, fname, status, address) VALUES ('Andy', 'Green', 'ORDERED', 3);
+insert into po (lname, fname, status, address) values ('michel', 'alsamad', 'ORDERED', 1);
+
 #
 #
 
@@ -132,8 +131,11 @@ id INT CONSTRAINT POItemid_ck CHECK (id > 0) NOT NULL,
 bid VARCHAR(20) NOT NULL,
 quantity INT CONSTRAINT quantity_ck CHECK (quantity > 0) NOT NULL,
 unitPrice INT CONSTRAINT POItemprice_ck CHECK (unitPrice > 0) NOT NULL,
+final_price INT GENERATED ALWAYS AS (quantity * unitPrice),
+user_name VARCHAR(250),
 PRIMARY KEY(id),
-FOREIGN KEY(id) REFERENCES PO(id) ON DELETE CASCADE)
+FOREIGN KEY(id) REFERENCES PO(id) ON DELETE CASCADE,
+FOREIGN KEY(bid) REFERENCES book(bid) ON DELETE CASCADE) 
 ;
 
 
@@ -143,9 +145,7 @@ CREATE INDEX POitem_IDX_bid ON POItem(bid);
 #
 # Inserting data for table 'POitem'
 #
-INSERT INTO POItem (id, bid, unitPrice, quantity) VALUES (1, 'b001', 20, 2);
-INSERT INTO POItem (id, bid, unitPrice, quantity) VALUES (2, 'b002', 201, 1);
-INSERT INTO POItem (id, bid, unitPrice, quantity) VALUES (3, 'b003', 100, 5);
+insert into poitem (id, bid, quantity, unitprice,user_name) values (3, '0345479173', 3, 1,'michel');
 #
 #
 
