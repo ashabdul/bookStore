@@ -93,7 +93,7 @@ public class Start extends HttpServlet {
 		}
 	//-------------------------------------------
 		System.out.println("is loged is as: "+ request.getRemoteUser());
-		if(request.getParameter("searchSubmit") != null)
+		if(request.getParameter("searchSubmit") != null) //If the user arrived via the search box
 		{
 			//check if the user is loged in to set the isLogedIn attribute accordingly 
 			if(user.getUserName() != null){
@@ -115,7 +115,7 @@ public class Start extends HttpServlet {
 
 			try
 			{
-				books = search.retrieve(searchParam);
+				books = search.retrieve(searchParam); //Conduct the search
 			}
 
 			catch(SQLException e)
@@ -128,8 +128,8 @@ public class Start extends HttpServlet {
 				System.out.println(b.getBid() + " " +  b.getTitle() + " " + b.getCategory() + " " + b.getPrice());
 			}
 
-			request.setAttribute("list", books.values());
-			request.getRequestDispatcher("searchResult.jspx").forward(request, response);
+			request.setAttribute("list", books.values()); //Store the results of the search as an attribute to be grabbed in jspx
+			request.getRequestDispatcher("searchResult.jspx").forward(request, response); //Forward to the results pags
 		}
 
 		/* edited by Michel */
