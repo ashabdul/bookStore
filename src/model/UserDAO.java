@@ -9,12 +9,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import bean.UserBean;
+import bean.VisitEventBean;
 
 public class UserDAO {
 
@@ -131,4 +133,26 @@ public class UserDAO {
 	p2.close();
 	con.close();
 	}
+	
+	/**
+	 * @return LinkedList of users with spent attribute where sent is the sum of all they spent in life time
+	 */
+	public LinkedList<UserBean> retrieveUserSpent() throws SQLException{
+		String query = "SELECT user_name, SUM(final_Price) AS spent FROM POITEM GROUP BY user_name";
+		LinkedList<UserBean> list = new LinkedList<UserBean>();
+		Connection con = this.ds.getConnection();
+		PreparedStatement p = con.prepareStatement(query);
+		ResultSet r = p.executeQuery();
+		while (r.next()){
+			String userName = r.getString("user_Name").toString();
+			int spent = r.getInt("spent");
+			UserBean user = new UserBean(userName,spent);
+			list.add(user);
+		}
+		r.close();
+		p.close();
+		con.close();
+		return list;
+	}
+	
 }

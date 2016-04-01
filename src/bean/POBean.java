@@ -13,6 +13,9 @@ public class POBean {
 	int address;
 	
 	
+	/**
+	 * @constructor this constructor does not take a user name, it is used for testing
+	 */
 	public POBean(int id,String lname, String fname, String status, int address) {
 		this.id = id;
 		Lname = lname;
@@ -100,6 +103,8 @@ public class POBean {
 	public void setAddress(int address) {
 		this.address = address;
 	}
+
+	
 
 
 	/* (non-Javadoc)

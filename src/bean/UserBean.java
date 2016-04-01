@@ -13,13 +13,30 @@ public class UserBean {
 	String password;
 	String type;
 	Cart cart;
+	int spent;
 	
+	
+	/**
+	 * @constructor this constructor is used when we need to set the spent attribute only used for analysis
+	 */
+	public UserBean(String userName, int spent) {
+		this.userName = userName;
+		this.spent = spent;
+	}
+	
+	/**
+	 * @constructor this constructor is used when we do not need to set the spent attribute
+	 */
 	public UserBean(String userName, String password, String type) {
 		this.userName = userName;
 		this.password = password;
 		this.type = type;
 		this.cart = new Cart();
 	}
+	
+	/**
+	 * @constructor this constructor is used when we want a null user with cart object created
+	 */
 	public UserBean() {
 		// TODO Auto-generated constructor stub\
 		this.userName = null;

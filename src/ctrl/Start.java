@@ -378,6 +378,7 @@ public class Start extends HttpServlet {
 			
 			PODAO po = null;
 			try {
+				
 				POBean newPO = new POBean(0, LName, FName, status, Integer.parseInt(address.retriveLast().getId()));
 				po = new PODAO();
 				po.addPO(newPO);
