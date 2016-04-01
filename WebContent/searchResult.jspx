@@ -73,15 +73,6 @@
 				<button id="addToCart" name="addToCart" value="${booklist.bid}" type="submit" onclick="doSimpleAjax('/Project/Start', '${booklist.bid}');return false;">Add To Cart</button>
 				<br/>
 				<br/>
-				<br />
-				<td>$${booklist.price}0</td>
-				<br />
-				<button id="addtocart" name="addToCart" value="${booklist.bid}"
-					type="submit"
-					onclick="doSimpleAjax('/studentCalc5/Startup/Ajax/');return false;">Add
-					To Cart</button>
-				<br />
-				<br />
 			</tr>
 		</c:forEach>
 	</form>

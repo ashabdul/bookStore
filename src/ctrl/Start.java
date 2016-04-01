@@ -93,7 +93,7 @@ public class Start extends HttpServlet {
 				//user.getCart().clear();
 				user.getCart().add(book);
 				
-				for(BookBean b: user.getCart().getCart().values())
+				for(BookBean b: user.getCart().getCartItems().values())
 				{
 					System.out.println("Book in cart = " + b.getTitle());
 				}
@@ -104,6 +104,29 @@ public class Start extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+		
+		if(request.getParameter("submitReview") != null && request.getParameter("bid") != null)
+		{
+			try {
+				System.out.println("review submitted: "+ request.getParameter("submitReview"));
+				ReviewBean review;
+				//handle the case when the user does not submit rating
+				if(request.getParameter("stars") == null){
+					review = new ReviewBean(request.getParameter("bid"), request.getParameter("textArea"), 0);
+				}
+				else{
+					review = new ReviewBean(request.getParameter("bid"), request.getParameter("textArea"), Integer.parseInt(request.getParameter("stars")));
+				}
+				ReviewDAO reviewDAO = new ReviewDAO();
+				reviewDAO.addReview(review);
+
+
+			}catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 	}
 
@@ -146,6 +169,12 @@ public class Start extends HttpServlet {
 
 			request.setAttribute("list", books.values());
 			request.getRequestDispatcher("searchResult.jspx").forward(request, response);
+		}
+		
+		if(request.getParameter("cartsubmit") != null)
+		{
+			request.setAttribute("list", user.getCart().getCartItems().values());
+			request.getRequestDispatcher("cart.jspx").forward(request, response);
 		}
 
 		/* edited by Michel */
