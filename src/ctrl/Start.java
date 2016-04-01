@@ -30,7 +30,7 @@ import model.VisitEventDAO;
 /**
  * Servlet implementation class Start
  */
-@WebServlet(urlPatterns = {"/Start", "", "/ScienceBooks", "/FictionBooks", "/EngineeringBooks"})
+@WebServlet(urlPatterns = {"/Start", "", "/ScienceBooks", "/FictionBooks", "/EngineeringBooks", "Logout"})
 public class Start extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BookDAO search = null;
@@ -96,7 +96,7 @@ public class Start extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			request.getRequestDispatcher("scienceBooks").forward(request, response);
+			request.getRequestDispatcher("scienceBooks.jspx").forward(request, response);
 			return;
 		}
 		if(subString.equals("FictionBooks")) {
@@ -106,8 +106,13 @@ public class Start extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			request.getRequestDispatcher("fictionBooks").forward(request, response);
+			request.getRequestDispatcher("fictionBooks.jspx").forward(request, response);
 			return;
+		}
+		if(subString.equals("Logout")) {
+			request.getSession().invalidate(); //Invalidates the login
+			request.getRequestDispatcher("").forward(request, response); //Forwards back to this server
+			return; //Guarantees an exit
 		}
 		if(subString.equals("EngineeringBooks")) {
 			try {
@@ -117,7 +122,7 @@ public class Start extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			request.getRequestDispatcher("engineering").forward(request, response);
+			request.getRequestDispatcher("engineeringBooks.jspx").forward(request, response);
 			return;
 		}
 
