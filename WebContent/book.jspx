@@ -38,7 +38,7 @@
 		</div>
 
 		<ul>
-			<li><a href="/Project/">Home</a></li>
+			<li><a href="/project/">Home</a></li>
 			<c:choose>
 				<c:when test="${isLogedIn == 'true'}">
 					<li><a href="logout.jspx">Log Out</a></li>

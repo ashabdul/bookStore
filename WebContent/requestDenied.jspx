@@ -31,7 +31,7 @@
 </div>
 
 <ul>
-    <li><a href="/Project/">Home</a></li>
+    <li><a href="/project/">Home</a></li>
     <li><a href="login.jspx">Log In</a></li>
     <li>
       <div class="dropdown">
