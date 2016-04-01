@@ -38,9 +38,9 @@
 		</div>
 
 		<ul>
-			<li><a href="home.jspx" class="active">Home</a></li>
+			<li><a href="/project/">Home</a></li>
 			<c:choose>
-				<c:when test="${isLogedIn == 'ture'}">
+				<c:when test="${isLogedIn == 'true'}">
 					<li><a href="logout.jspx">Log Out</a></li>
 				</c:when>
 				<c:otherwise>
@@ -93,6 +93,7 @@
 			</tr>
 		</c:forEach>
 	</TABLE>
+
 	
 	<form action="Start" method="POST">
 			
@@ -113,6 +114,21 @@
 			<button type="submit" name="submitReview" value="${bookID}" onclick="doSimpleAjax('/Project/Start', '${bookID}');return false;">submit review</button>
 			</c:if> 
 	</form>
+
+	<LABEL>rating is: ${bookStars} /5</LABEL>
+	<c:if test="${isLogedIn == 'true'}">
+		<form action="Start" method="POST">
+			Rating:<BR /> <input type="radio" name="stars" value="1"> 1</input>
+			<input type="radio" name="stars" value="2"> 2 </input> <input
+				type="radio" name="stars" value="3"> 3 </input> <input type="radio"
+				name="stars" value="4"> 4 </input> <input type="radio" name="stars"
+				value="5"> 5 </input> <BR />
+			<TEXTAREA autofocus="true" name="textArea" required="true"
+				placeholder="Enter Text here" rows="5" cols="50" id="reviewText">.</TEXTAREA>
+			<button type="submit" name="submitReview" value="${bookID}">submit
+				review</button>
+		</form>
+	</c:if>
 </body>
 	</html>
 </jsp:root>

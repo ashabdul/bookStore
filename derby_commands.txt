@@ -57,7 +57,10 @@ INSERT INTO Book (bid, title, price, category) VALUES ('1500982415', 'Engineerin
  INSERT INTO Book (bid, title, price, category) VALUES ('1554077486', 'The Universe and Beyond', 19, 'Science');
  INSERT INTO Book (bid, title, price, category) VALUES ('1770854339', 'Hubble''s Universe: Greatest Discoveries and Latest Images', 20, 'Science');
  INSERT INTO Book (bid, title, price, category) VALUES ('1591263336', 'Rapid Preparation for the Fundamentals of Engineering Exam', 122, 'Engineering');
+<<<<<<< HEAD
  INSERT INTO Book (bid, title, price, category) VALUES ('1118787315', 'Practical Reverse Engineering', 50, 'Engineering');
+=======
+>>>>>>> 8e5a4a1c03ac9b3ec3ffcde0f5ad9cb41c1d42fd
  
  
 
@@ -115,9 +118,8 @@ CREATE INDEX PO_IDX ON PO(address);
 #
 # Inserting data for table 'PO'
 #
-INSERT INTO PO (lname, fname, status, address) VALUES ('John', 'White', 'PROCESSED', 1);
-INSERT INTO PO (lname, fname, status, address) VALUES ('Peter', 'Black', 'DENIED', 2);
-INSERT INTO PO (lname, fname, status, address) VALUES ('Andy', 'Green', 'ORDERED', 3);
+insert into po (lname, fname, status, address) values ('michel', 'alsamad', 'ORDERED', 1);
+
 #
 #
 
@@ -133,8 +135,11 @@ id INT CONSTRAINT POItemid_ck CHECK (id > 0) NOT NULL,
 bid VARCHAR(20) NOT NULL,
 quantity INT CONSTRAINT quantity_ck CHECK (quantity > 0) NOT NULL,
 unitPrice INT CONSTRAINT POItemprice_ck CHECK (unitPrice > 0) NOT NULL,
+final_price INT GENERATED ALWAYS AS (quantity * unitPrice),
+user_name VARCHAR(250),
 PRIMARY KEY(id),
-FOREIGN KEY(id) REFERENCES PO(id) ON DELETE CASCADE)
+FOREIGN KEY(id) REFERENCES PO(id) ON DELETE CASCADE,
+FOREIGN KEY(bid) REFERENCES book(bid) ON DELETE CASCADE) 
 ;
 
 
@@ -144,9 +149,7 @@ CREATE INDEX POitem_IDX_bid ON POItem(bid);
 #
 # Inserting data for table 'POitem'
 #
-INSERT INTO POItem (id, bid, unitPrice, quantity) VALUES (1, 'b001', 20, 2);
-INSERT INTO POItem (id, bid, unitPrice, quantity) VALUES (2, 'b002', 201, 1);
-INSERT INTO POItem (id, bid, unitPrice, quantity) VALUES (3, 'b003', 100, 5);
+insert into poitem (id, bid, quantity, unitprice,user_name) values (3, '0345479173', 3, 1,'michel');
 #
 #
 
@@ -160,16 +163,234 @@ Inserting TABLE if exists VisitEvent;
 CREATE TABLE VisitEvent (
 date date default current_date NOT NULL,
 bid varchar(20) not null REFERENCES Book(bid),
-eventtype VARCHAR(9) CONSTRAINT eventtype_ck CHECK (eventtype IN ('VIEW','CART','PURCHASE')) NOT NULL,
+event_type VARCHAR(9) CONSTRAINT event_type_ck CHECK (event_type IN ('VIEW','CART','PURCHASE')) NOT NULL,
 FOREIGN KEY(bid) REFERENCES Book(bid)
 );
 
 #
 # Dumping data for table 'VisitEvent'
 #
-INSERT INTO VisitEvent (day, bid, eventtype) VALUES ('12202015', 'b001', 'VIEW');
-INSERT INTO VisitEvent (day, bid, eventtype) VALUES ('12242015', 'b001', 'CART');
-INSERT INTO VisitEvent (day, bid, eventtype) VALUES ('12252015', 'b001', 'PURCHASE');
+insert into VISITEVENT (bid,event_type) values ('0073398209','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0073398209','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0073398209','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0073398209','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0073398209','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0073398209','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0073398209','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0073398209','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0073398209','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0073398209','VIEW' );
+
+insert into VISITEVENT (bid,event_type) values ('0133575225','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0133575225','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0133575225','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0133575225','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0133575225','VIEW' );
+
+insert into VISITEVENT (bid,event_type) values ('0133575233','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0133575233','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0133575233','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0133575233','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0133575233','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0133575233','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0133575233','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0133575233','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0133575233','VIEW' );
+
+insert into VISITEVENT (bid,event_type) values ('0176509909','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0176509909','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0176509909','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0176509909','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0176509909','VIEW' );
+
+insert into VISITEVENT (bid,event_type) values ('0199578699','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0199578699','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0199578699','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0199578699','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0199578699','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0199578699','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0199578699','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0199578699','VIEW' );
+
+insert into VISITEVENT (bid,event_type) values ('0201835959','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0201835959','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0201835959','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0201835959','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0201835959','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0201835959','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0201835959','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0201835959','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0201835959','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0201835959','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0201835959','VIEW' );
+
+insert into VISITEVENT (bid,event_type) values ('0316769487','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0316769487','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0316769487','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0316769487','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0316769487','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0316769487','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0316769487','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0316769487','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0316769487','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0316769487','VIEW' );
+
+insert into VISITEVENT (bid,event_type) values ('1465414371','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','VIEW' );
+
+insert into VISITEVENT (bid,event_type) values ('1554077486','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1554077486','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1554077486','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1554077486','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1554077486','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1554077486','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1554077486','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1554077486','VIEW' );
+
+insert into VISITEVENT (bid,event_type) values ('1591263336','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','VIEW' );
+
+insert into VISITEVENT (bid,event_type) values ('0553805444','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0553805444','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0553805444','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0553805444','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0553805444','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0553805444','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0553805444','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0553805444','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0553805444','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0553805444','VIEW' );
+insert into VISITEVENT (bid,event_type) values ('0553805444','VIEW' );
+
+insert into VISITEVENT (bid,event_type) values ('0073398209','CART' );
+insert into VISITEVENT (bid,event_type) values ('0073398209','CART' );
+insert into VISITEVENT (bid,event_type) values ('0073398209','CART' );
+insert into VISITEVENT (bid,event_type) values ('0073398209','CART' );
+
+insert into VISITEVENT (bid,event_type) values ('0073398209','CART' );
+insert into VISITEVENT (bid,event_type) values ('0073398209','CART' );
+insert into VISITEVENT (bid,event_type) values ('0073398209','CART' );
+insert into VISITEVENT (bid,event_type) values ('0073398209','CART' );
+
+insert into VISITEVENT (bid,event_type) values ('0133575225','CART' );
+insert into VISITEVENT (bid,event_type) values ('0133575225','CART' );
+insert into VISITEVENT (bid,event_type) values ('0133575225','CART' );
+insert into VISITEVENT (bid,event_type) values ('0133575225','CART' );
+
+insert into VISITEVENT (bid,event_type) values ('0133575233','CART' );
+insert into VISITEVENT (bid,event_type) values ('0133575233','CART' );
+insert into VISITEVENT (bid,event_type) values ('0133575233','CART' );
+insert into VISITEVENT (bid,event_type) values ('0133575233','CART' );
+insert into VISITEVENT (bid,event_type) values ('0133575233','CART' );
+insert into VISITEVENT (bid,event_type) values ('0133575233','CART' );
+insert into VISITEVENT (bid,event_type) values ('0133575233','CART' );
+insert into VISITEVENT (bid,event_type) values ('0133575233','CART' );
+
+insert into VISITEVENT (bid,event_type) values ('0176509909','CART' );
+insert into VISITEVENT (bid,event_type) values ('0176509909','CART' );
+insert into VISITEVENT (bid,event_type) values ('0176509909','CART' );
+insert into VISITEVENT (bid,event_type) values ('0176509909','CART' );
+insert into VISITEVENT (bid,event_type) values ('0176509909','CART' );
+
+insert into VISITEVENT (bid,event_type) values ('0199578699','CART' );
+insert into VISITEVENT (bid,event_type) values ('0199578699','CART' );
+insert into VISITEVENT (bid,event_type) values ('0199578699','CART' );
+insert into VISITEVENT (bid,event_type) values ('0199578699','CART' );
+insert into VISITEVENT (bid,event_type) values ('0199578699','CART' );
+insert into VISITEVENT (bid,event_type) values ('0199578699','CART' );
+insert into VISITEVENT (bid,event_type) values ('0199578699','CART' );
+insert into VISITEVENT (bid,event_type) values ('0199578699','CART' );
+
+insert into VISITEVENT (bid,event_type) values ('0201835959','CART' );
+insert into VISITEVENT (bid,event_type) values ('0201835959','CART' );
+insert into VISITEVENT (bid,event_type) values ('0201835959','CART' );
+insert into VISITEVENT (bid,event_type) values ('0201835959','CART' );
+insert into VISITEVENT (bid,event_type) values ('0201835959','CART' );
+insert into VISITEVENT (bid,event_type) values ('0201835959','CART' );
+insert into VISITEVENT (bid,event_type) values ('0201835959','CART' );
+insert into VISITEVENT (bid,event_type) values ('0201835959','CART' );
+insert into VISITEVENT (bid,event_type) values ('0201835959','CART' );
+
+insert into VISITEVENT (bid,event_type) values ('0316769487','CART' );
+insert into VISITEVENT (bid,event_type) values ('0316769487','CART' );
+insert into VISITEVENT (bid,event_type) values ('0316769487','CART' );
+insert into VISITEVENT (bid,event_type) values ('0316769487','CART' );
+insert into VISITEVENT (bid,event_type) values ('0316769487','CART' );
+insert into VISITEVENT (bid,event_type) values ('0316769487','CART' );
+insert into VISITEVENT (bid,event_type) values ('0316769487','CART' );
+insert into VISITEVENT (bid,event_type) values ('0316769487','CART' );
+insert into VISITEVENT (bid,event_type) values ('0316769487','CART' );
+
+insert into VISITEVENT (bid,event_type) values ('1465414371','CART' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','CART' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','CART' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','CART' );
+
+insert into VISITEVENT (bid,event_type) values ('1465414371','CART' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','CART' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','CART' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','CART' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','CART' );
+insert into VISITEVENT (bid,event_type) values ('1465414371','CART' );
+
+insert into VISITEVENT (bid,event_type) values ('1554077486','CART' );
+insert into VISITEVENT (bid,event_type) values ('1554077486','CART' );
+insert into VISITEVENT (bid,event_type) values ('1554077486','CART' );
+insert into VISITEVENT (bid,event_type) values ('1554077486','CART' );
+insert into VISITEVENT (bid,event_type) values ('1554077486','CART' );
+
+insert into VISITEVENT (bid,event_type) values ('1591263336','CART' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','CART' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','CART' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','CART' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','CART' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','CART' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','CART' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','CART' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','CART' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','CART' );
+insert into VISITEVENT (bid,event_type) values ('1591263336','CART' );
+
+insert into VISITEVENT (bid,event_type) values ('0553805444','CART' );
+insert into VISITEVENT (bid,event_type) values ('0553805444','CART' );
+insert into VISITEVENT (bid,event_type) values ('0553805444','CART' );
+insert into VISITEVENT (bid,event_type) values ('0553805444','CART' );
+insert into VISITEVENT (bid,event_type) values ('0553805444','CART' );
+insert into VISITEVENT (bid,event_type) values ('0553805444','CART' );
+insert into VISITEVENT (bid,event_type) values ('0553805444','CART' );
+insert into VISITEVENT (bid,event_type) values ('0553805444','CART' );
+insert into VISITEVENT (bid,event_type) values ('0553805444','CART' );
+
 #
 #
 
@@ -197,7 +418,7 @@ CREATE TABLE user_roles (
 */
 
 CREATE TABLE reviews(
-id INT CONSTRAINT reviewid_ck CHECK (id > 0) NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 0, INCREMENT BY 1),
+id INT CONSTRAINT reviewid_ck CHECK (id > 0) NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
 bid VARCHAR(20) NOT NULL,
 review VARCHAR(20000),
 stars INT CONSTRAINT stars_ck CHECK (stars > -1 AND stars < 6),

@@ -13,6 +13,9 @@ public class POBean {
 	int address;
 	
 	
+	/**
+	 * @constructor this constructor does not take a user name, it is used for testing
+	 */
 	public POBean(int id,String lname, String fname, String status, int address) {
 		this.id = id;
 		Lname = lname;
@@ -101,6 +104,8 @@ public class POBean {
 		this.address = address;
 	}
 
+	
+
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
@@ -109,6 +114,16 @@ public class POBean {
 	public String toString() {
 		return "POBean [id=" + id + ", Lname=" + Lname + ", Fname=" + Fname
 				+ ", status=" + status + ", address=" + address + "]";
+	}
+	
+	public boolean equals(POBean bean) {
+		Boolean test = false;
+		
+		if(Lname == bean.Lname && Fname == bean.Fname && status == bean.status && address == bean.address) {
+			test = true;
+		}
+		
+		return test;
 	}
 	
 	

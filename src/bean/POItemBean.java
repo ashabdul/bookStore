@@ -10,9 +10,27 @@ public class POItemBean {
 	String bid;
 	int quantity;
 	int unitPrice;
+	int finalPrice;
+	String userName;
 	
+	
+	/**
+	 * @constructor this is the main constructor 
+	 */
+	public POItemBean(int id, String bid, int quantity, int unitPrice,
+			int finalPrice, String userName) {
+		this.id = id;
+		this.bid = bid;
+		this.quantity = quantity;
+		this.unitPrice = unitPrice;
+		this.finalPrice = finalPrice;
+		this.userName = userName;
+	}
+
+	/**
+	 * @constructor this constructor does not take final price as input, only used for testing
+	 */
 	public POItemBean(int id, String bid, int quantity, int unitPrice) {
-		super();
 		this.id = id;
 		this.bid = bid;
 		this.quantity = quantity;
