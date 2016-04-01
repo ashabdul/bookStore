@@ -1,5 +1,9 @@
 package listener;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionActivationListener;
 import javax.servlet.http.HttpSessionAttributeListener;
@@ -14,55 +18,30 @@ import javax.servlet.http.HttpSessionListener;
  *
  */
 @WebListener
-public class PopularBook implements HttpSessionListener, HttpSessionAttributeListener, HttpSessionActivationListener, HttpSessionIdListener, HttpSessionBindingListener {
+public class PopularBook implements HttpSessionAttributeListener {
 
+	private List<Integer> list = new ArrayList<Integer>();
+	
     /**
      * Default constructor. 
      */
     public PopularBook() {
         // TODO Auto-generated constructor stub
+    	
+    	
     }
 
-	/**
-     * @see HttpSessionListener#sessionCreated(HttpSessionEvent)
-     */
-    public void sessionCreated(HttpSessionEvent arg0)  { 
-         // TODO Auto-generated method stub
-    }
-
-	/**
-     * @see HttpSessionIdListener#sessionIdChanged(HttpSessionEvent, String)
-     */
-    public void sessionIdChanged(HttpSessionEvent arg0, String arg1)  { 
-         // TODO Auto-generated method stub
-    }
-
-	/**
-     * @see HttpSessionBindingListener#valueBound(HttpSessionBindingEvent)
-     */
-    public void valueBound(HttpSessionBindingEvent arg0)  { 
-         // TODO Auto-generated method stub
-    }
-
-	/**
-     * @see HttpSessionListener#sessionDestroyed(HttpSessionEvent)
-     */
-    public void sessionDestroyed(HttpSessionEvent arg0)  { 
-         // TODO Auto-generated method stub
-    }
-
-	/**
-     * @see HttpSessionActivationListener#sessionDidActivate(HttpSessionEvent)
-     */
-    public void sessionDidActivate(HttpSessionEvent arg0)  { 
-         // TODO Auto-generated method stub
-    }
-
-	/**
-     * @see HttpSessionAttributeListener#attributeAdded(HttpSessionBindingEvent)
-     */
     public void attributeAdded(HttpSessionBindingEvent arg0)  { 
          // TODO Auto-generated method stub
+    	
+    	handleEvent(arg0 );
+    	
+    	
+    	System.out.println("Added attribute");
+    	System.out.println(arg0.getName() + "value is "+ arg0.getValue());
+    	String value = arg0.getValue().toString();
+    	list.add(Integer.parseInt(value));
+    	
     }
 
 	/**
@@ -77,20 +56,33 @@ public class PopularBook implements HttpSessionListener, HttpSessionAttributeLis
      */
     public void attributeReplaced(HttpSessionBindingEvent arg0)  { 
          // TODO Auto-generated method stub
+    	
+    	handleEvent(arg0);
+    	
+    	System.out.println("attribute replaced");
+    	System.out.println(arg0.getName() + " value is "+ arg0.getValue());
+    	String value = arg0.getValue().toString();
+    	list.add(Integer.parseInt(value));
+    	
+    	System.out.println("the new addToCart is : " + getvalue());
+    	arg0.getSession().getServletContext().setAttribute("PopularBook", getvalue());
     }
-
-	/**
-     * @see HttpSessionActivationListener#sessionWillPassivate(HttpSessionEvent)
-     */
-    public void sessionWillPassivate(HttpSessionEvent arg0)  { 
-         // TODO Auto-generated method stub
+    
+    private void handleEvent(HttpSessionBindingEvent event){//teacher method
+    	//check for attribute name to see which one was replaced
+    	if(event.getName().equals("BookToCart")){//if the attribute changed was called principle  
+    	
+    	System.out.println("New book added");
+    	}
     }
-
-	/**
-     * @see HttpSessionBindingListener#valueUnbound(HttpSessionBindingEvent)
-     */
-    public void valueUnbound(HttpSessionBindingEvent arg0)  { 
-         // TODO Auto-generated method stub
+    
+    private int getvalue(){//this method will return the result
+    	Collections.sort(list);
+    	if(list.size()==0)return 0;
+    	else{
+    		return list.get(list.size()-1);	
+    	}
+    	
     }
 	
 }

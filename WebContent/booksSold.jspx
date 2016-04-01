@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
-<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" 
+xmlns:c="http://java.sun.com/jsp/jstl/core" version="2.0">
 	<jsp:directive.page contentType="text/html; charset=ISO-8859-1" 
 		pageEncoding="ISO-8859-1" session="false"/>
 	<jsp:output doctype-root-element="html"
@@ -43,14 +44,26 @@
       id="search" placeholder="Search" /> <input
       type="button" id="searchbutton" value="Search" /></li>
     <li style="float: right"><button id="cartsubmit" name="cartsubmit" value="0"><img src="images/cart.png" class="thumbnail" height="40" width="50" /></button></li>
-    <li style="float: right"><a href="checkout.jspx">Checkout</a></li>
+    <li style="float: right"></li>
   </ul>
-  		<c:forEach var="booksSold" items="${booksSold}">
+  
+  		Enter the Month you would like a report for: <input type="text"
+						placeholder="Month" required="true" name="j_Month" id="month" />
+  		<button type="submit" name="enterMonth" value="true">Enter!</button>
+  		<TABLE>
+  		<c:forEach var="visitEvent" items="${PurchaseList}">
 			<tr>
-				<td>${booksSold.getbookID}</td>
-				<td>${booksSold.getBookPrice}</td>
+				<th>Book ID</th>
+				<th>Count</th>
+			</tr>
+			
+			<tr>
+				<td>${purchaseList.bid}</td>
+				<td>${purchaseList.count}</td>
 			</tr>
 		</c:forEach>
+  		</TABLE>
+  		
  </form>
 </body>
 </html>

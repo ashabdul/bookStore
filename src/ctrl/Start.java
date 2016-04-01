@@ -36,6 +36,7 @@ public class Start extends HttpServlet {
 	private BookDAO search = null;
 	private UserBean user;
 	private ReviewDAO review;
+	private VisitEventDAO visit;
 	int RequestCount = 0;
 
 	/**
@@ -49,6 +50,7 @@ public class Start extends HttpServlet {
 			search = new BookDAO();
 			user = new UserBean();
 			review = new ReviewDAO();
+			visit = new VisitEventDAO();
 			System.out.println("search ready");
 		}
 
@@ -272,6 +274,7 @@ public class Start extends HttpServlet {
 				VisitEventBean event = new VisitEventBean(book.getBid(),"CART");
 				visitEvent.addEvent(event);
 				System.out.println("Button value = " + request.getParameter("addToCart"));
+				String bookToCart = (String) getServletContext().getAttribute(book.getBid());
 			} catch (SQLException | ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -381,7 +384,7 @@ public class Start extends HttpServlet {
 				//create poBean and add it to the table, use address.getLast to retrieve the id of the address we just added
 				PODAO po = new PODAO();
 				//create a linked list of the cart
-				LinkedList<BookBean> books = (LinkedList<BookBean>) user.getCart().getCart().values();
+				LinkedList<BookBean> books = (LinkedList<BookBean>) user.getCart().getCartItems().values();
 
 				//for each element in the cart, creat a PO item and add it to the db and create a POItem and add it to db
 				for(int i = 0; i < books.size(); i++){
@@ -409,6 +412,39 @@ public class Start extends HttpServlet {
 
 			}
 		}
+		
+		
+		//added by Ashfaq
+		if (request.getParameter("generateReport")!= null){
+			
+			request.getRequestDispatcher("booksSold.jspx").forward(request, response);
+			
+				if(request.getParameter("enterMonth")!= null){
+					try{
+						VisitEventBean visitEvent;
+						LinkedList<VisitEventBean> PurchaseList = visit.retrievePurchaseEventByMonth(Integer.parseInt(request.getParameter("month")));
+					}
+					catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+					}
+				}
+		}
+		
+		if(request.getParameter("popularBooks")!= null){
+			request.getRequestDispatcher("popularBook.jsp").forward(request, response);
+			
+			try{
+				VisitEventBean visitEvent;
+				LinkedList<BookBean> PopularBook = visit.retrieveMostPopularBook();
+			}
+			catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				}
+		}
+		
+		
 	
 }
 }
