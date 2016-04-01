@@ -30,7 +30,7 @@ import model.VisitEventDAO;
 /**
  * Servlet implementation class Start
  */
-@WebServlet(urlPatterns = {"/Start", "", "/ScienceBooks", "/FictionBooks", "/EngineeringBooks"})
+@WebServlet(urlPatterns = {"/Start", "", "/ScienceBooks", "/FictionBooks", "/EngineeringBooks", "/Logout"})
 public class Start extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BookDAO search = null;
@@ -98,7 +98,7 @@ public class Start extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			request.getRequestDispatcher("scienceBooks").forward(request, response);
+			request.getRequestDispatcher("scienceBooks.jspx").forward(request, response);
 			return;
 		}
 		if(subString.equals("FictionBooks")) {
@@ -108,7 +108,7 @@ public class Start extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			request.getRequestDispatcher("fictionBooks").forward(request, response);
+			request.getRequestDispatcher("fictionBooks.jspx").forward(request, response);
 			return;
 		}
 		if(subString.equals("EngineeringBooks")) {
@@ -121,6 +121,11 @@ public class Start extends HttpServlet {
 			}
 			request.getRequestDispatcher("engineering").forward(request, response);
 			return;
+		}
+		if(subString.equals("Logout")) { //Added as a tag-a-long solution to logout
+			request.getSession().invalidate(); //Invalidates the sign in credentials
+			request.getRequestDispatcher("").forward(request, response); //Forces a reload of Start to reset variables
+			return; //Guarantees an exit of this instance
 		}
 
 		//if the user is loged in set attribute isLogedIn = true
