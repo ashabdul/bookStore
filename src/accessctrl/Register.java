@@ -66,7 +66,7 @@ public class Register extends HttpServlet {
 		}
 		//Insert into database now
 		// Default return location is the login.jspx page (which displays the 'login success' page).
-		String dispatchLocation = "login.jspx";
+		String dispatchLocation = "reallogin.jspx";
 		String err_msg = "Registration successful, please login to continue"; //Desired message to display -- No longer done on redirect, can remove.
 		
 		String userName = request.getParameter("username");
