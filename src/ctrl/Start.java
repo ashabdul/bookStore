@@ -96,7 +96,7 @@ public class Start extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			request.getRequestDispatcher("scienceBooks").forward(request, response);
+			request.getRequestDispatcher("scienceBooks.jspx").forward(request, response);
 			return;
 		}
 		if(subString.equals("FictionBooks")) {
@@ -106,7 +106,7 @@ public class Start extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			request.getRequestDispatcher("fictionBooks").forward(request, response);
+			request.getRequestDispatcher("fictionBooks.jspx").forward(request, response);
 			return;
 		}
 		if(subString.equals("EngineeringBooks")) {
@@ -381,7 +381,7 @@ public class Start extends HttpServlet {
 				//create poBean and add it to the table, use address.getLast to retrieve the id of the address we just added
 				PODAO po = new PODAO();
 				//create a linked list of the cart
-				LinkedList<BookBean> books = (LinkedList<BookBean>) user.getCart().getCart().values();
+				LinkedList<BookBean> books = (LinkedList<BookBean>) user.getCart().getCartItems().values();
 
 				//for each element in the cart, creat a PO item and add it to the db and create a POItem and add it to db
 				for(int i = 0; i < books.size(); i++){
