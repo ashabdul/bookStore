@@ -120,6 +120,27 @@ DataSource ds;
 	}
 	
 	/**
+	 * @return LinkedList of the top 10 viewed booked
+	 */
+	public LinkedList<BookBean> retrieveMostPopularBook() throws SQLException{
+		String query = "SELECT bid, COUNT(bid) AS count FROM VISITEVENT WHERE event_type='VIEW' GROUP BY bid ORDER BY count DESC FETCH NEXT 2 ROWS ONLY;";
+		LinkedList<BookBean> list = new LinkedList<BookBean>();
+		Connection con = this.ds.getConnection();
+		PreparedStatement p = con.prepareStatement(query);
+		ResultSet r = p.executeQuery();
+		while (r.next()){
+			String bid = r.getString("bid");
+			int sold = r.getInt("count");
+			BookBean event = new BookBean(bid, sold);
+			list.add(event);
+		}
+		r.close();
+		p.close();
+		con.close();
+		return list;
+	}
+	
+	/**
 	 * @add visitEvent to the table
 	 */
 	public void addEvent(VisitEventBean visit) throws SQLException{

@@ -14,16 +14,27 @@ import bean.UserBean;
 
 /**
  * Servlet implementation class Login
+ * @author William
  */
 @WebServlet("/Register")
 public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	/*
+	 * This class handles all requests having to do with registering a new user and redirecting around the login/register pages.
+	 * The login system consists mainly of two possible paths.
+	 * Case 1: The user entered a page that requires logging in.  An example is the partners.jspx page which brings up the SOAP panel for partners.
+	 * In this case a form (reallogin.jspx) is presented by Tomcat which is then used to verify the user against the database.  This is done entirely
+	 * by Tomcat (see WEB-INF/web.xml and META-INF/context.xml for realm and role setup).  Thus in case 1 this servlet need not be involved.
+	 * Case 2: The user clicked the "click here to register" button on any login page.
+	 * In this case the user enters credentials into the registration form and then presses the "register" button.  This button triggers this
+	 * servlet which manages insertion of credentials into the database and directing them to the login form to now use those credentials.
+	 */
+	
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public Register() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -40,36 +51,36 @@ public class Register extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if (Boolean.parseBoolean(request.getParameter("Register"))) { //Make sure it came from the registration form
-			if(request.getParameter("username").equals("") || request.getParameter("password").equals("")){
-				request.setAttribute("error_msg", "please enter both fields");
-				request.getRequestDispatcher("/register.jspx").forward(request, response);
+			if(request.getParameter("username").equals("") || request.getParameter("password").equals("")){ //If the user provided blank credentials
+				request.setAttribute("error_msg", "please enter both fields"); //Provide an error message
+				request.getRequestDispatcher("/register.jspx").forward(request, response); //Return them to the registration page
 			}
-			System.out.println("You have registered as " + request.getParameter("username"));
-			System.out.println("with password " + request.getParameter("password"));
+			//System.out.println("You have registered as " + request.getParameter("username"));
+			//System.out.println("with password " + request.getParameter("password"));
 		}
 		else if (Boolean.parseBoolean(request.getParameter("logout"))) { //Came from a logout button
 			request.logout();
 		}
-		else { //Somehow came from another area, send themm to the registration form
+		else { //Somehow came from another area, send them to the registration form
 			request.getRequestDispatcher("/register.jspx").forward(request, response);
 		}
 		//Insert into database now
-		
-		String dispatchLocation = "login.jspx";
-		String err_msg = "Registration successful, please login to continue";
+		// Default return location is the login.jspx page (which displays the 'login success' page).
+		String dispatchLocation = "reallogin.jspx";
+		String err_msg = "Registration successful, please login to continue"; //Desired message to display -- No longer done on redirect, can remove.
 		
 		String userName = request.getParameter("username");
-		String password = request.getParameter("password");
+		String password = request.getParameter("password"); //Grab the username and password fields.
 		String type = "user"; //Registration through the form is always a regular user
 		
 		/*
 		 * Need to check that username and password conform.
-		 * Should have been checked client side with javascript to ease the load on the server
+		 * Could have been checked client side with javascript to ease the load on the server
 		 * but that is inherently insecure so it needs to be double checked here just in case
 		*/
-		UserBean newUser = new UserBean(userName, password, type);
+		UserBean newUser = new UserBean(userName, password, type); //Create a userBean for insertion to the database
 		
-		UserDAO newUserDAO = null;
+		UserDAO newUserDAO = null; //This DAO interfaces with the accounts table, takes in a userBean.
 		try { //Attempt to make an instance of UserDAO
 			newUserDAO = new UserDAO();
 		} catch(Exception e) {
@@ -77,19 +88,22 @@ public class Register extends HttpServlet {
 			e.printStackTrace();
 		}
 		//Check if the username is already registered
+		Boolean alreadyRegistered = false;
 		try {
 			if(newUserDAO.hasUser(userName)) { //Username found
-				dispatchLocation = "register.jspx";
+				dispatchLocation = "register.jspx"; //Since the username was already taken we send them back to register instead of logging in.
 				err_msg = "Username already in use, please try another one";
+				alreadyRegistered = true; //So we don't try to insert
 			}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
 		//Username is free to register
 		try {
-			newUserDAO.addUser(newUser);
+			if(!alreadyRegistered) {
+				newUserDAO.addUser(newUser);
+			}
 		} catch (SQLException e) {
 			System.out.println("Error inserting user for registration!");
 			e.printStackTrace();
@@ -97,7 +111,8 @@ public class Register extends HttpServlet {
 		
 		//Registration went fine
 		request.setAttribute("error_msg", err_msg);
-		response.sendRedirect(dispatchLocation);
+		request.getRequestDispatcher(dispatchLocation).forward(request, response);
+		//response.sendRedirect(dispatchLocation);
 		//request.getRequestDispatcher(dispatchLocation).forward(request, response);
 	}
 }

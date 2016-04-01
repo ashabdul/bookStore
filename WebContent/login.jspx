@@ -16,12 +16,13 @@
 <link rel="StyleSheet" href="res/login.css" type="text/css"
 	title="cse4413" media="screen, print" />
 <script type="text/javascript" src="res/loginValidate.js">;</script>
+<META http-equiv="refresh" content="2; /Project" />
 </head>
 <body>
 	<ul>
-		<li><a href="home.jspx">Home</a></li>
+		<li><a href="/project/">Home</a></li>
 		<c:choose>
-			<c:when test="${isLogedIn == 'ture'}">
+			<c:when test="${isLogedIn == 'true'}">
 				<li><a href="logout.jspx">Log Out</a></li>
 			</c:when>
 			<c:otherwise>
@@ -36,11 +37,6 @@
 				</div>
 			</div>
 		</li>
-		<li id="searchbar" style="float: right"><input type="text"
-			id="search" placeholder="Search" /> <input type="button"
-			id="searchbutton" value="Search" /></li>
-		<li style="float: right"><a href="cart.jspx">Cart</a></li>
-		<li style="float: right"><a href="checkout.jspx">Checkout</a></li>
 	</ul>
 	<br />
 	<br />
@@ -49,7 +45,7 @@
 
 			<h2>You're Now Logged In</h2>
 
-			<p>You have now been logged in.</p>
+			<p>You have now been logged in.  Press any of the navigation keys or wait to be directed home.</p>
 		</div>
 	</div>
 

@@ -30,7 +30,7 @@ import model.VisitEventDAO;
 /**
  * Servlet implementation class Start
  */
-@WebServlet(urlPatterns = {"/Start", ""})
+@WebServlet(urlPatterns = {"/Start", "", "/ScienceBooks", "/FictionBooks", "/EngineeringBooks"})
 public class Start extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private BookDAO search = null;
@@ -57,24 +57,61 @@ public class Start extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
-	/* added by Michel
-	public void init()throws ServletException{
-
-    	try {
-
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    }*/
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
+		 * Segment authored by William
+		 * This is to handle the drop down menu on the navigation bar.  getRequestURI returns everything after the domain+port.
+		 * So if you press the Science category it directs to localhost:8080/Project/ScienceBooks (see home.jspx).  The getRequestURI
+		 * would return on this input "/Project/ScienceBooks".  The next line takes that return, finds the last index of '/' and
+		 * grabs the substring from that character + 1 to the end.  Thus /Project/ScienceBooks becomes Sciencebooks.
+		 * Now check and see if its any of the category buttons.  If so search for that category and direct to thre results page
+		 */
+		String subString = request.getRequestURI().substring(request.getRequestURI().lastIndexOf('/') + 1);
+		if(subString.equals("ScienceBooks")) {
+			try {
+				Map<String, BookBean> books = search.retrieve("science");
+				request.setAttribute("list", books.values());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			request.getRequestDispatcher("scienceBooks").forward(request, response);
+			return;
+		}
+		if(subString.equals("FictionBooks")) {
+			try {
+				Map<String, BookBean> books = search.retrieve("fiction");
+				request.setAttribute("list", books.values());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			request.getRequestDispatcher("fictionBooks").forward(request, response);
+			return;
+		}
+		if(subString.equals("EngineeringBooks")) {
+			try {
+				Map<String, BookBean> books = search.retrieve("engineering");
+				request.setAttribute("list", books.values());
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			request.getRequestDispatcher("engineering").forward(request, response);
+			return;
+		}
+
+		//if the user is loged in set attribute isLogedIn = true
+		if(request.getRemoteUser() != null){
+			request.setAttribute("isLogedIn", "true");
+		}
+		else{
+			request.setAttribute("isLogedIn", "false");
+		}
+		user.setUserName(request.getRemoteUser());
 		//When first visiting the website always redirect to home.
-		System.out.println("User is: " + request.getRemoteUser() + " they are an admin: " + request.isUserInRole("admin"));
-		response.sendRedirect("home.jspx");
+		request.getRequestDispatcher("home.jspx").forward(request, response);
+
 	}
 
 	/**
@@ -82,13 +119,30 @@ public class Start extends HttpServlet {
 	 * William
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//this String will hold the ISBN for the book currently bein viewd
-		request.getSession().setAttribute("LoggedInUserName", request.getRemoteUser());
+		System.out.println(request.getRequestURI());
+		
+		//added by michel
+		//set the user name based on the username from the login system
 		user.setUserName(request.getRemoteUser());
-
+		//set isLogedIn attribute based on the user name not bein null indicating that the user did log in
+		if(user.getUserName() != null){
+			request.setAttribute("isLogedIn", "true");
+		}
+		else{
+			request.setAttribute("isLogedIn", "false");
+		}
+	//-------------------------------------------
 		System.out.println("is loged is as: "+ request.getRemoteUser());
-		if(request.getParameter("searchSubmit") != null)
+		if(request.getParameter("searchSubmit") != null) //If the user arrived via the search box
 		{
+			//check if the user is loged in to set the isLogedIn attribute accordingly 
+			if(user.getUserName() != null){
+				request.setAttribute("isLogedIn", "true");
+			}
+			else{
+				request.setAttribute("isLogedIn", "false");
+			}
+			
 			System.out.println("Start: ");
 			String searchParam = "";
 			Map<String, BookBean> books = new HashMap<String, BookBean>();
@@ -101,7 +155,7 @@ public class Start extends HttpServlet {
 
 			try
 			{
-				books = search.retrieve(searchParam);
+				books = search.retrieve(searchParam); //Conduct the search
 			}
 
 			catch(SQLException e)
@@ -114,8 +168,8 @@ public class Start extends HttpServlet {
 				System.out.println(b.getBid() + " " +  b.getTitle() + " " + b.getCategory() + " " + b.getPrice());
 			}
 
-			request.setAttribute("list", books.values());
-			request.getRequestDispatcher("searchResult.jspx").forward(request, response);
+			request.setAttribute("list", books.values()); //Store the results of the search as an attribute to be grabbed in jspx
+			request.getRequestDispatcher("searchResult.jspx").forward(request, response); //Forward to the results pags
 		}
 
 		/* edited by Michel */
@@ -137,7 +191,6 @@ public class Start extends HttpServlet {
 				ReviewDAO reviewDAO = new ReviewDAO();
 				reviewDAO.addReview(review);
 
-
 			}catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -149,6 +202,13 @@ public class Start extends HttpServlet {
 		/* edited by Michel */
 		if(request.getParameter("addToCart") != null)
 		{
+			//check if the user is loged in to set the isLogedIn attribute accordingly 
+			if(user.getUserName() != null){
+				request.setAttribute("isLogedIn", "true");
+			}
+			else{
+				request.setAttribute("isLogedIn", "false");
+			}
 			try {
 				String bookISBN = request.getParameter("addToCart");
 				Map<String, BookBean> map = new HashMap<String, BookBean>();
@@ -170,6 +230,14 @@ public class Start extends HttpServlet {
 		if(request.getParameter("imagesubmit") != null)
 		{
 
+			//check if the user is loged in to set the isLogedIn attribute accordingly 
+			if(user.getUserName() != null){
+				request.setAttribute("isLogedIn", "true");
+			}
+			else{
+				request.setAttribute("isLogedIn", "false");
+			}
+			
 			System.out.println("clicked," + request.getParameter("imagesubmit"));
 			try {
 				//create a book object to hold the info of the clicked book after retrieving it from the database
@@ -204,13 +272,13 @@ public class Start extends HttpServlet {
 				request.setAttribute("bookID", book.getBid());
 				request.setAttribute("reviewList", reviewList);
 				request.setAttribute("bookStars", format.format(stars));
-				//check if user is loged in to decide whether to show the write review part or not
+				/*//check if user is loged in to decide whether to show the write review part or not
 				if(user.getUserName() != null){
-					request.setAttribute("isLogedIn", "ture");
+					request.setAttribute("isLogedIn", "true");
 				}
 				else{
 					request.setAttribute("isLogedIn", "false");
-				}
+				}*/
 				//insert a VIEW visit event to the VisitEvent table
 				VisitEventDAO visitEvent = new VisitEventDAO();
 				VisitEventBean event = new VisitEventBean(book.getBid(),"VIEW");
@@ -350,6 +418,7 @@ public class Start extends HttpServlet {
 			
 			PODAO po = null;
 			try {
+				
 				POBean newPO = new POBean(0, LName, FName, status, Integer.parseInt(address.retriveLast().getId()));
 				po = new PODAO();
 				po.addPO(newPO);
