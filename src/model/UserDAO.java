@@ -35,8 +35,8 @@ public class UserDAO {
 	 * retrives a user by user name
 	 */
 	public UserBean retriveUser(String username) throws SQLException{
-		String query = "select * from accounts where username like '%"
-				+ username + "%'";
+		String query = "select * from accounts where username = '"
+				+ username + "'";
 		Connection con = this.ds.getConnection();
 		PreparedStatement p = con.prepareStatement(query);
 		ResultSet r = p.executeQuery();
